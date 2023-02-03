@@ -67,7 +67,9 @@ func _process(delta):
 		$AnimatedSprite.flip_h = false
 		
 	velocity.y += fallacc * delta
-		
+	
+	print(state)
+	
 func process_normal(delta):
 	
 	velocity.x = 0
@@ -95,6 +97,9 @@ func process_normal(delta):
 	if Input.is_action_just_pressed("dash_key"):
 		dash(delta, dashduration)
 	
+	if velocity.y != 0:
+		state = JUMP
+	
 	return
 	
 func process_suck(delta):
@@ -111,6 +116,26 @@ func process_dead(delta):
 	return
 
 func process_jump(delta):
+	
+	var oldvelocity = velocity
+
+
+	velocity.x = 0
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = -walkspeed
+		lookleft = true
+	if Input.is_action_pressed("ui_right"):
+		velocity.x = walkspeed
+		lookleft = false
+	
+	if Input.is_action_just_pressed("dash_key"):
+		dash(delta, dashduration)
+		
+	if isonfloor:
+		state = NORMAL 
+	
+	velocity = move_and_slide(velocity, Vector2.UP)
+	isonfloor = oldvelocity!=velocity
 	return
 
 func process_dash(delta, dashduration):
