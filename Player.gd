@@ -85,7 +85,7 @@ func process_normal(delta):
 		lookleft = false
 		$AnimatedSprite.animation = "Run"
 	if Input.is_action_just_pressed("ui_up") && isonfloor:
-		velocity.y = jumpspeed
+		jump(delta)
 		
 	
 	if velocity.x == 0:
@@ -119,26 +119,27 @@ func process_dead(delta):
 	return
 
 func process_jump(delta):
-	
+	var squatting = true
 	var oldvelocity = velocity
-
-
-	velocity.x = 0
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -walkspeed
-		lookleft = true
-	if Input.is_action_pressed("ui_right"):
-		velocity.x = walkspeed
-		lookleft = false
 	
-	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dashduration)
+	
+	if !squatting:
+		velocity.x = 0
+		if Input.is_action_pressed("ui_left"):
+			velocity.x = -walkspeed
+			lookleft = true
+		if Input.is_action_pressed("ui_right"):
+			velocity.x = walkspeed
+			lookleft = false
 		
-	if isonfloor:
-		state = NORMAL 
-	
-	velocity = move_and_slide(velocity, Vector2.UP)
-	isonfloor = oldvelocity!=velocity
+		if Input.is_action_just_pressed("dash_key"):
+			dash(delta, dashduration)
+			
+		if isonfloor:
+			state = NORMAL 
+		
+		velocity = move_and_slide(velocity, Vector2.UP)
+		isonfloor = oldvelocity!=velocity
 	return
 
 func process_dash(delta, dashduration):
@@ -167,3 +168,11 @@ func dash(delta, dashduration):
 		dashstale = dashstale * 0.8
 		state = DASH
 	return
+
+func jump(delta):
+	velocity.y = jumpspeed
+	velocity = move_and_slide(velocity, Vector2.UP)
+	state = JUMP
+	$AnimatedSprite.animation = "Jump_Enter"
+	return
+	

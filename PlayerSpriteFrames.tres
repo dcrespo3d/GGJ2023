@@ -178,7 +178,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 107 ), ExtResource( 108 ), ExtResource( 106 ) ],
-"loop": true,
+"loop": false,
 "name": "Jump_Out",
 "speed": 5.0
 }, {
