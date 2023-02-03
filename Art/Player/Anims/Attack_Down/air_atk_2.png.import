@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3_atk_2.png-243897b77f14b76b3da7a9336fee12e1.stex"
+path="res://.import/air_atk_2.png-0789145048111d37c6f79154092f2380.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/Anims/Attack/3_atk_2.png"
-dest_files=[ "res://.import/3_atk_2.png-243897b77f14b76b3da7a9336fee12e1.stex" ]
+source_file="res://Art/Player/Anims/Attack_Down/air_atk_2.png"
+dest_files=[ "res://.import/air_atk_2.png-0789145048111d37c6f79154092f2380.stex" ]
 
 [params]
 
