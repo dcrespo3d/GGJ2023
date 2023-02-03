@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Projectile_SpriteFrames.tres" type="SpriteFrames" id=1]
+
+[node name="Projectile" type="RigidBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "Projectile"
+speed_scale = 2.0
+playing = true
