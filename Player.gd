@@ -18,3 +18,7 @@ func _process(delta):
 		position.x -= walkspeed * delta
 	if Input.is_action_pressed("ui_right"):
 		position.x += walkspeed * delta
+	if Input.is_action_pressed("shoot"):
+		position.y -= walkspeed * delta
+
+

@@ -5,15 +5,15 @@
 [node name="EscenaMain" type="Node2D"]
 
 [node name="Viewport" type="Node2D" parent="."]
-scale = Vector2( 5, 5 )
+scale = Vector2( 3, 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Viewport"]
-margin_right = 384.0
-margin_bottom = 216.0
+margin_right = 640.0
+margin_bottom = 360.0
 color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
-position = Vector2( 211.2, 136.8 )
+position = Vector2( 340.667, 307.333 )
 walkspeed = 120
