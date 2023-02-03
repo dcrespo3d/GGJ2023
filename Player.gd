@@ -81,6 +81,7 @@ func process_normal(delta):
 		$AnimatedSprite.animation = "Run"
 	if Input.is_action_just_pressed("ui_up") && isonfloor:
 		velocity.y = jumpspeed
+		
 	
 	if velocity.x == 0:
 		$AnimatedSprite.animation = "Idle"
