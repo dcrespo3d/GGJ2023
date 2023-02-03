@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 280.5, 583.5 )
 
 [node name="EscenaMain" type="Node2D"]
 
@@ -15,5 +18,18 @@ color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
-position = Vector2( 340.667, 307.333 )
+position = Vector2( 332, 302.333 )
 walkspeed = 120
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -268, 510 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 2186, 510 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Area2D" to="Viewport/Player" method="_on_Area2D_area_entered"]
