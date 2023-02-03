@@ -39,18 +39,23 @@ func _process(delta):
 		
 		
 func process_normal():
+	print("normal")
 	return
 	
 func process_suck():
+	print("suck")
 	return
 	
 
 func process_busy():
+	print("busy")
 	return
 	
 func process_hit():
+	print("hit")
 	return
 	
 func process_dead():
+	print("dead")
 	return
 
