@@ -21,7 +21,7 @@ var velocity = Vector2.ZERO
 export var dashduration = 20
 var dashstale = 1
 var lookleft = false
-enum {NORMAL, SUCK, BUSY, HIT, DEAD}
+enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP}
 var state = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,6 +49,7 @@ func _process(delta):
 		BUSY: process_busy(delta)
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
+		JUMP: process_jump(delta)
 		
 func process_normal(delta):
 	velocity.x = 0
@@ -80,17 +81,20 @@ func process_hit(delta):
 func process_dead(delta):
 	return
 
+func process_jump(delta):
+	return
+
 
 func dash(delta):
 	state = BUSY
 	var dashlength = dashduration
 	if lookleft:
 		while (dashlength * dashstale > 0):
-			position.x -= dashspeed * delta
+			velocity.x = -walkspeed
 			dashlength = dashlength - 1
 	else:
 		while (dashlength * dashstale > 0):
-			position.x += dashspeed * delta
+			velocity.x = walkspeed
 			dashlength = dashlength - 1
 	state = NORMAL
 	return
