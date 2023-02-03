@@ -138,10 +138,10 @@ animations = [ {
 
 [node name="Player" type="KinematicBody2D"]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="PlayerAnimations" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = SubResource( 1 )
-animation = "Charge"
-frame = 5
+animation = "Idle"
+frame = 11
 speed_scale = 3.0
 playing = true
