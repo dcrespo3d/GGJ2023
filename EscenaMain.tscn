@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://EscenaMain.gd" type="Script" id=2]
+[ext_resource path="res://Target.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 280.5, 583.5 )
@@ -9,6 +11,7 @@ extents = Vector2( 280.5, 583.5 )
 extents = Vector2( 962, 106 )
 
 [node name="EscenaMain" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -22,6 +25,8 @@ color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
 position = Vector2( 313.333, 74.3333 )
+
+[node name="Target" parent="Viewport" instance=ExtResource( 3 )]
 
 [node name="Area2D" type="Area2D" parent="."]
 
