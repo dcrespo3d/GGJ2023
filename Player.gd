@@ -15,6 +15,7 @@ export var dashspeed = 1000
 export var jumpspeed = -500
 export var fallacc = 1000
 var velocity = Vector2.ZERO	
+var isonfloor = false
 		
 export var dashrecoveryspeed = 0.001
 export var dashduration = 70
@@ -54,20 +55,35 @@ func _process(delta):
 		JUMP: process_jump(delta)
 		DASH: process_dash(delta, dashduration)
 		
+	if lookleft:
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.flip_h = false
+		
+	velocity.y += fallacc * delta
+		
 func process_normal(delta):
+	
 	velocity.x = 0
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -walkspeed
 		lookleft = true
+		$AnimatedSprite.animation = "Run"
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = walkspeed
 		lookleft = false
-	if Input.is_action_just_pressed("ui_up"):
+		$AnimatedSprite.animation = "Run"
+	if Input.is_action_just_pressed("ui_up") && isonfloor:
 		velocity.y = jumpspeed
+	
+	if velocity.x == 0:
+		$AnimatedSprite.animation = "Idle"
+	
 		
-	velocity.y += fallacc * delta
-		
+	var oldvelocity = velocity
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	isonfloor = oldvelocity!=velocity
 	
 	if Input.is_action_just_pressed("dash_key"):
 		dash(delta, dashduration)
@@ -91,6 +107,7 @@ func process_jump(delta):
 	return
 
 func process_dash(delta, dashduration):
+	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
