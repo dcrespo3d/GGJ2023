@@ -10,8 +10,14 @@ extends KinematicBody2D
 func _ready():
 	pass # Replace with function body.
 
-export var walkspeed = 30
+export var walkspeed = 300
 export var dashspeed = 60
+export var jumpspeed = -500
+export var fallacc = 1000
+var velocity = Vector2.ZERO	
+		
+
+
 export var dashduration = 20
 var dashstale = 1
 var lookleft = false
@@ -37,7 +43,6 @@ func _process(delta):
 		state = DEAD
 		print("dead")
 
-	
 	match (state):
 		NORMAL: process_normal(delta)
 		SUCK: process_suck(delta)
@@ -45,26 +50,27 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		
-	dashstale = dashstale + 0.001
-		
 func process_normal(delta):
+	velocity.x = 0
 	if Input.is_action_pressed("ui_left"):
-		position.x -= walkspeed * delta
+		velocity.x = -walkspeed
 		lookleft = true
 	if Input.is_action_pressed("ui_right"):
-		position.x += walkspeed * delta
+		velocity.x = walkspeed
 		lookleft = false
-	if Input.is_action_pressed("ui_up"):
-		position.y -= walkspeed * delta
-	if Input.is_action_pressed("ui_down"):
-		position.y += walkspeed * delta
+	if Input.is_action_just_pressed("ui_up"):
+		velocity.y = jumpspeed
+		
+	velocity.y += fallacc * delta
+		
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	if Input.is_action_just_released("dash_key"):
-			dash(delta)
+	return
 	
 func process_suck(delta):
 	return
 	
+
 func process_busy(delta):
 	return
 	

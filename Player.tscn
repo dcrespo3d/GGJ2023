@@ -137,13 +137,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29, 30.5 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 88 )
 
-[node name="PlayerAnimations" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = SubResource( 1 )
 animation = "Charge_Out"
 frame = 2
 speed_scale = 3.0
 playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6 )
+shape = SubResource( 2 )
