@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export (PackedScene) var Projectile
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -67,6 +68,8 @@ func _process(delta):
 		$AnimatedSprite.flip_h = false
 		
 	velocity.y += fallacc * delta
+	
+	print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
