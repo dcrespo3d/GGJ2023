@@ -12,10 +12,13 @@ func _ready():
 	pass # Replace with function body.
 
 export var walkspeed = 300
+export var maxHealth = 10
+export var currentHealth = 10
+export var inmunity = false
 export var dashspeed = 1000
 export var jumpspeed = -500
 export var fallacc = 1000
-var velocity = Vector2.ZERO	
+var velocity = Vector2.ZERO
 var isonfloor = false
 		
 export var dashrecoveryspeed = 0.001
@@ -37,16 +40,17 @@ func _process(delta):
 	if dashcool > 0:
 		dashcool = dashcool - 1
 
-	if Input.is_action_pressed("debug1"):
+	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
 		print("normal")
-	if Input.is_action_pressed("debug2"):
+	if Input.is_action_just_pressed("debug2"):
 		state = SUCK
 		print("suck")
 	if Input.is_action_pressed("debug3"):
 		state = BUSY
 		print("busy")
-	if Input.is_action_pressed("debug4"):
+	if Input.is_action_just_pressed("debug4"):
+		currentHealth -= 1
 		state = HIT
 		print("hit")
 	if Input.is_action_pressed("debug5"):
@@ -107,12 +111,12 @@ func process_normal(delta):
 	
 func process_suck(delta):
 	return
-	
 
 func process_busy(delta):
 	return
 	
 func process_hit(delta):
+
 	return
 	
 func process_dead(delta):
