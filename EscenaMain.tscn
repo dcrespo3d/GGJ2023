@@ -26,6 +26,8 @@ color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
 position = Vector2( 313.333, 74.3333 )
+maxHealth = 184
+currentHealth = 50
 
 [node name="Target" parent="Viewport" instance=ExtResource( 3 )]
 
