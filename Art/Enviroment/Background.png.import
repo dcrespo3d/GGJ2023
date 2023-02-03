@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bgrd_tree4.png-122f0099545d3987094eda0344822ae7.stex"
+path="res://.import/Background.png-bece840ce8253e3cddf58101e25c1e6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enviroment/bgrd_tree4.png"
-dest_files=[ "res://.import/bgrd_tree4.png-122f0099545d3987094eda0344822ae7.stex" ]
+source_file="res://Art/Enviroment/Background.png"
+dest_files=[ "res://.import/Background.png-bece840ce8253e3cddf58101e25c1e6e.stex" ]
 
 [params]
 

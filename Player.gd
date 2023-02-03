@@ -18,6 +18,8 @@ var velocity = Vector2.ZERO
 		
 
 
+export var dashduration = 20
+var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, BUSY, HIT, DEAD}
 var state = NORMAL
@@ -78,3 +80,17 @@ func process_hit(delta):
 func process_dead(delta):
 	return
 
+
+func dash(delta):
+	state = BUSY
+	var dashlength = dashduration
+	if lookleft:
+		while (dashlength * dashstale > 0):
+			position.x -= dashspeed * delta
+			dashlength = dashlength - 1
+	else:
+		while (dashlength * dashstale > 0):
+			position.x += dashspeed * delta
+			dashlength = dashlength - 1
+	state = NORMAL
+	return
