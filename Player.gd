@@ -19,6 +19,9 @@ var isonfloor = false
 		
 export var dashrecoveryspeed = 0.001
 export var dashduration = 70
+export var dashcooldown = 50
+export var mindashduration = 10
+var dashcool = 0
 var dashlength = 20
 var dashstale = 1
 var lookleft = false
@@ -29,6 +32,9 @@ var state = NORMAL
 func _process(delta):
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed
+		
+	if dashcool > 0:
+		dashcool = dashcool - 1
 
 	if Input.is_action_pressed("debug1"):
 		state = NORMAL
@@ -121,10 +127,14 @@ func process_dash(delta, dashduration):
 	else:
 		dashlength = dashduration
 		state = NORMAL
+		dashcool = dashcooldown
 	return
 
 func dash(delta, dashduration):
-	dashlength = dashduration * dashstale
-	dashstale = dashstale * 0.8
-	state = DASH
+	if dashcool <= 0:
+		dashlength = dashduration * dashstale
+		if dashlength < mindashduration:
+			dashlength = mindashduration
+		dashstale = dashstale * 0.8
+		state = DASH
 	return
