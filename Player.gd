@@ -20,6 +20,24 @@ var state = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
+	if Input.is_action_pressed("debug1"):
+		state = NORMAL
+		print("normal")
+	if Input.is_action_pressed("debug2"):
+		state = SUCK
+		print("suck")
+	if Input.is_action_pressed("debug3"):
+		state = BUSY
+		print("busy")
+	if Input.is_action_pressed("debug4"):
+		state = HIT
+		print("hit")
+	if Input.is_action_pressed("debug5"):
+		state = DEAD
+		print("dead")
+
+	
 	match (state):
 		NORMAL: process_normal(delta)
 		SUCK: process_suck(delta)
