@@ -1,0 +1,45 @@
+Enemigos
+
+Vida (Hits)
+Velocidad (Vivo)
+Velocidad de caida (o aceleracion) (Muerto)
+Daño (Impacto Player)
+Daño (Impacto Suelo)
+Recuperacion de vida
+
+Objetivo*
+
+
+Player
+
+Vida
+Daño
+------ Velocidad movimiento
+Municion maxima
+Velocidad de disparo (coldown)
+iFrames despues de hit
+Angulo de ataque horizontal (min/max)
+
+Duracion de unidad de recarga
+Vida recargada por unidad
+Municion recargada por unidad
+Daño a la tierra por unidad de vida
+Daño a la tierra por unidad de recarga
+Tiempo hasta que inicia recarga
+
+----- Velocidad de salto (o aceleracion)
+----- Velocidad de caida (o aceleracion)
+Numero de saltos antes de tocar suelo (Doble salto si no?) ???????????????
+
+----- Velocidad de dash
+----- Duracion de dash
+----- Coldown de dash
+Reduccion de dash seguido velocidad ???????
+----- Reduccion de dash seguido duracion
+----- Tiempo de recuperacion de dash
+
+
+Suelo
+
+Vida
+
