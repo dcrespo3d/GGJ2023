@@ -11,21 +11,23 @@ func _ready():
 	pass # Replace with function body.
 
 export var walkspeed = 300
-export var dashspeed = 60
+export var dashspeed = 1000
 export var jumpspeed = -500
 export var fallacc = 1000
 var velocity = Vector2.ZERO	
 		
-
-
-export var dashduration = 20
+export var dashrecoveryspeed = 0.001
+export var dashduration = 70
+var dashlength = 20
 var dashstale = 1
 var lookleft = false
-enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP}
+enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if dashstale < 1:
+		dashstale = dashstale + dashrecoveryspeed
 
 	if Input.is_action_pressed("debug1"):
 		state = NORMAL
@@ -50,6 +52,7 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
+		DASH: process_dash(delta, dashduration)
 		
 func process_normal(delta):
 	velocity.x = 0
@@ -65,6 +68,9 @@ func process_normal(delta):
 	velocity.y += fallacc * delta
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	if Input.is_action_just_pressed("dash_key"):
+		dash(delta, dashduration)
 	
 	return
 	
@@ -84,17 +90,24 @@ func process_dead(delta):
 func process_jump(delta):
 	return
 
-
-func dash(delta):
-	state = BUSY
-	var dashlength = dashduration
-	if lookleft:
-		while (dashlength * dashstale > 0):
-			velocity.x = -walkspeed
+func process_dash(delta, dashduration):
+	dashlength = dashlength-1
+	if dashlength > 0:
+		if lookleft:
+			velocity.x = -dashspeed
+			velocity = move_and_slide(velocity, Vector2.UP)
+			dashlength = dashlength - 1
+		else:
+			velocity.x = dashspeed
+			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		while (dashlength * dashstale > 0):
-			velocity.x = walkspeed
-			dashlength = dashlength - 1
-	state = NORMAL
+		dashlength = dashduration
+		state = NORMAL
+	return
+
+func dash(delta, dashduration):
+	dashlength = dashduration * dashstale
+	dashstale = dashstale * 0.8
+	state = DASH
 	return
