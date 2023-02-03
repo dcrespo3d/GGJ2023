@@ -18,17 +18,18 @@ var state = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("ui_left"):
-		position.x -= walkspeed * delta
-		lookleft = true
-	if Input.is_action_pressed("ui_right"):
-		position.x += walkspeed * delta
-		lookleft = false
-	if Input.is_action_pressed("ui_up"):
-		position.y -= walkspeed * delta
-	if Input.is_action_pressed("ui_down"):
-		position.y += walkspeed * delta
+	if Input.is_action_pressed("debug1"):
+		state = NORMAL
+	if Input.is_action_pressed("debug2"):
+		state = SUCK
+	if Input.is_action_pressed("debug3"):
+		state = BUSY
+	if Input.is_action_pressed("debug4"):
+		state = HIT
+	if Input.is_action_pressed("debug5"):
+		state = DEAD
 
+	
 	match (state):
 		NORMAL: process_normal()
 		SUCK: process_suck()
