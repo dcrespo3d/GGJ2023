@@ -150,5 +150,6 @@ animations = [ {
 [node name="EnemyAnimations" type="AnimatedSprite" parent="."]
 frames = SubResource( 25 )
 animation = "Hit"
+frame = 2
 speed_scale = 2.0
 playing = true
