@@ -42,4 +42,3 @@ position = Vector2( 959, 1046 )
 shape = SubResource( 2 )
 
 [node name="Gui" parent="." instance=ExtResource( 2 )]
-visible = false
