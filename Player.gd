@@ -12,10 +12,12 @@ func _ready():
 	pass # Replace with function body.
 
 export var walkspeed = 300
+export var health = 10
+export var inmunity = false
 export var dashspeed = 1000
 export var jumpspeed = -500
 export var fallacc = 1000
-var velocity = Vector2.ZERO	
+var velocity = Vector2.ZERO
 var isonfloor = false
 		
 export var dashrecoveryspeed = 0.001
