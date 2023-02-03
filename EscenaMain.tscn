@@ -19,7 +19,6 @@ color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
 position = Vector2( 332, 302.333 )
-walkspeed = 120
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 15 )
