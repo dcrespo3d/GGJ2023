@@ -55,5 +55,5 @@ walkspeed = 350
 position = Vector2( 0, -30 )
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 3
+frame = 5
 playing = true
