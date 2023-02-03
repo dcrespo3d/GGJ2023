@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export (PackedScene) var Projectile
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -70,6 +71,8 @@ func _process(delta):
 	
 	print(state)
 	
+	print(get_viewport().get_mouse_position())
+		
 func process_normal(delta):
 	
 	velocity.x = 0
