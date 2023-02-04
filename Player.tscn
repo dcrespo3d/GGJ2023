@@ -13,11 +13,12 @@ script = ExtResource( 88 )
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Dash"
-frame = 6
+frame = 3
 speed_scale = 3.0
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 6 )
 shape = SubResource( 2 )
 

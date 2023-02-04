@@ -9,12 +9,8 @@
 [ext_resource path="res://Art/Enviroment/Tree_03.png" type="Texture" id=7]
 [ext_resource path="res://Art/Enviroment/Tree_01.png" type="Texture" id=8]
 [ext_resource path="res://Gea.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=10]
-
-[sub_resource type="Curve2D" id=3]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 3, -3, 0, 0, 0, 0, 639.333, -3 )
-}
+[ext_resource path="res://Art/Enviroment/Floor.png" type="Texture" id=10]
+[ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 280.5, 583.5 )
@@ -30,29 +26,29 @@ Enemy = ExtResource( 10 )
 scale = Vector2( 3, 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Viewport"]
-margin_left = -5.0
-margin_top = -30.0
-margin_right = 648.0
-margin_bottom = 370.0
+margin_left = -2.33333
+margin_top = -19.3333
+margin_right = 650.667
+margin_bottom = 380.667
 color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
-[node name="TextureRect" type="TextureRect" parent="Viewport"]
+[node name="Background" type="TextureRect" parent="Viewport"]
 margin_top = -3.0
 margin_right = 647.0
 margin_bottom = 367.0
 texture = ExtResource( 6 )
 
-[node name="TextureRect2" type="TextureRect" parent="Viewport"]
+[node name="Trees_01" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 8 )
 
-[node name="TextureRect3" type="TextureRect" parent="Viewport"]
+[node name="Trees_02" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 5 )
 
-[node name="TextureRect4" type="TextureRect" parent="Viewport"]
+[node name="Trees_03" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 7 )
@@ -63,18 +59,26 @@ texture = ExtResource( 7 )
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
 position = Vector2( 315, 271 )
+maxHealth = 500
+currentHealth = 500
+dashspeed = 800
 mindashduration = 20
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
-position = Vector2( -228.333, 315 )
+position = Vector2( -227.333, 342.667 )
 maxHealth = 500
 currentHealth = 500
 
-[node name="enemyPath" type="Path2D" parent="Viewport"]
-curve = SubResource( 3 )
+[node name="Floor" type="TextureRect" parent="Viewport"]
+margin_left = -2.0
+margin_top = -5.66666
+margin_right = 641.0
+margin_bottom = 354.333
+texture = ExtResource( 10 )
+expand = true
 
-[node name="enemyPath" type="PathFollow2D" parent="Viewport/enemyPath"]
-position = Vector2( 3, -3 )
+[node name="Enemy_01" parent="Viewport" instance=ExtResource( 11 )]
+position = Vector2( 358, 72.6667 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
