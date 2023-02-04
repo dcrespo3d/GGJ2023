@@ -118,9 +118,3 @@ position = Vector2( 2193, 524 )
 shape = SubResource( 1 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

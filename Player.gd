@@ -178,6 +178,7 @@ func process_hit(delta):
 	return
 	
 func process_dead(delta):
+	$AnimatedSprite.animation = "Die"
 	return
 
 func process_jump(delta):
@@ -316,7 +317,7 @@ func _takeHit(damage):
 	if currentHealth <= 0:
 		currentHealth = -1
 		state = DEAD
-		$AnimatedSprite.animation = "Die"
+		
 		
 func _takeHeal(delta, heal):
 	if currentHealth < maxHealth && isonfloor:
