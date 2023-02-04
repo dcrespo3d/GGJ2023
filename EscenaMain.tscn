@@ -58,9 +58,9 @@ texture = ExtResource( 7 )
 
 [node name="TextureRect5" type="TextureRect" parent="Viewport"]
 margin_left = 1.33333
-margin_top = 314.0
+margin_top = 314.667
 margin_right = 648.333
-margin_bottom = 474.0
+margin_bottom = 474.667
 
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
