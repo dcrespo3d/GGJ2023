@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Game_Over_Text.png-78a7619014abda809de007a3865e7d2b.stex"
+path="res://.import/slime2.png-10edee4089b4d795e4820d23d8f60cb1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/VFX/Game_Over_Text.png"
-dest_files=[ "res://.import/Game_Over_Text.png-78a7619014abda809de007a3865e7d2b.stex" ]
+source_file="res://Art/Enemies/Enemigos/Slime/slime2.png"
+dest_files=[ "res://.import/slime2.png-10edee4089b4d795e4820d23d8f60cb1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
