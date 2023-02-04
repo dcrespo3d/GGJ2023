@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=88]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -8,16 +9,30 @@ extents = Vector2( 29, 30.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 88 )
+Projectile = ExtResource( 2 )
+walkspeed = 500
+jumpspeed = -900
+fallacc = 3000
+dashspeed = 10500
+dashduration = 45
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
-animation = "Charge"
+animation = "Attack_Down"
 frame = 1
 speed_scale = 3.0
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 6 )
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 6 )
 shape = SubResource( 2 )

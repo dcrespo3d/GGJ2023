@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+export (PackedScene) var Projectile
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -23,7 +23,7 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export var dashspeed = 1000
+export (int) var dash_speed = 1000
 export var mindashspeed = 250
 export var dashduration = 70
 export var mindashduration = 10
@@ -42,8 +42,9 @@ enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
 
-export (PackedScene) var Projectile
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
 	
 
@@ -57,6 +58,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
+		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
 		state = SUCK
@@ -65,14 +67,18 @@ func _process(delta):
 		state = BUSY
 		print("busy")
 	if Input.is_action_just_pressed("debug4"):
-		currentHealth -= 10
-		state = HIT
-		print("hit")
+		_takeHit(50)
+		print(currentHealth)
+
 	if Input.is_action_pressed("debug5"):
 		state = DEAD
 		print("dead")
+		
+	if Input.is_action_just_pressed("shoot"):
+		perform_shoot()
 	if Input.is_action_just_pressed("debug6"):
 		_takeHeal(delta, heal)
+		_takeHit(10)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -85,17 +91,14 @@ func _process(delta):
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
+	
 	else:
 		$AnimatedSprite.flip_h = false
-		
+
 	velocity.y += fallacc * delta
 	
-	#print(dashstale)
+	get_tree().get_root().get_node("EscenaMain/Viewport/Label").text = str(dashstale)
 	
-	
-	#print(isonfloor)
-	
-	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -143,6 +146,7 @@ func process_suck(delta):
 		if $AnimatedSprite.frame == 5:
 			state = NORMAL
 			
+	
 	return
 
 func process_busy(delta):
@@ -209,7 +213,7 @@ func process_dash(delta, dashduration):
 func dash(delta, dashduration):
 	if dashcool <= 0:
 		dashlength = dashduration # * dashstale
-		dashspeedtemp = dashspeed * dashstale
+		dashspeedtemp = dash_speed * dashstale
 		if dashlength < mindashduration:
 			dashlength = mindashduration
 		
@@ -231,13 +235,28 @@ func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation != "Jump_Out":
 		landing = false
 	
-func _takeHit(delta, damage):
+
+
+var mousePos = Vector2.ZERO
+
+func perform_shoot():
+	var projectile = Projectile.instance()
+	projectile.position = position
+	
+	var direction = (mousePos - position).normalized()
+	projectile.velocity = direction * projectile.scalarSpeed
+	projectile.rotation = direction.angle()
+	
+	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
+
+	
+func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
 		state = HIT
 		$AnimatedSprite.animation = "Hit"
 		print("Hola, entro aqui")
-	else: if currentHealth == 0:
+	if currentHealth == 0:
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
@@ -254,3 +273,5 @@ func _takeHeal(delta, heal):
 		isbegginingsuck = true
 		state = SUCK
 
+func getType():
+	return  "Player"

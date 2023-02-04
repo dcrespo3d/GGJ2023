@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow_shower_effect_03.png-0c86440ba37e59da9f16af5f39308bf4.stex"
+path="res://.import/DisparoFrame1.png-96ec3ede8d033363bebc0accec752d37.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/VFX/arrow_shower_effect_03.png"
-dest_files=[ "res://.import/arrow_shower_effect_03.png-0c86440ba37e59da9f16af5f39308bf4.stex" ]
+source_file="res://Art/Projectile/Frames/DisparoFrame1.png"
+dest_files=[ "res://.import/DisparoFrame1.png-96ec3ede8d033363bebc0accec752d37.stex" ]
 
 [params]
 
