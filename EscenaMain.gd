@@ -8,6 +8,7 @@ export(PackedScene) var Enemy
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _spawnEnemy():
 	var enemy = Enemy.instance()
@@ -26,6 +27,8 @@ func _spawnEnemy():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("debug1"):
+		_spawnEnemy()
 
 	$Gui/hpplayer.value = $Viewport/Player.currentHealth
 	$Gui/hpplayer.max_value = $Viewport/Player.maxHealth
