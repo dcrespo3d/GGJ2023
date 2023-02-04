@@ -55,7 +55,6 @@ var prevState = NORMAL
 
 func _process(delta):
 	
-
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
 	if dashstale > 1:
@@ -66,7 +65,6 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
-		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
 		_takeHeal(delta, heal)
@@ -311,11 +309,11 @@ func instance_projectile():
 	
 func _takeHit(damage):
 	if currentHealth > 0:
-		currentHealth -= damage	
-		state = HIT
-		$AnimatedSprite.animation = "Hit"
-		print("Hola, entro aqui")
-	if currentHealth == 0:
+		currentHealth -= damage
+		if !$AnimatedSprite.animation == "Charge":
+			state = HIT
+			$AnimatedSprite.animation = "Hit"
+	if currentHealth <= 0:
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
