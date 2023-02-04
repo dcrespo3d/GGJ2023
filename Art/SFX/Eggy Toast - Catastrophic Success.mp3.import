@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eggy Toast - Catastrophic Success.mp3-4eda1960c70108ec517849ae783fba49.mp3str"
+
+[deps]
+
+source_file="res://Art/SFX/Eggy Toast - Catastrophic Success.mp3"
+dest_files=[ "res://.import/Eggy Toast - Catastrophic Success.mp3-4eda1960c70108ec517849ae783fba49.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -3,7 +3,7 @@
 [ext_resource path="res://Art/Image_Menus/MainMenu_Background.png" type="Texture" id=1]
 [ext_resource path="res://Art/Font/IrishPenny.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://InitialScene.gd" type="Script" id=3]
-[ext_resource path="res://Art/SFX/magic-forest-71879.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Art/SFX/game-over-danijel-zambo-main-version-02-03-1394.mp3" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 48
