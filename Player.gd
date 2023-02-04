@@ -31,6 +31,12 @@ export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
 
+export var attackUpThreshold = -45
+export var attackDownThreshold = 15
+export var fallWhileAttacking = false
+export var attackCooldown = 0.5
+
+
 var isbegginingsuck = false
 var dashcool = 0
 var landing = false
@@ -38,9 +44,11 @@ var dashlength = 20
 var dashspeedtemp = 1000
 var dashstale = 1
 var lookleft = false
-enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
+enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
+
+var prevState = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -63,8 +71,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug2"):
 		_takeHeal(delta, heal)
 	if Input.is_action_pressed("debug3"):
-		state = BUSY
-		print("busy")
+		state = SHOOT
+		print("shoot")
 	if Input.is_action_just_pressed("debug4"):
 		_takeHit(50)
 		print(currentHealth)
@@ -73,8 +81,6 @@ func _process(delta):
 		state = DEAD
 		print("dead")
 		
-	if Input.is_action_just_pressed("shoot"):
-		perform_shoot()
 	if Input.is_action_just_pressed("debug6"):
 		
 		_takeHit(10)
@@ -82,7 +88,7 @@ func _process(delta):
 	match (state):
 		NORMAL: process_normal(delta)
 		SUCK: process_suck(delta)
-		BUSY: process_busy(delta)
+		SHOOT: process_shoot(delta)
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
@@ -96,8 +102,11 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
-	get_tree().get_root().get_node("EscenaMain/Viewport/Label").text = str(dashstale)
+#	print("STATE: ", state)
 	
+	#print(isonfloor)
+	
+	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -117,6 +126,8 @@ func process_normal(delta):
 	if velocity.x == 0 && !landing && isonfloor:
 		$AnimatedSprite.animation = "Idle"
 	
+	if Input.is_action_just_pressed("shoot"):
+		perform_shoot()
 	
 		
 	var oldyvelocity = velocity.y
@@ -148,9 +159,18 @@ func process_suck(delta):
 	
 	return
 
-func process_busy(delta):
-	return
-	
+func process_shoot(delta):
+	if $AnimatedSprite.frame == 3:
+		add_projectile_to_scene()
+	elif $AnimatedSprite.frame == 7:
+		state = NORMAL
+#	print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
+#	print("$AnimatedSprite.frame:", $AnimatedSprite.frame)
+	if fallWhileAttacking:
+		var oldyvelocity = velocity.y
+		velocity = move_and_slide(velocity, Vector2.UP)
+		isonfloor = oldyvelocity != velocity.y
+
 func process_hit(delta):
 	if $AnimatedSprite.frame == 5:
 		state = NORMAL
@@ -172,6 +192,7 @@ func process_jump(delta):
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
 		dash(delta, dashduration)
+		
 	
 	if velocity.y > 0:
 		$AnimatedSprite.animation = "Jump_Down"
@@ -186,7 +207,9 @@ func process_jump(delta):
 		state = NORMAL
 		landing = true
 		
-	
+	if Input.is_action_just_pressed("shoot"):
+		perform_shoot()
+
 
 	return
 
@@ -238,15 +261,44 @@ func _on_AnimatedSprite_frame_changed():
 
 var mousePos = Vector2.ZERO
 
+var projectile = null
+
 func perform_shoot():
-	var projectile = Projectile.instance()
+	prevState = state
+	state = SHOOT
+	projectile = Projectile.instance()
 	projectile.position = position
 	
 	var direction = (mousePos - position).normalized()
 	projectile.velocity = direction * projectile.scalarSpeed
 	projectile.rotation = direction.angle()
 	
+	var proj_tilt_angle = projectile.global_rotation_degrees
+
+	if   proj_tilt_angle < -90:
+		lookleft = true
+		proj_tilt_angle = -90 - (proj_tilt_angle + 90)
+	elif proj_tilt_angle >  90:
+		lookleft = true
+		proj_tilt_angle =  90 - (proj_tilt_angle - 90)
+	else:
+		lookleft = false
+#	print("projectile.rotation:", proj_tilt_angle)
+	if proj_tilt_angle < attackUpThreshold:
+		$AnimatedSprite.animation = "Attack_Up"
+		print("attack_up")
+	elif proj_tilt_angle < attackDownThreshold:
+		$AnimatedSprite.animation = "Attack_Horizontal"
+		print("attack_horiz")
+	else:
+		$AnimatedSprite.animation = "Attack_Down"
+		print("attack_down")
+		
+	$AnimatedSprite.flip_h = lookleft
+
+func add_projectile_to_scene():
 	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
+
 
 	
 func _takeHit(damage):
