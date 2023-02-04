@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EscenaMain.gd" type="Script" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://Art/Enviroment/Background.png" type="Texture" id=6]
 [ext_resource path="res://Art/Enviroment/Tree_03.png" type="Texture" id=7]
 [ext_resource path="res://Art/Enviroment/Tree_01.png" type="Texture" id=8]
-[ext_resource path="res://Art/UI/Button_Flesh.png" type="Texture" id=9]
+[ext_resource path="res://Gea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Art/Enviroment/Floor.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 280.5, 583.5 )
@@ -29,33 +30,26 @@ margin_right = 648.0
 margin_bottom = 370.0
 color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
-[node name="TextureRect" type="TextureRect" parent="Viewport"]
+[node name="Background" type="TextureRect" parent="Viewport"]
 margin_top = -3.0
 margin_right = 647.0
 margin_bottom = 367.0
 texture = ExtResource( 6 )
 
-[node name="TextureRect2" type="TextureRect" parent="Viewport"]
+[node name="Trees_01" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 8 )
 
-[node name="TextureRect3" type="TextureRect" parent="Viewport"]
+[node name="Trees_02" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 5 )
 
-[node name="TextureRect4" type="TextureRect" parent="Viewport"]
+[node name="Trees_03" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 7 )
-
-[node name="TextureRect5" type="TextureRect" parent="Viewport"]
-margin_left = 1.33333
-margin_top = 314.0
-margin_right = 648.333
-margin_bottom = 474.0
-texture = ExtResource( 9 )
 
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
@@ -66,6 +60,22 @@ position = Vector2( 254.667, 234.333 )
 maxHealth = 20
 dashspeed = 800
 mindashduration = 20
+position = Vector2( 315, 271 )
+maxHealth = 500
+currentHealth = 500
+
+[node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
+position = Vector2( -227.333, 342.667 )
+maxHealth = 500
+currentHealth = 500
+
+[node name="Floor" type="TextureRect" parent="Viewport"]
+margin_left = -2.0
+margin_top = -3.0
+margin_right = 641.0
+margin_bottom = 357.0
+texture = ExtResource( 10 )
+expand = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -80,7 +90,7 @@ position = Vector2( 2166, 484 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 995, 1054 )
+position = Vector2( 157, 2095 )
 shape = SubResource( 2 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]

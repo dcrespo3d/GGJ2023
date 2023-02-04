@@ -10,10 +10,10 @@ extends KinematicBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-	
-	
-export var maxHealth = 500
-var currentHealth = maxHealth
+
+export var walkspeed = 300
+export var maxHealth = 10
+export var currentHealth = 10
 export var inmunity = false
 export var walkspeed = 300
 
