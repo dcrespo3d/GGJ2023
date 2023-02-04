@@ -5,8 +5,6 @@ export(PackedScene) var Enemy2
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var tiempo = 0
-export var rounds = 1
 export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
@@ -50,7 +48,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		_spawnEnemy2()
 		_spawnEnemy1()
-	#print (actualtimer)
 		
 		
 	#if actualtimer <= 0:
@@ -67,7 +64,3 @@ func _process(delta):
 	$Viewport/Player.mousePos = $Viewport/Target.mousePos
 	
 
-
-
-func _on_Timer_timeout(delta):
-	tiempo += 1 * delta
