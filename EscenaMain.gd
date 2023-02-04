@@ -4,7 +4,7 @@ export(PackedScene) var Enemy
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var spawntimer = 2
+export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
 func _ready():
@@ -28,7 +28,7 @@ func _spawnEnemy():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	actualtimer = actualtimer - 1*delta
-	print(spawntimer)
+#	print(spawntimer)
 	if Input.is_action_just_pressed("debug1"):
 		_spawnEnemy()
 		
@@ -38,9 +38,6 @@ func _process(delta):
 		_spawnEnemy()
 	
 	
-#func _on_Timer_timeout():
-#	_spawnEnemy()
-
 
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth

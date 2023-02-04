@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
 export (PackedScene) var Projectile
+export (PackedScene) var SFXDash
+export (PackedScene) var SFXJump
+export (PackedScene) var SFXHeal
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -66,8 +69,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
 		print("normal")
-	if Input.is_action_just_pressed("debug2"):
-		_takeHeal(delta, heal)
+	
 	if Input.is_action_pressed("debug3"):
 		state = SHOOT
 		print("shoot")
@@ -82,6 +84,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug6"):
 		
 		_takeHit(10)
+		
+	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
+		_takeHeal(delta, heal)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -123,6 +128,8 @@ func process_normal(delta):
 		jump(delta)
 		
 		
+
+	
 	if velocity.x == 0 && !landing && isonfloor:
 		$AnimatedSprite.animation = "Idle"
 	
@@ -142,19 +149,29 @@ func process_normal(delta):
 		state = JUMP
 	
 	return
+
+var sfx_heal = null;
 	
 func process_suck(delta):
+	if isbegginingsuck and sfx_heal == null and SFXHeal != null:
+		sfx_heal = SFXHeal.instance()
+		add_child(sfx_heal)
+
 	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
 		isbegginingsuck = false
 	
-	if Input.is_action_pressed("debug2") && !isbegginingsuck:
+	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
 		_takeHeal(delta, heal)
+		print("heal 1")
 
-	if !Input.is_action_pressed("debug2") && !isbegginingsuck:
+	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
 		if $AnimatedSprite.frame == 5:
 			state = NORMAL
+			if sfx_heal != null:
+				sfx_heal.queue_free()
+				sfx_heal = null
 			
 	
 	return
@@ -179,6 +196,7 @@ func process_hit(delta):
 	
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
+	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible=true
 	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
@@ -244,6 +262,8 @@ func dash(delta, dash_Duration):
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
+		if SFXDash != null:
+			add_child(SFXDash.instance())
 		print(dashlength)
 	return
 
@@ -252,6 +272,8 @@ func jump(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	state = JUMP
 	$AnimatedSprite.animation = "Jump_Enter"
+	if SFXJump != null:
+		add_child(SFXJump.instance())
 	return
 	
 func _on_AnimatedSprite_animation_finished():
