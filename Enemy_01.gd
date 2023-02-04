@@ -47,6 +47,8 @@ func process_die(delta):
 
 
 func _on_Area2D_body_entered(body):
+	if body.getType() == "Player":
+		print ("player hitt")
 	print(body.getType())
 	pass # Replace with function body.
 func attack(delta, body):
