@@ -8,7 +8,6 @@ export(PackedScene) var Enemy
 
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _spawnEnemy():
 	var enemy = Enemy.instance()
