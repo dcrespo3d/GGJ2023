@@ -131,14 +131,13 @@ script = ExtResource( 2 )
 SFXEnemyDeath = ExtResource( 3 )
 speed = 300
 deadSpeed = 500
-damage = 50
-hits = 1
+hits = 2
 
 [node name="EnemyAnimations" type="AnimatedSprite" parent="."]
 rotation = 1.5708
 frames = SubResource( 25 )
 animation = "Idle"
-frame = 1
+frame = 5
 speed_scale = 2.0
 playing = true
 
