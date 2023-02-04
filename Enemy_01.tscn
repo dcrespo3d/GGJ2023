@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Art/Enemies/Enemy_01/Cacodaemon Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy_01.gd" type="Script" id=2]
 [ext_resource path="res://Art/SFX/Escenas/SFX Enemy Death.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/SFX/Escenas/SFX Hit Enemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -124,6 +125,7 @@ animations = [ {
 [node name="Enemy_01" type="KinematicBody2D"]
 script = ExtResource( 2 )
 SFXEnemyDeath = ExtResource( 3 )
+SFXEnemyHit = ExtResource( 4 )
 speed = 300
 deadSpeed = 500
 playerDamage = 50

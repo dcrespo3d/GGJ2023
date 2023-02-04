@@ -112,6 +112,8 @@ rotation = 0.000524068
 [node name="GameOver" parent="Viewport" instance=ExtResource( 13 )]
 visible = false
 
+[node name="EscenaPause" parent="Viewport" instance=ExtResource( 14 )]
+
 [node name="enemyPath02" type="Path2D" parent="Viewport"]
 position = Vector2( 344.212, 159.094 )
 scale = Vector2( 0.213966, 0.272444 )
