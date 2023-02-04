@@ -179,6 +179,7 @@ func process_hit(delta):
 	
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
+	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
 func process_jump(delta):
