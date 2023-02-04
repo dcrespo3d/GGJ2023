@@ -5,7 +5,7 @@ export(PackedScene) var Enemy
 # var a = 2
 # var b = "text"
 export var spawntimer = 2
-export var speedincrease = 0.9
+export var speedincrease = 0.01
 var actualtimer = 2
 func _ready():
 	pass
@@ -33,7 +33,7 @@ func _process(delta):
 		_spawnEnemy()
 		
 	if actualtimer <= 0:
-		spawntimer = spawntimer * speedincrease
+		spawntimer = spawntimer - spawntimer*speedincrease
 		actualtimer = spawntimer
 		_spawnEnemy()
 	
