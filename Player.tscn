@@ -15,16 +15,25 @@ jumpspeed = -900
 fallacc = 3000
 dashspeed = 10500
 dashduration = 45
+dash_speed = 2000
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
-frame = 4
+frame = 1
 speed_scale = 3.0
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 6 )
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 6 )
 shape = SubResource( 2 )

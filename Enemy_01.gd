@@ -8,6 +8,7 @@ export var speed = 100
 var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
+export var damage = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,17 +33,24 @@ func process_idle(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func process_attack(delta):
-	# La funcion de daño del player se llama _takeHit
+	#if $AnimatedSprite.frame == 5:
+		
 	return
 	
 func process_hit(delta):
 	return
 	
 func process_die(delta):
+	
 	return
 
 
 
 func _on_Area2D_body_entered(body):
-	
+	print(body.getType())
 	pass # Replace with function body.
+func attack(delta, body):
+	body._takeHit(delta,damage)
+	state = ATTACK
+func getType():
+	return  "Enemy01"
