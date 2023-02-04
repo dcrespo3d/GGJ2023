@@ -11,8 +11,7 @@ var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
 var dead = false
-export var playerDamage = 20
-export var geaDamage = 20
+export var damage = 20
 export var heal = 10
 export var hits = 3
 
@@ -69,11 +68,11 @@ func process_die(delta):
 
 func _on_Area2D_body_entered(body):
 	if body.getType() == "Player" && state == IDLE:
-		attackPlayer(body)
+		attack(body)
 		queue_free()
 
 	if body.getType() == "Gea" && state == IDLE:
-		attackGea(body)
+		attack(body)
 		queue_free()
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
@@ -85,13 +84,10 @@ func _on_Area2D_body_entered(body):
 		print(hits)
 	print(body.getType())
 	pass # Replace with function body.
-func attackPlayer(body):
-	body._takeHit(playerDamage)
-	state = ATTACK
-func attackGea(body):
-	body._takeHit(geaDamage)
+func attack(body):
+	body._takeHit(damage)
 	state = ATTACK
 func heal(body):
 	body._takeHeal(heal)
 func getType():
-	return  "Enemy01"
+	return  "Enemy02"
