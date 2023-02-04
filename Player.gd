@@ -246,3 +246,5 @@ func _takeHit(delta, damage):
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
+func getType():
+	return  "Player"
