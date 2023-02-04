@@ -14,6 +14,7 @@ func _ready():
 export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
+export var heal = 1
 export var inmunity = false
 
 
@@ -36,6 +37,7 @@ export var fallWhileAttacking = false
 export var attackCooldown = 0.5
 
 
+var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
@@ -67,8 +69,7 @@ func _process(delta):
 		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
-		state = SUCK
-		print("suck")
+		_takeHeal(delta, heal)
 	if Input.is_action_pressed("debug3"):
 		state = SHOOT
 		print("shoot")
@@ -81,6 +82,7 @@ func _process(delta):
 		print("dead")
 		
 	if Input.is_action_just_pressed("debug6"):
+		
 		_takeHit(10)
 
 	match (state):
@@ -142,6 +144,18 @@ func process_normal(delta):
 	return
 	
 func process_suck(delta):
+	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
+		isbegginingsuck = false
+	
+	if Input.is_action_pressed("debug2") && !isbegginingsuck:
+		$AnimatedSprite.animation = "Charge"
+		_takeHeal(delta, heal)
+
+	if !Input.is_action_pressed("debug2") && !isbegginingsuck:
+		$AnimatedSprite.animation = "Charge_Out"
+		if $AnimatedSprite.frame == 5:
+			state = NORMAL
+			
 	
 	return
 
@@ -297,5 +311,16 @@ func _takeHit(damage):
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
+		
+func _takeHeal(delta, heal):
+	if currentHealth < maxHealth && isonfloor:
+		currentHealth += heal
+		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
+
+	if state != SUCK && isonfloor:
+		$AnimatedSprite.animation = "Charge_Enter"
+		isbegginingsuck = true
+		state = SUCK
+
 func getType():
 	return  "Player"
