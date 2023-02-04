@@ -30,7 +30,7 @@ value = 100.0
 [node name="TextureRect3" type="TextureRect" parent="."]
 margin_left = 42.0
 margin_top = 80.0
-margin_right = 997.0
+margin_right = 1028.0
 margin_bottom = 120.0
 texture = ExtResource( 5 )
 stretch_mode = 2
@@ -38,7 +38,7 @@ stretch_mode = 2
 [node name="TextureRect4" type="TextureRect" parent="."]
 margin_left = 40.0
 margin_top = 21.0
-margin_right = 996.0
+margin_right = 535.0
 margin_bottom = 61.0
 texture = ExtResource( 6 )
 expand = true
