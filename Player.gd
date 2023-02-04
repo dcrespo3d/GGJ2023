@@ -129,7 +129,7 @@ func process_normal(delta):
 		$AnimatedSprite.animation = "Idle"
 	
 	if Input.is_action_just_pressed("shoot"):
-		perform_shoot()
+		begin_shoot()
 	
 		
 	var oldyvelocity = velocity.y
@@ -163,7 +163,8 @@ func process_suck(delta):
 
 func process_shoot(delta):
 	if $AnimatedSprite.frame == 3:
-		add_projectile_to_scene()
+		if projectile == null:
+			instance_projectile()
 	elif $AnimatedSprite.frame == 7:
 		state = NORMAL
 #	print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
@@ -210,7 +211,7 @@ func process_jump(delta):
 		landing = true
 		
 	if Input.is_action_just_pressed("shoot"):
-		perform_shoot()
+		begin_shoot()
 
 
 	return
@@ -266,17 +267,12 @@ var mousePos = Vector2.ZERO
 
 var projectile = null
 
-func perform_shoot():
+func begin_shoot():
 	prevState = state
 	state = SHOOT
-	projectile = Projectile.instance()
-	projectile.position = position
 	
 	var direction = (mousePos - position).normalized()
-	projectile.velocity = direction * projectile.scalarSpeed
-	projectile.rotation = direction.angle()
-	
-	var proj_tilt_angle = projectile.global_rotation_degrees
+	var proj_tilt_angle = rad2deg(direction.angle());
 
 	if   proj_tilt_angle < -90:
 		lookleft = true
@@ -299,7 +295,16 @@ func perform_shoot():
 		
 	$AnimatedSprite.flip_h = lookleft
 
-func add_projectile_to_scene():
+	projectile = null
+	
+func instance_projectile():
+	projectile = Projectile.instance()
+	projectile.position = position
+	
+	var direction = (mousePos - position).normalized()
+	projectile.velocity = direction * projectile.scalarSpeed
+	projectile.rotation = direction.angle()
+	
 	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
 
 
