@@ -33,4 +33,7 @@ func _process(delta):
 
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth
+	
+	# sistema de disparo
+	$Viewport/Player.mousePos = $Viewport/Target.mousePos
 
