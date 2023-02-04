@@ -66,7 +66,7 @@ func _process(delta):
 		state = BUSY
 		print("busy")
 	if Input.is_action_just_pressed("debug4"):
-		_takeHit(delta,50)
+		_takeHit(50)
 		print(currentHealth)
 
 	if Input.is_action_pressed("debug5"):
@@ -76,7 +76,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		perform_shoot()
 	if Input.is_action_just_pressed("debug6"):
-		_takeHit(delta, 10)
+		_takeHit(10)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -236,7 +236,7 @@ func perform_shoot():
 	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
 
 	
-func _takeHit(delta, damage):
+func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
 		state = HIT
