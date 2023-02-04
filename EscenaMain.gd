@@ -4,7 +4,7 @@ export(PackedScene) var Enemy
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var spawntimer = 2
+export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
 func _ready():
