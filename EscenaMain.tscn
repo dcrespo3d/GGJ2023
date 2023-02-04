@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EscenaMain.gd" type="Script" id=2]
@@ -20,9 +20,6 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 280.5, 583.5 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 962, 108 )
 
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
@@ -79,6 +76,7 @@ mindashduration = 20
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5
+attackUpThreshold = -20
 fallWhileAttacking = true
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
@@ -115,15 +113,11 @@ margin_bottom = 72.0
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -245, 540 )
+position = Vector2( -273, 540 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 2183, 495 )
+position = Vector2( 2193, 524 )
 shape = SubResource( 1 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 995, 1054 )
-shape = SubResource( 2 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
