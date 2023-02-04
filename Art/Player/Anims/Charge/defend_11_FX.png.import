@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cacodaemon Sprite Sheet_03.png-263f8bc8de6c6c0899a3c20b4836cfd8.stex"
+path="res://.import/defend_11_FX.png-37055793c611291f15a07adbe35f8eab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemies/Enemy_03/Cacodaemon Sprite Sheet_03.png"
-dest_files=[ "res://.import/Cacodaemon Sprite Sheet_03.png-263f8bc8de6c6c0899a3c20b4836cfd8.stex" ]
+source_file="res://Art/Player/Anims/Charge/defend_11_FX.png"
+dest_files=[ "res://.import/defend_11_FX.png-37055793c611291f15a07adbe35f8eab.stex" ]
 
 [params]
 
