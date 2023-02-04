@@ -15,7 +15,6 @@ export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
 export var inmunity = false
-export var walkspeed = 300
 
 
 export var jumpspeed = -500
