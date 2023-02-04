@@ -81,7 +81,6 @@ position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
 jumpspeed = -1000
-dash_Duration = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5
@@ -112,7 +111,7 @@ curve = SubResource( 2 )
 
 [node name="enemySpawn" type="PathFollow2D" parent="Viewport/enemyPath"]
 position = Vector2( 3.66667, -24.3333 )
-rotation = -0.00155947
+rotation = -0.00156094
 
 [node name="enemyPath2" type="Path2D" parent="Viewport"]
 position = Vector2( -16.7453, 0 )
@@ -121,7 +120,7 @@ curve = SubResource( 3 )
 
 [node name="enemySpawn2" type="PathFollow2D" parent="Viewport/enemyPath2"]
 position = Vector2( 3, 325.333 )
-rotation = 0.000536523
+rotation = 0.000552074
 
 [node name="Area2D" type="Area2D" parent="."]
 
