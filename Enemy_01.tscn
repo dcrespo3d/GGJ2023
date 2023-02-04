@@ -147,6 +147,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=26]
+radius = 9.33333
 
 [node name="Enemy_01" type="KinematicBody2D"]
 script = ExtResource( 2 )
