@@ -6,7 +6,7 @@ export (PackedScene) var SFXEnemyDeath
 # var a = 2
 # var b = "text"
 export var speed = 100
-export var deadSpeed = 100
+export var deadSpeed = 300
 var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
@@ -19,8 +19,13 @@ export var hits = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 	
+	if get_tree().get_root().get_node("EscenaMain/Viewport/enemyPath2/enemySpawn2").unit_offset == 1:
+		$EnemyAnimations.flip_h = false
+		speed = speed*-1
+	if get_tree().get_root().get_node("EscenaMain/Viewport/enemyPath2/enemySpawn2").unit_offset != 1:
+		$EnemyAnimations.flip_h = true
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,8 +45,9 @@ func _process(delta):
 
 func process_idle(delta):
 	$EnemyAnimations.animation = "Walk"
-	velocity.y = speed
-	velocity = move_and_slide(velocity, Vector2.UP)
+
+	velocity.x = speed
+	velocity = move_and_slide(velocity, Vector2.RIGHT)
 
 func process_attack(delta):
 	#if $AnimatedSprite.frame == 5:
@@ -49,7 +55,7 @@ func process_attack(delta):
 	return
 	
 func process_hit(delta):
-	print("tuputamadre")
+	
 	$EnemyAnimations.animation = "Hit"
 	if $EnemyAnimations.frame == 4:
 		state = IDLE
@@ -76,7 +82,7 @@ func _on_Area2D_body_entered(body):
 
 	if body.getType() == "Gea" && state == IDLE:
 		attackGea(body)
-		queue_free()
+
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
 		queue_free()
