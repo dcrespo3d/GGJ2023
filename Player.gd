@@ -164,7 +164,6 @@ func process_suck(delta):
 	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
 		_takeHeal(delta, heal)
-		print("heal 1")
 
 	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"

@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/SFX/Escenas/SFX Dash.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/SFX/Escenas/SFX Jump.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Art/SFX/Escenas/SFX Heal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Art/SFX/Escenas/SFX Death.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player.gd" type="Script" id=88]
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -20,7 +19,6 @@ Projectile = ExtResource( 2 )
 SFXDash = ExtResource( 3 )
 SFXJump = ExtResource( 4 )
 SFXHeal = ExtResource( 5 )
-SFXDeath = ExtResource( 6 )
 walkspeed = 500
 jumpspeed = -900
 fallacc = 3000
