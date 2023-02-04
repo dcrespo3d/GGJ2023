@@ -26,38 +26,44 @@ extents = Vector2( 962, 108 )
 
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
-Enemy = ExtResource( 11 )
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Viewport"]
-margin_left = -2.33333
-margin_top = -19.3333
-margin_right = 650.667
-margin_bottom = 380.667
+margin_left = -5.0
+margin_top = -30.0
+margin_right = 648.0
+margin_bottom = 370.0
 color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
 
-[node name="Background" type="TextureRect" parent="Viewport"]
+[node name="TextureRect" type="TextureRect" parent="Viewport"]
 margin_top = -3.0
-margin_right = 640.0
+margin_right = 647.0
 margin_bottom = 367.0
 texture = ExtResource( 6 )
 
-[node name="Trees_01" type="TextureRect" parent="Viewport"]
+[node name="TextureRect2" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 8 )
 
-[node name="Trees_02" type="TextureRect" parent="Viewport"]
+[node name="TextureRect3" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 5 )
 
-[node name="Trees_03" type="TextureRect" parent="Viewport"]
+[node name="TextureRect4" type="TextureRect" parent="Viewport"]
 margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 7 )
+
+[node name="TextureRect5" type="TextureRect" parent="Viewport"]
+margin_left = 1.33333
+margin_top = 314.0
+margin_right = 648.333
+margin_bottom = 474.0
+texture = ExtResource( 9 )
 
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
@@ -107,7 +113,7 @@ margin_bottom = 72.0
 script = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -290, 543 )
+position = Vector2( -245, 540 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -115,7 +121,7 @@ position = Vector2( 2183, 495 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 157, 2095 )
+position = Vector2( 995, 1054 )
 shape = SubResource( 2 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
