@@ -19,7 +19,7 @@ dashduration = 45
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
-frame = 2
+frame = 4
 speed_scale = 3.0
 playing = true
 
