@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (PackedScene) var Projectile
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -10,21 +10,24 @@ export (PackedScene) var Projectile
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-export var walkspeed = 300
 export var maxHealth = 500
 var currentHealth = maxHealth
 export var inmunity = false
-export var dashspeed = 1000
+export var walkspeed = 300
+
+
 export var jumpspeed = -500
 export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export var dashrecoveryspeed = 0.001
+export var dashspeed = 1000
 export var dashduration = 70
-export var dashcooldown = 50
 export var mindashduration = 10
+export var dashcooldown = 50
+export var dashrecoveryspeed = 0.001
+
+
 var dashcool = 0
 var landing = false
 var dashlength = 20
@@ -34,6 +37,7 @@ enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
 
+export (PackedScene) var Projectile
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
