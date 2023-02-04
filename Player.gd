@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+export (PackedScene) var Projectile
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -41,7 +41,6 @@ enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
 
-export (PackedScene) var Projectile
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
@@ -73,6 +72,9 @@ func _process(delta):
 	if Input.is_action_pressed("debug5"):
 		state = DEAD
 		print("dead")
+		
+	if Input.is_action_just_pressed("shoot"):
+		perform_shoot()
 	if Input.is_action_just_pressed("debug6"):
 		_takeHit(delta, 10)
 
@@ -222,6 +224,21 @@ func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation != "Jump_Out":
 		landing = false
 	
+
+
+var mousePos = Vector2.ZERO
+
+func perform_shoot():
+	var projectile = Projectile.instance()
+	projectile.position = position
+	
+	var direction = (mousePos - position).normalized()
+	projectile.velocity = direction * projectile.scalarSpeed
+	projectile.rotation = direction.angle()
+	
+	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
+
+	
 func _takeHit(delta, damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
@@ -232,3 +249,5 @@ func _takeHit(delta, damage):
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
+func getType():
+	return  "Player"
