@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export (PackedScene) var SFXEnemyDeath
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -47,6 +48,8 @@ func process_hit(delta):
 	return
 	
 func process_die(delta):
+	if SFXEnemyDeath:
+		get_tree().get_root().get_node("EscenaMain/Viewport").add_child(SFXEnemyDeath.instance())
 	queue_free()
 	return
 

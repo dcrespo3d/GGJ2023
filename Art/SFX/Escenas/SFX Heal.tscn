@@ -4,3 +4,4 @@
 
 [node name="SFX Heal" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
+autoplay = true
