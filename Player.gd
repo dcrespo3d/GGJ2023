@@ -10,6 +10,8 @@ extends KinematicBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	
+	
 export var maxHealth = 500
 var currentHealth = maxHealth
 export var inmunity = false
@@ -22,15 +24,18 @@ var velocity = Vector2.ZERO
 var isonfloor = false
 		
 export var dashspeed = 1000
+export var mindashspeed = 250
 export var dashduration = 70
 export var mindashduration = 10
-export var dashcooldown = 50
-export var dashrecoveryspeed = 0.001
+export var dashcooldown = 0.2
+export var dashrecoveryspeed = 0.2
+export var dashstalerate = 0.8
 
 
 var dashcool = 0
 var landing = false
 var dashlength = 20
+var dashspeedtemp = 1000
 var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
@@ -43,10 +48,12 @@ func _process(delta):
 	
 
 	if dashstale < 1:
-		dashstale = dashstale + dashrecoveryspeed
+		dashstale = dashstale + dashrecoveryspeed * delta
+	if dashstale > 1:
+		dashstale = 1
 		
 	if dashcool > 0:
-		dashcool = dashcool - 1
+		dashcool = dashcool - 1 * delta
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
@@ -81,7 +88,7 @@ func _process(delta):
 		
 	velocity.y += fallacc * delta
 	
-	print(landing)
+	print(dashstale)
 	
 	
 	#print(isonfloor)
@@ -170,25 +177,28 @@ func process_dash(delta, dashduration):
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
-			velocity.x = -dashspeed
+			velocity.x = -dashspeedtemp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 		else:
-			velocity.x = dashspeed
+			velocity.x = dashspeedtemp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
 		dashlength = dashduration
 		state = NORMAL
 		dashcool = dashcooldown
+		
 	return
 
 func dash(delta, dashduration):
 	if dashcool <= 0:
-		dashlength = dashduration * dashstale
+		dashlength = dashduration # * dashstale
+		dashspeedtemp = dashspeed * dashstale
 		if dashlength < mindashduration:
 			dashlength = mindashduration
-		dashstale = dashstale * 0.8
+		
+		dashstale = dashstale * dashstalerate
 		state = DASH
 	return
 

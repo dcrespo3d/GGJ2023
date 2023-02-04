@@ -65,6 +65,7 @@ texture = ExtResource( 9 )
 position = Vector2( 254.667, 234.333 )
 maxHealth = 20
 dashspeed = 800
+mindashduration = 20
 
 [node name="Area2D" type="Area2D" parent="."]
 
