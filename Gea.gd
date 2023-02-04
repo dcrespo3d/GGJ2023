@@ -13,6 +13,10 @@ export var maxHealth = 10
 export var currentHealth = 10
 func getType():
 	return  "Gea"
+func _takeHit(damage):
+	if currentHealth > 0:
+		currentHealth -= damage	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
