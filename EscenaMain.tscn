@@ -118,7 +118,8 @@ scale = Vector2( 0.213966, 0.272444 )
 curve = SubResource( 4 )
 
 [node name="enemyspawn02" type="PathFollow2D" parent="Viewport/enemyPath02"]
-position = Vector2( -8.16553, 4.71051 )
+position = Vector2( -15.6667, -3 )
+rotation = -3.01594
 
 [node name="Area2D" type="Area2D" parent="."]
 
