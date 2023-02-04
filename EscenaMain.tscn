@@ -64,7 +64,6 @@ texture = ExtResource( 7 )
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
-dashspeed = 800
 mindashduration = 20
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]

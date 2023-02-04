@@ -22,7 +22,7 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export var dashspeed = 1000
+export (int) var dash_speed = 1000
 export var mindashspeed = 250
 export var dashduration = 70
 export var mindashduration = 10
@@ -97,9 +97,6 @@ func _process(delta):
 	
 	
 	
-	#print(isonfloor)
-	
-	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -202,7 +199,7 @@ func process_dash(delta, dashduration):
 func dash(delta, dashduration):
 	if dashcool <= 0:
 		dashlength = dashduration # * dashstale
-		dashspeedtemp = dashspeed * dashstale
+		dashspeedtemp = dash_speed * dashstale
 		if dashlength < mindashduration:
 			dashlength = mindashduration
 		
