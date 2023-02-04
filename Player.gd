@@ -23,10 +23,10 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export (int) var dashSpeed = 1000
-export var minDashSpeed = 250
-export var dashDuration = 70
-export var mindashDuration = 10
+export (int) var dash_Speed = 1000
+export var minDash_Speed = 250
+export var dash_Duration = 70
+export var mindash_Duration = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
@@ -41,7 +41,7 @@ var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
-var dashspeedtemp = 1000
+var dash_Speedtemp = 1000
 var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
@@ -90,7 +90,7 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
-		DASH: process_dash(delta, dashDuration)
+		DASH: process_dash(delta, dash_Duration)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -136,7 +136,7 @@ func process_normal(delta):
 	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dashDuration)
+		dash(delta, dash_Duration)
 	
 	if velocity.y != 0:
 		state = JUMP
@@ -192,7 +192,7 @@ func process_jump(delta):
 		velocity.x = walkspeed
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dashDuration)
+		dash(delta, dash_Duration)
 		
 	
 	if velocity.y > 0:
@@ -214,31 +214,31 @@ func process_jump(delta):
 
 	return
 
-func process_dash(delta, dashDuration):
+func process_dash(delta, dash_Duration):
 	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
-			velocity.x = -dashspeedtemp
+			velocity.x = -dash_Speedtemp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 		else:
-			velocity.x = dashspeedtemp
+			velocity.x = dash_Speedtemp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		dashlength = dashDuration
+		dashlength = dash_Duration
 		state = NORMAL
 		dashcool = dashcooldown
 		
 	return
 
-func dash(delta, dashDuration):
+func dash(delta, dash_Duration):
 	if dashcool <= 0:
-		dashlength = dashDuration # * dashstale
-		dashspeedtemp = dashSpeed * dashstale
-		if dashlength < mindashDuration:
-			dashlength = mindashDuration
+		dashlength = dash_Duration # * dashstale
+		dash_Speedtemp = dash_Speed * dashstale
+		if dashlength < mindash_Duration:
+			dashlength = mindash_Duration
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
