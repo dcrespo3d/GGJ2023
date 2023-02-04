@@ -9,14 +9,15 @@ export (PackedScene) var Projectile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	ammo = ammo_max # Replace with function body.
 
 export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
-
+export var ammo_max = 8
+var ammo = 8
 
 export var jumpspeed = -500
 export var fallacc = 1000
