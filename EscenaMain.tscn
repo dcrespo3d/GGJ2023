@@ -141,4 +141,5 @@ shape = SubResource( 1 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
 
+[connection signal="timeout" from="Viewport/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Viewport/Timer" to="Viewport/Player" method="_on_Timer_timeout"]

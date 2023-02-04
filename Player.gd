@@ -40,6 +40,7 @@ export var fallWhileAttacking = false
 export var attackCooldown = 0.5
 
 export var tiempo = 0
+export var MAXtiempo = 3
 var isbegginingsuck = false
 var dashcool = 0
 var landing = false
@@ -346,8 +347,8 @@ func _takeHeal(delta, heal):
 	if currentHealth < maxHealth && isonfloor:
 		_on_Timer_timeout(delta)
 		currentHealth += heal * tiempo
-		if tiempo == 3: 
-			currentHealth += heal * tiempo
+		if tiempo == MAXtiempo: 
+			currentHealth += heal * MAXtiempo
 		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
 	if state != SUCK && isonfloor:
@@ -360,4 +361,4 @@ func getType():
 
 
 func _on_Timer_timeout(delta):
-	tiempo += 1 * delta
+	tiempo += 1 * delta 
