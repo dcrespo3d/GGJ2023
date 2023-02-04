@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Reticula 2.png-bc812b6f6ced46fb73f4c094ac7e9d66.stex"
+path="res://.import/Game_Over_Background.png-3ca29377b36f1740a052f09cba2a939c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Projectile/Reticula 2.png"
-dest_files=[ "res://.import/Reticula 2.png-bc812b6f6ced46fb73f4c094ac7e9d66.stex" ]
+source_file="res://Art/VFX/Game_Over_Background.png"
+dest_files=[ "res://.import/Game_Over_Background.png-3ca29377b36f1740a052f09cba2a939c.stex" ]
 
 [params]
 

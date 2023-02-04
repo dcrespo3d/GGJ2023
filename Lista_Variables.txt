@@ -1,9 +1,9 @@
 Enemigos
 
------ Vida (Hits)
------ Velocidad (Vivo)
+Vida (Hits)
+Velocidad (Vivo)
 Velocidad de caida (o aceleracion) (Muerto)
------ Daño (Impacto Player)
+Daño (Impacto Player)
 Daño (Impacto Suelo)
 Recuperacion de vida
 
@@ -12,14 +12,13 @@ Objetivo*
 
 Player
 
------ Vida
-Daño ???????
+Vida
+Daño
 ------ Velocidad movimiento
 Municion maxima
-Velocidad de projectil
 Velocidad de disparo (coldown)
 iFrames despues de hit
------- Angulo de ataque horizontal (min/max)
+Angulo de ataque horizontal (min/max)
 
 Duracion de unidad de recarga
 Vida recargada por unidad
