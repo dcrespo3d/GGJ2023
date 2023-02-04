@@ -55,7 +55,6 @@ var prevState = NORMAL
 
 func _process(delta):
 	
-	print(dash_speed)
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
 	if dashstale > 1:
