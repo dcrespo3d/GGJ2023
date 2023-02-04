@@ -180,6 +180,7 @@ func process_hit(delta):
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
 	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible=true
+	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
 func process_jump(delta):
@@ -312,7 +313,7 @@ func instance_projectile():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage
-		if !$AnimatedSprite.animation == "Charge":
+		if !$AnimatedSprite.animation == "Charge" && !$AnimatedSprite.animation == "Charge_Enter" :
 			state = HIT
 			$AnimatedSprite.animation = "Hit"
 	if currentHealth <= 0:

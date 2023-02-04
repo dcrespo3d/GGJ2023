@@ -25,6 +25,7 @@ extents = Vector2( 280.5, 583.5 )
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
 Enemy = ExtResource( 11 )
+speedincrease = 0.02
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -59,9 +60,9 @@ texture = ExtResource( 7 )
 
 [node name="TextureRect5" type="TextureRect" parent="Viewport"]
 margin_left = 1.33333
-margin_top = 314.0
+margin_top = 314.667
 margin_right = 648.333
-margin_bottom = 474.0
+margin_bottom = 474.667
 
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
