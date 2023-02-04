@@ -27,10 +27,10 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export (int) var dash_Speed = 1000
-export var minDash_Speed = 250
-export var dash_Duration = 70
-export var mindash_Duration = 10
+export (int) var dash_Speed1 = 1000
+export var mindash_Speed1 = 250
+export var dash_Duration1 = 70
+export var mindash_Duration1 = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
@@ -45,7 +45,7 @@ var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
-var dash_Speedtemp = 1000
+var dash_Speed1temp = 1000
 var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
@@ -70,7 +70,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
 		print("normal")
-	
+	if Input.is_action_just_pressed("debug2") && state == NORMAL:
+		_takeHeal(delta, heal)
 	if Input.is_action_pressed("debug3"):
 		state = SHOOT
 		print("shoot")
@@ -96,7 +97,7 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
-		DASH: process_dash(delta, dash_Duration)
+		DASH: process_dash(delta, dash_Duration1)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -144,7 +145,7 @@ func process_normal(delta):
 	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration)
+		dash(delta, dash_Duration1)
 	
 	if velocity.y != 0:
 		state = JUMP
@@ -212,7 +213,7 @@ func process_jump(delta):
 		velocity.x = walkspeed
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration)
+		dash(delta, dash_Duration1)
 		
 	
 	if velocity.y > 0:
@@ -234,31 +235,31 @@ func process_jump(delta):
 
 	return
 
-func process_dash(delta, dash_Duration):
+func process_dash(delta, dash_Duration1):
 	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
-			velocity.x = -dash_Speedtemp
+			velocity.x = -dash_Speed1temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 		else:
-			velocity.x = dash_Speedtemp
+			velocity.x = dash_Speed1temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		dashlength = dash_Duration
+		dashlength = dash_Duration1
 		state = NORMAL
 		dashcool = dashcooldown
 		
 	return
 
-func dash(delta, dash_Duration):
+func dash(delta, dash_Duration1):
 	if dashcool <= 0:
-		dashlength = dash_Duration # * dashstale
-		dash_Speedtemp = dash_Speed * dashstale
-		if dashlength < mindash_Duration:
-			dashlength = mindash_Duration
+		dashlength = dash_Duration1 # * dashstale
+		dash_Speed1temp = dash_Speed1 * dashstale
+		if dashlength < mindash_Duration1:
+			dashlength = mindash_Duration1
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
