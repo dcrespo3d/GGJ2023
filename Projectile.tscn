@@ -9,7 +9,7 @@ height = 26.0
 
 [node name="Projectile" type="KinematicBody2D"]
 script = ExtResource( 2 )
-scalarSpeed = 500
+scalarSpeed = 1100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
