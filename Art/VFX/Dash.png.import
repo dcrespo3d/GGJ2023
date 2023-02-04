@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arrow_shower_effect_03.png-0c86440ba37e59da9f16af5f39308bf4.stex"
+path="res://.import/Dash.png-34d95324a7eee3bfa5d8c20dfef5c3f5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/VFX/arrow_shower_effect_03.png"
-dest_files=[ "res://.import/arrow_shower_effect_03.png-0c86440ba37e59da9f16af5f39308bf4.stex" ]
+source_file="res://Art/VFX/Dash.png"
+dest_files=[ "res://.import/Dash.png-34d95324a7eee3bfa5d8c20dfef5c3f5.stex" ]
 
 [params]
 
