@@ -312,7 +312,7 @@ func instance_projectile():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage
-		if !$AnimatedSprite.animation == "Charge":
+		if !$AnimatedSprite.animation == "Charge" && !$AnimatedSprite.animation == "Charge_Enter" :
 			state = HIT
 			$AnimatedSprite.animation = "Hit"
 	if currentHealth <= 0:
