@@ -35,26 +35,26 @@ value = 100.0
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 margin_left = 42.0
-margin_top = 229.0
+margin_top = 117.0
 margin_right = 1028.0
-margin_bottom = 269.0
+margin_bottom = 157.0
 texture = ExtResource( 5 )
 stretch_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 margin_left = 40.0
-margin_top = 170.0
+margin_top = 58.0
 margin_right = 535.0
-margin_bottom = 210.0
+margin_bottom = 98.0
 texture = ExtResource( 6 )
 expand = true
 stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -330.0
-margin_top = 176.0
+margin_top = 64.0
 margin_right = 626.0
-margin_bottom = 212.0
+margin_bottom = 100.0
 rect_scale = Vector2( 2, 1 )
 rect_pivot_offset = Vector2( -363, 117 )
 texture = ExtResource( 3 )
@@ -63,9 +63,9 @@ stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 margin_left = -330.0
-margin_top = 217.0
+margin_top = 105.0
 margin_right = 626.0
-margin_bottom = 253.0
+margin_bottom = 141.0
 rect_scale = Vector2( 2, 1 )
 rect_pivot_offset = Vector2( -363, 117 )
 texture = ExtResource( 4 )
@@ -73,9 +73,9 @@ expand = true
 stretch_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="."]
-margin_left = 25.0
+margin_left = 1161.0
 margin_top = 16.0
-margin_right = 401.0
+margin_right = 1537.0
 margin_bottom = 174.0
 texture = ExtResource( 7 )
 expand = true
