@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/magic-forest-71879.mp3-7d5eb756d27ae2a2294edbdd5d63553b.mp3str"
+
+[deps]
+
+source_file="res://Art/SFX/magic-forest-71879.mp3"
+dest_files=[ "res://.import/magic-forest-71879.mp3-7d5eb756d27ae2a2294edbdd5d63553b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eggy Toast - Enemies of the People.mp3-4ec193ff352a8ea5f6c0019410c4285a.mp3str"
+
+[deps]
+
+source_file="res://Art/Music/Eggy Toast - Enemies of the People.mp3"
+dest_files=[ "res://.import/Eggy Toast - Enemies of the People.mp3-4ec193ff352a8ea5f6c0019410c4285a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

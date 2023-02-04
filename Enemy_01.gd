@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export (PackedScene) var SFXEnemyDeath
+export (PackedScene) var SFXEnemyHit
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -10,7 +12,8 @@ var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
 var dead = false
-export var damage = 20
+export var playerDamage = 20
+export var geaDamage = 20
 export var heal = 10
 export var hits = 3
 
@@ -51,8 +54,14 @@ func process_hit(delta):
 	if $EnemyAnimations.frame == 3:
 		state = IDLE
 	return
-	
+
+var sfx_enemy_death = null
+
 func process_die(delta):
+	if SFXEnemyDeath != null:
+		if sfx_enemy_death == null:
+			sfx_enemy_death = SFXEnemyDeath.instance()
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(sfx_enemy_death)
 
 	$EnemyAnimations.animation = "Die"
 	
@@ -65,24 +74,31 @@ func process_die(delta):
 
 func _on_Area2D_body_entered(body):
 	if body.getType() == "Player" && state == IDLE:
-		attack(body)
+		attackPlayer(body)
 		queue_free()
 
 	if body.getType() == "Gea" && state == IDLE:
-		attack(body)
+		attackGea(body)
 		queue_free()
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
 		queue_free()
 	if body.getType() == "Projectile"&& state != DIE:
+		if SFXEnemyHit != null:
+			var sfx_enemy_hit = SFXEnemyHit.instance()
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(sfx_enemy_hit)
+
 		hits -=1
 		body.queue_free()
 		state = HIT
 		print(hits)
 	print(body.getType())
 	pass # Replace with function body.
-func attack(body):
-	body._takeHit(damage)
+func attackPlayer(body):
+	body._takeHit(playerDamage)
+	state = ATTACK
+func attackGea(body):
+	body._takeHit(geaDamage)
 	state = ATTACK
 func heal(body):
 	body._takeHeal(heal)

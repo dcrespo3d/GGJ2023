@@ -19,9 +19,9 @@ func _ready():
 func _on_Start_pressed():
 	get_tree().change_scene("res://EscenaMain.tscn")
 
-
-func _on_How_to_Play_pressed():
-	get_tree().change_scene("res://HowToPlay_Scene.tscn")
+func _on_HowToPlay_pressed():
+	var err = get_tree().change_scene("res://HowToPlay_Scene.tscn")
+	print("_on_HowToPlay_pressed: ", err)
 
 func _on_Quit_pressed():
 	get_tree().quit()
