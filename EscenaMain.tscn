@@ -73,6 +73,7 @@ margin_bottom = 474.0
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
+dash_speed = 1800
 dashduration = 35
 mindashduration = 20
 dashcooldown = 0.1
