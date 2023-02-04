@@ -32,6 +32,7 @@ func process_idle(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func process_attack(delta):
+	# La funcion de daño del player se llama _takeHit
 	return
 	
 func process_hit(delta):
@@ -39,11 +40,9 @@ func process_hit(delta):
 	
 func process_die(delta):
 	return
-# La funcion de daño del player se llama _takeHit
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
 
 
 func _on_Area2D_body_entered(body):
+	
 	pass # Replace with function body.
