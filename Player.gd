@@ -21,6 +21,7 @@ export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
 export var ammo_max = 8
+export var reloadspeed = 1
 var ammo_current = 8
 
 export var jumpspeed = -500
@@ -49,7 +50,7 @@ var dashlength = 20
 var Dash_Speed1temp = 1000
 var dashstale = 1
 var lookleft = false
-enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
+enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH, BUSY}
 var state = NORMAL
 var squatting = false
 
@@ -88,7 +89,7 @@ func _process(delta):
 		_takeHit(10)
 		
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
-		_takeHeal(delta, heal)
+		_takeHeal(delta, heal, reloadspeed)
 
 	print(ammo_current)
 
@@ -100,6 +101,7 @@ func _process(delta):
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
 		DASH: process_dash(delta, dash_Duration1)
+		BUSY: process_busy(delta)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -140,7 +142,10 @@ func process_normal(delta):
 		$AnimatedSprite.animation = "Idle"
 	
 	if Input.is_action_just_pressed("shoot"):
-		begin_shoot()
+		if ammo_current > 0:
+			begin_shoot()
+		else:
+			shoot_fail()
 	
 		
 	var oldyvelocity = velocity.y
@@ -168,7 +173,7 @@ func process_suck(delta):
 	
 	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
-		_takeHeal(delta, heal)
+		_takeHeal(delta, heal, reloadspeed)
 
 	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
@@ -262,6 +267,11 @@ func process_dash(delta, dash_Duration1):
 		dashcool = dashcooldown
 		
 	return
+	
+func process_busy(delta):
+	var length = $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation)
+	if $AnimatedSprite.frame == length-1:
+		state = NORMAL
 
 func dash(delta, dash_Duration1):
 	if dashcool <= 0:
@@ -285,6 +295,7 @@ func jump(delta):
 	if SFXJump != null:
 		add_child(SFXJump.instance())
 	return
+	
 	
 func _on_AnimatedSprite_animation_finished():
 	landing = false
@@ -330,7 +341,8 @@ func begin_shoot():
 	projectile = null
 	
 func shoot_fail():
-	pass
+	$AnimatedSprite.animation= "No Ammo"
+	state = BUSY
 	
 
 func instance_projectile():
@@ -359,9 +371,10 @@ func _takeHit(damage):
 
 		
 		
-func _takeHeal(delta, heal):
+func _takeHeal(delta, heal, reloadspeed):
 	if currentHealth < maxHealth && isonfloor:
 		currentHealth += heal
+		
 		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
 	if state != SUCK && isonfloor:
