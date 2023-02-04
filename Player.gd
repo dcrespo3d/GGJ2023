@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+export (PackedScene) var Projectile
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,7 +15,6 @@ export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
 export var inmunity = false
-export var walkspeed = 300
 
 
 export var jumpspeed = -500
@@ -42,7 +41,6 @@ enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
 
-export (PackedScene) var Projectile
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
@@ -71,6 +69,9 @@ func _process(delta):
 	if Input.is_action_pressed("debug5"):
 		state = DEAD
 		print("dead")
+		
+	if Input.is_action_just_pressed("shoot"):
+		perform_shoot()
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -216,3 +217,16 @@ func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation != "Jump_Out":
 		landing = false
 	
+
+
+var mousePos = Vector2.ZERO
+
+func perform_shoot():
+	var projectile = Projectile.instance()
+	projectile.position = position
+	
+	var direction = (mousePos - position).normalized()
+	projectile.velocity = direction * projectile.scalarSpeed
+	projectile.rotation = direction.angle()
+	
+	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)

@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -20,4 +19,7 @@ func _process(delta):
 	$Gui/hpplayer.max_value = $Viewport/Player.maxHealth
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth
+	
+	# sistema de disparo
+	$Viewport/Player.mousePos = $Viewport/Target.mousePos
 

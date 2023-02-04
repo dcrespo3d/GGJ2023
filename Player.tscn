@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=88]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -8,12 +9,13 @@ extents = Vector2( 29, 30.5 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 88 )
+Projectile = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Dash"
-frame = 6
+frame = 1
 speed_scale = 3.0
 playing = true
 
