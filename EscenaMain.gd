@@ -22,12 +22,16 @@ func _spawnEnemy():
 	
 	
 	$Viewport.add_child(enemy)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		_spawnEnemy()
+	
+	
+func _on_Timer_timeout():
+	_spawnEnemy()
 
 
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
