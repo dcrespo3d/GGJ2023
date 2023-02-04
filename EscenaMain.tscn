@@ -58,8 +58,8 @@ texture = ExtResource( 7 )
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
 position = Vector2( 315, 271 )
-maxHealth = 500
-currentHealth = 500
+maxHealth = 250
+currentHealth = 250
 dashspeed = 800
 mindashduration = 20
 

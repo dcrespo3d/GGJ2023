@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cacodaemon Sprite Sheet_03.png-263f8bc8de6c6c0899a3c20b4836cfd8.stex"
+path="res://.import/DreamSuckerSpriteSheet.png-3dacac9e8bd1a9d1b9e99b69e78b25da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemies/Enemy_03/Cacodaemon Sprite Sheet_03.png"
-dest_files=[ "res://.import/Cacodaemon Sprite Sheet_03.png-263f8bc8de6c6c0899a3c20b4836cfd8.stex" ]
+source_file="res://Art/Enemies/Enemy_05/DreamSuckerSpriteSheet.png"
+dest_files=[ "res://.import/DreamSuckerSpriteSheet.png-3dacac9e8bd1a9d1b9e99b69e78b25da.stex" ]
 
 [params]
 
