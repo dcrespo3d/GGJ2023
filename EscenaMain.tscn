@@ -13,7 +13,6 @@
 [ext_resource path="res://Enemy_02.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Pared.gd" type="Script" id=12]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=13]
-[ext_resource path="res://EscenaPause.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Curve2D" id=3]
@@ -114,13 +113,15 @@ rotation = 0.000524068
 visible = false
 
 [node name="EscenaPause" parent="Viewport" instance=ExtResource( 14 )]
+
 [node name="enemyPath02" type="Path2D" parent="Viewport"]
 position = Vector2( 344.212, 159.094 )
 scale = Vector2( 0.213966, 0.272444 )
 curve = SubResource( 4 )
 
 [node name="enemyspawn02" type="PathFollow2D" parent="Viewport/enemyPath02"]
-position = Vector2( -8.16553, 4.71051 )
+position = Vector2( -15.6667, -3 )
+rotation = -3.01594
 
 [node name="Area2D" type="Area2D" parent="."]
 
