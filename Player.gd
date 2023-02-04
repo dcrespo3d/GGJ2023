@@ -22,7 +22,7 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export var dashspeed = 1000
+export (int) var dash_speed = 1000
 export var mindashspeed = 250
 export var dashduration = 70
 export var mindashduration = 10
@@ -73,7 +73,7 @@ func _process(delta):
 		state = SHOOT
 		print("shoot")
 	if Input.is_action_just_pressed("debug4"):
-		_takeHit(delta,50)
+		_takeHit(50)
 		print(currentHealth)
 
 	if Input.is_action_pressed("debug5"):
@@ -81,7 +81,7 @@ func _process(delta):
 		print("dead")
 		
 	if Input.is_action_just_pressed("debug6"):
-		_takeHit(delta, 10)
+		_takeHit(10)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -221,7 +221,7 @@ func process_dash(delta, dashduration):
 func dash(delta, dashduration):
 	if dashcool <= 0:
 		dashlength = dashduration # * dashstale
-		dashspeedtemp = dashspeed * dashstale
+		dashspeedtemp = dash_speed * dashstale
 		if dashlength < mindashduration:
 			dashlength = mindashduration
 		
@@ -287,7 +287,7 @@ func add_projectile_to_scene():
 
 
 	
-func _takeHit(delta, damage):
+func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
 		state = HIT
@@ -297,3 +297,5 @@ func _takeHit(delta, damage):
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
+func getType():
+	return  "Player"
