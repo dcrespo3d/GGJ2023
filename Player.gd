@@ -88,7 +88,7 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
-	print(dashstale)
+
 	
 	
 	#print(isonfloor)

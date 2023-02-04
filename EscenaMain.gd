@@ -9,9 +9,16 @@ export(PackedScene) var Enemy
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _spawnEnemy():
 	var enemy = Enemy.instance()
-	enemy.position = Vector2(40,40)
+
+	
+	var enemy_spawn_location = get_node("Viewport/enemyPath/enemySpawn")
+	enemy_spawn_location.unit_offset = randf()
+	var direction = enemy_spawn_location.rotation + PI / 2
+	enemy.position = enemy_spawn_location.position
+	print(enemy_spawn_location.unit_offset)
+	print(enemy_spawn_location.position)
 	
 	
 	$Viewport.add_child(enemy)
