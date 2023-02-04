@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://EscenaMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Art/Font/The Ancient Gods.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Art/Font/IrishPenny.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
-size = 96
+size = 180
 font_data = ExtResource( 2 )
 
 [node name="MainMenu" type="Control"]
@@ -19,46 +32,49 @@ anchor_left = 0.552
 anchor_top = 0.546
 anchor_right = 0.552
 anchor_bottom = 0.546
-margin_left = -430.84
-margin_top = 0.320007
-margin_right = -126.84
-margin_bottom = 100.32
+margin_left = -397.84
+margin_top = -122.68
+margin_right = -93.84
+margin_bottom = -22.68
 rect_scale = Vector2( 2, 2 )
 custom_constants/separation = 20
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 margin_right = 304.0
-margin_bottom = 20.0
+margin_bottom = 31.0
 focus_neighbour_left = NodePath("../Quit")
 focus_neighbour_top = NodePath("../Quit")
 focus_neighbour_right = NodePath("../How to Play")
 focus_neighbour_bottom = NodePath("../How to Play")
 focus_next = NodePath("../How to Play")
 focus_previous = NodePath("../Quit")
+custom_fonts/font = SubResource( 2 )
 text = "Start"
 
 [node name="How to Play" type="Button" parent="VBoxContainer"]
-margin_top = 40.0
+margin_top = 51.0
 margin_right = 304.0
-margin_bottom = 60.0
+margin_bottom = 82.0
 focus_neighbour_left = NodePath("../Start")
 focus_neighbour_top = NodePath("../Start")
 focus_neighbour_right = NodePath("../Quit")
 focus_neighbour_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Start")
+custom_fonts/font = SubResource( 3 )
 text = "How To Play"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_top = 80.0
+margin_top = 102.0
 margin_right = 304.0
-margin_bottom = 100.0
+margin_bottom = 133.0
 focus_neighbour_left = NodePath("../How to Play")
 focus_neighbour_top = NodePath("../How to Play")
 focus_neighbour_right = NodePath("../Start")
 focus_neighbour_bottom = NodePath("../Start")
 focus_next = NodePath("../Start")
 focus_previous = NodePath("../How to Play")
+custom_fonts/font = SubResource( 4 )
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
@@ -66,9 +82,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -262.0
+margin_left = -957.0
 margin_top = -398.0
-margin_right = 262.0
+margin_right = 957.0
 margin_bottom = -212.0
 custom_fonts/font = SubResource( 1 )
 text = "GEA OF WAR"
