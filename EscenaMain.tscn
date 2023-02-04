@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EscenaMain.gd" type="Script" id=2]
@@ -10,14 +10,20 @@
 [ext_resource path="res://Art/Enviroment/Tree_01.png" type="Texture" id=8]
 [ext_resource path="res://Gea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/Enviroment/Floor.png" type="Texture" id=10]
-[ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=11]
+[ext_resource path="res://EscenaPause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Pared.gd" type="Script" id=12]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=13]
-[ext_resource path="res://EscenaPause.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemy_02.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0.666667, -4.33333, 0, 0, 0, 0, 636.668, -4 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -15.6667, -3, 0, 0, 0, 0, -1156.94, -147.164, 0, 0, 0, 0, -455.03, 89.8748, 0, 0, 0, 0, 662.667, 1, 0, 0, 0, 0, 376.545, 104.875, 0, 0, 0, 0, 646.592, 374.044 )
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -25,9 +31,9 @@ extents = Vector2( 280.5, 583.5 )
 
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
-Enemy = ExtResource( 11 )
-spawntimer = 1.0
-speedincrease = 0.005
+Enemy1 = ExtResource( 14 )
+Enemy2 = ExtResource( 15 )
+spawntimer = 1.5
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -89,9 +95,9 @@ maxHealth = 500
 currentHealth = 500
 
 [node name="Floor" type="TextureRect" parent="Viewport"]
-margin_left = -2.0
-margin_top = -5.66666
-margin_right = 641.0
+margin_left = 8.33333
+margin_top = 2.33333
+margin_right = 648.333
 margin_bottom = 354.333
 texture = ExtResource( 10 )
 expand = true
@@ -108,7 +114,16 @@ rotation = 0.000524068
 [node name="GameOver" parent="Viewport" instance=ExtResource( 13 )]
 visible = false
 
-[node name="EscenaPause" parent="Viewport" instance=ExtResource( 14 )]
+[node name="enemyPath02" type="Path2D" parent="Viewport"]
+position = Vector2( 344.212, 159.094 )
+scale = Vector2( 0.213966, 0.272444 )
+curve = SubResource( 4 )
+
+[node name="enemyspawn02" type="PathFollow2D" parent="Viewport/enemyPath02"]
+position = Vector2( -15.6667, -3 )
+rotation = -3.01594
+
+[node name="EscenaPause" parent="Viewport" instance=ExtResource( 11 )]
 
 [node name="Area2D" type="Area2D" parent="."]
 
