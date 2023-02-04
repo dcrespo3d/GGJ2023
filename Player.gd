@@ -61,8 +61,7 @@ func _process(delta):
 		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
-		state = SUCK
-		print("suck")
+		_takeHeal(delta, heal)
 	if Input.is_action_pressed("debug3"):
 		state = BUSY
 		print("busy")
@@ -77,7 +76,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		perform_shoot()
 	if Input.is_action_just_pressed("debug6"):
-		_takeHeal(delta, heal)
+		
 		_takeHit(10)
 
 	match (state):
@@ -137,11 +136,11 @@ func process_suck(delta):
 	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
 		isbegginingsuck = false
 	
-	if Input.is_action_pressed("debug6") && !isbegginingsuck:
+	if Input.is_action_pressed("debug2") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
 		_takeHeal(delta, heal)
 
-	if !Input.is_action_pressed("debug6") && !isbegginingsuck:
+	if !Input.is_action_pressed("debug2") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
 		if $AnimatedSprite.frame == 5:
 			state = NORMAL
@@ -262,12 +261,10 @@ func _takeHit(damage):
 		$AnimatedSprite.animation = "Die"
 		
 func _takeHeal(delta, heal):
-	
 	if currentHealth < maxHealth && isonfloor:
 		currentHealth += heal
+		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
-		
-	
 	if state != SUCK && isonfloor:
 		$AnimatedSprite.animation = "Charge_Enter"
 		isbegginingsuck = true
