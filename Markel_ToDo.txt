@@ -1,0 +1,13 @@
+To do
+
+Animaciones
+
+Charge (particulas, colores)
+Dust (Para correr)
+
+
+Projectile
+
+Buscar
+Crear Apuntado
+
