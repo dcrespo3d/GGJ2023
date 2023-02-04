@@ -192,6 +192,7 @@ func process_hit(delta):
 	
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
+	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible=true
 	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 

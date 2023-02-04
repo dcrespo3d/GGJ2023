@@ -38,9 +38,6 @@ func _process(delta):
 		_spawnEnemy()
 	
 	
-#func _on_Timer_timeout():
-#	_spawnEnemy()
-
 
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth

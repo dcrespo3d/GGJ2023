@@ -6,11 +6,15 @@ export (PackedScene) var SFXEnemyDeath
 # var a = 2
 # var b = "text"
 export var speed = 100
+export var deadSpeed = 100
 var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
+var dead = false
 export var damage = 20
+export var heal = 10
 export var hits = 3
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +27,8 @@ func _process(delta):
 	
 	if hits <= 0:
 		state = DIE
+	
+	
 	
 	match (state):
 		IDLE: process_idle(delta)
@@ -50,20 +56,28 @@ func process_hit(delta):
 func process_die(delta):
 	if SFXEnemyDeath:
 		get_tree().get_root().get_node("EscenaMain/Viewport").add_child(SFXEnemyDeath.instance())
-	queue_free()
+
+	$EnemyAnimations.animation = "Die"
+	
+	velocity.y = deadSpeed
+	velocity = move_and_slide(velocity, Vector2.UP)
+
 	return
 
 
 
 func _on_Area2D_body_entered(body):
-	if body.getType() == "Player":
+	if body.getType() == "Player" && state == IDLE:
 		attack(body)
 		queue_free()
 
-	if body.getType() == "Gea":
+	if body.getType() == "Gea" && state == IDLE:
 		attack(body)
 		queue_free()
-	if body.getType() == "Projectile":
+	if body.getType() == "Gea" && state == DIE:
+		heal(body)
+		queue_free()
+	if body.getType() == "Projectile"&& state != DIE:
 		hits -=1
 		body.queue_free()
 		state = HIT
@@ -73,5 +87,7 @@ func _on_Area2D_body_entered(body):
 func attack(body):
 	body._takeHit(damage)
 	state = ATTACK
+func heal(body):
+	body._takeHeal(heal)
 func getType():
 	return  "Enemy01"
