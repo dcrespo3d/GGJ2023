@@ -179,6 +179,7 @@ func process_hit(delta):
 	
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
+	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible=true
 	return
 
 func process_jump(delta):
