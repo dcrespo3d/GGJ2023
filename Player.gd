@@ -43,6 +43,8 @@ var squatting = false
 
 export (PackedScene) var Projectile
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
 	
 
@@ -56,6 +58,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
+		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
 		state = SUCK
@@ -84,12 +87,12 @@ func _process(delta):
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
+	
 	else:
 		$AnimatedSprite.flip_h = false
-		
+
 	velocity.y += fallacc * delta
 	
-	#print(dashstale)
 	
 	
 	#print(isonfloor)
