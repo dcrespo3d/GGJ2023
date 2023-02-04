@@ -8,13 +8,21 @@ extents = Vector2( 674.5, 30.5 )
 [node name="Gea" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 666, 30 )
-shape = SubResource( 2 )
-
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -3.0
 margin_top = -3.0
 margin_right = 1339.0
 margin_bottom = 157.0
 stretch_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 666, 30 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 666, 30 )
+shape = SubResource( 2 )
