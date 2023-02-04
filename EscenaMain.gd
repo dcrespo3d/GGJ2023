@@ -45,6 +45,7 @@ func _process(delta):
 #	print(spawntimer)
 	if Input.is_action_just_pressed("debug1"):
 		_spawnEnemy1()
+	#print (actualtimer)
 		
 	if actualtimer <= 0:
 		spawntimer = spawntimer - spawntimer*speedincrease
