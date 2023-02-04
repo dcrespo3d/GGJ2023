@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Enemy Death 4.wav-20bc89171c1a3beda5c65b81a5713980.sample"
+path="res://.import/Death 4.wav-3f8a54e7efcd87c8686fac9d9fb90eef.sample"
 
 [deps]
 
-source_file="res://Art/SFX/Efectos de Sonido/Enemy Death 4.wav"
-dest_files=[ "res://.import/Enemy Death 4.wav-20bc89171c1a3beda5c65b81a5713980.sample" ]
+source_file="res://Art/SFX/Efectos de Sonido/Death 4.wav"
+dest_files=[ "res://.import/Death 4.wav-3f8a54e7efcd87c8686fac9d9fb90eef.sample" ]
 
 [params]
 
