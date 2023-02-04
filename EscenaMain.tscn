@@ -68,6 +68,7 @@ maxHealth = 250
 currentHealth = 250
 dashspeed = 800
 mindashduration = 20
+fallWhileAttacking = true
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
 position = Vector2( -227.333, 342.667 )
