@@ -1,0 +1,13 @@
+VFX de suelo (FloorVFX)
+
+Si el enemigo que colisiona esta muerto (FloorGainLife) en el punto de collision entre el enemigo muerto y el suelo
+Si el enemigo que colisiona esta vivo (FloorLooseLife) en el punto de collision entre el enemigo vivo y el suelo
+
+VFX polvo (DustVFX)
+
+Charge - Cuando se active la animacion charge enter, un poco mas adelante del player (frame 6) CHARGE ENTER FIN
+Dash1 - Detras del jugador cuando se active el dash si el factor de dashstal es 1 (frame 0) DASH START (SI FACTOR 1)
+Dash2 - Detras del jugador cuando se active el dash si el factor de dashstal no es 1 (frame 0) DASH START (SI FACTOR MENOR A 1)
+Jump - Detras del jugador en la animacion jump enter (frame 1) JUMP START
+Run 1, 2, 3 - Detras del jugador durante la animacion de run (frames 1, 4, 7) RUN BUCLE
+
