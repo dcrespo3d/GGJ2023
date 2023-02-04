@@ -11,7 +11,10 @@ func _on_Start_pressed():
 	$Popup.visible = not $Popup.visible
 	
 func _on_BACK_TO_MENU_pressed():
-	get_tree().change_scene("res://EscenaMainMenu.tscn")
+	get_tree().paused = false
+	var err = get_tree().change_scene("res://EscenaMainMenu.tscn")
+#	print("_on_BACK_TO_MENU_pressed:", err)
+	
 	
 func _on_Exit_pressed():
 	get_tree().quit()
@@ -20,14 +23,11 @@ func _on_Exit_pressed():
 
 func _on_Resume_pressed():
 	_on_Start_pressed()
-	pass # Replace with function body.
 
 
 func _on_Quit_pressed():
 	_on_Exit_pressed()
-	pass # Replace with function body.
 
 
 func _on_MainMenu_pressed():
 	_on_BACK_TO_MENU_pressed()
-	pass # Replace with function body.
