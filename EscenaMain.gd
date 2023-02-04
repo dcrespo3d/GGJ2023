@@ -50,11 +50,11 @@ func _process(delta):
 		_spawnEnemy1()
 		
 		
-	#if actualtimer <= 0:
-		#spawntimer = spawntimer - spawntimer*speedincrease
-		#actualtimer = spawntimer
-		#_spawnEnemy1()
-		#_spawnEnemy2()
+	if actualtimer <= 0:
+		spawntimer = spawntimer - spawntimer*speedincrease
+		actualtimer = spawntimer
+		_spawnEnemy1()
+		_spawnEnemy2()
 	
 
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
