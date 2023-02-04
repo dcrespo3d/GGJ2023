@@ -45,7 +45,6 @@ ESPACIO - ECHAR RAICES
 
 ESC - MENÚ DE PAUSA"
 align = 1
-percent_visible = -0.00909091
 
 [node name="Back" type="Button" parent="Panel"]
 anchor_left = 0.5
