@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slide_8.png-0961e4b4917746e8ef48f56778fa9176.stex"
+path="res://.import/PlayerLife_Small_Background.png-aaa94e6bc912c4c8fb1b6082468636cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/Anims/Dash/slide_8.png"
-dest_files=[ "res://.import/slide_8.png-0961e4b4917746e8ef48f56778fa9176.stex" ]
+source_file="res://Art/UI/PlayerLife_Small_Background.png"
+dest_files=[ "res://.import/PlayerLife_Small_Background.png-aaa94e6bc912c4c8fb1b6082468636cb.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

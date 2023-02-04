@@ -15,7 +15,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	$Gui/hpplayer.value = $Viewport/Player.currentHealth
 	$Gui/hpplayer.max_value = $Viewport/Player.maxHealth
-	
+	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 

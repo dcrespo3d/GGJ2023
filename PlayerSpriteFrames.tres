@@ -49,11 +49,11 @@
 [ext_resource path="res://Art/Player/Anims/Charge/defend_3.png" type="Texture" id=47]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_12.png" type="Texture" id=48]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_9.png" type="Texture" id=49]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_8.png" type="Texture" id=50]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_10.png" type="Texture" id=51]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_4_transp.png" type="Texture" id=50]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_8_transp.png" type="Texture" id=51]
 [ext_resource path="res://Art/Player/Anims/Dash/slide_13.png" type="Texture" id=52]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_7.png" type="Texture" id=53]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_3.png" type="Texture" id=54]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_3_transp.png" type="Texture" id=53]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_5_transp.png" type="Texture" id=54]
 [ext_resource path="res://Art/Player/Anims/Die/death_14.png" type="Texture" id=55]
 [ext_resource path="res://Art/Player/Anims/Run/run_5.png" type="Texture" id=56]
 [ext_resource path="res://Art/Player/Anims/Die/death_13.png" type="Texture" id=57]
@@ -62,7 +62,7 @@
 [ext_resource path="res://Art/Player/Anims/Die/death_4.png" type="Texture" id=60]
 [ext_resource path="res://Art/Player/Anims/Die/death_2.png" type="Texture" id=61]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_4.png" type="Texture" id=62]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_6.png" type="Texture" id=63]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_6_transp.png" type="Texture" id=63]
 [ext_resource path="res://Art/Player/Anims/Die/death_3.png" type="Texture" id=64]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_5.png" type="Texture" id=65]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_14.png" type="Texture" id=66]
@@ -80,10 +80,10 @@
 [ext_resource path="res://Art/Player/Anims/Charge/defend_16.png" type="Texture" id=78]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_17.png" type="Texture" id=79]
 [ext_resource path="res://Art/Player/Anims/Run/run_3.png" type="Texture" id=80]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_4.png" type="Texture" id=81]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_7_transp.png" type="Texture" id=81]
 [ext_resource path="res://Art/Player/Anims/Die/death_7.png" type="Texture" id=82]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_5.png" type="Texture" id=83]
-[ext_resource path="res://Art/Player/Anims/Dash/slide_9.png" type="Texture" id=84]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_9_transp.png" type="Texture" id=83]
+[ext_resource path="res://Art/Player/Anims/Dash/slide_10_transp.png" type="Texture" id=84]
 [ext_resource path="res://Art/Player/Anims/Hit/take_hit_2.png" type="Texture" id=85]
 [ext_resource path="res://Art/Player/Anims/Hit/take_hit_3.png" type="Texture" id=86]
 [ext_resource path="res://Art/Player/Anims/Run/run_1.png" type="Texture" id=87]
@@ -147,7 +147,7 @@ animations = [ {
 "name": "Charge_Out",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 72 ), ExtResource( 54 ), ExtResource( 81 ), ExtResource( 83 ), ExtResource( 63 ), ExtResource( 53 ), ExtResource( 50 ), ExtResource( 84 ), ExtResource( 51 ), ExtResource( 70 ), ExtResource( 67 ), ExtResource( 52 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 72 ), ExtResource( 53 ), ExtResource( 50 ), ExtResource( 54 ), ExtResource( 63 ), ExtResource( 81 ), ExtResource( 51 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 70 ), ExtResource( 67 ), ExtResource( 52 ) ],
 "loop": true,
 "name": "Dash",
 "speed": 5.0

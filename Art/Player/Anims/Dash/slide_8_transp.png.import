@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slide_6.png-5bb6d0fa254f2a7a15f82a5e53c764e5.stex"
+path="res://.import/slide_8_transp.png-e5b560233243ac14e185104a426c409b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/Anims/Dash/slide_6.png"
-dest_files=[ "res://.import/slide_6.png-5bb6d0fa254f2a7a15f82a5e53c764e5.stex" ]
+source_file="res://Art/Player/Anims/Dash/slide_8_transp.png"
+dest_files=[ "res://.import/slide_8_transp.png-e5b560233243ac14e185104a426c409b.stex" ]
 
 [params]
 
