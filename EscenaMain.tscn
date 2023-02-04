@@ -26,6 +26,7 @@ extents = Vector2( 280.5, 583.5 )
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
 Enemy = ExtResource( 11 )
+spawntimer = 1.5
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
