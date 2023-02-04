@@ -95,7 +95,7 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
-	
+	get_tree().get_root().get_node("EscenaMain/Viewport/Label").text = str(dashstale)
 	
 		
 func process_normal(delta):

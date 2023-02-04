@@ -67,7 +67,12 @@ texture = ExtResource( 7 )
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
+dash_speed = 2000
+dashduration = 35
 mindashduration = 20
+dashcooldown = 0.1
+dashrecoveryspeed = 0.57
+dashstalerate = 0.5
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
 position = Vector2( -229, 340 )
@@ -91,6 +96,12 @@ curve = SubResource( 3 )
 position = Vector2( 0.666667, -4.33333 )
 rotation = 0.000524068
 
+[node name="Label" type="Label" parent="Viewport"]
+margin_left = 17.3333
+margin_top = 58.0
+margin_right = 57.3333
+margin_bottom = 72.0
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -101,7 +112,7 @@ position = Vector2( -290, 543 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 2166, 484 )
+position = Vector2( 2183, 495 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]

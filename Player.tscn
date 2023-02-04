@@ -15,12 +15,11 @@ jumpspeed = -900
 fallacc = 3000
 dashspeed = 10500
 dashduration = 45
-dash_speed = 2000
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
-animation = "Charge"
+animation = "Attack_Down"
 frame = 1
 speed_scale = 3.0
 playing = true
