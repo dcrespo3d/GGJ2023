@@ -72,9 +72,10 @@ func _process(delta):
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
+	
 	else:
 		$AnimatedSprite.flip_h = false
-		
+
 	velocity.y += fallacc * delta
 	
 	print(landing)

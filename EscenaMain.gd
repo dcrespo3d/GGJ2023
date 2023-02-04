@@ -1,6 +1,6 @@
 extends Node2D
 
-
+export(PackedScene) var Enemy
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -10,7 +10,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var enemy = Enemy.instance()
+	enemy.position = Vector2(40,40)
+	
+	
+	$Viewport.add_child(enemy)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
