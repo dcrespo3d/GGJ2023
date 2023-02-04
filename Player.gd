@@ -42,6 +42,8 @@ var state = NORMAL
 var squatting = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
 	
 
@@ -55,6 +57,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
+		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
 		state = SUCK
@@ -72,6 +75,8 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("shoot"):
 		perform_shoot()
+	if Input.is_action_just_pressed("debug6"):
+		_takeHit(delta, 10)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -84,12 +89,12 @@ func _process(delta):
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
+	
 	else:
 		$AnimatedSprite.flip_h = false
-		
+
 	velocity.y += fallacc * delta
 	
-	print(dashstale)
 	
 	
 	#print(isonfloor)
@@ -136,7 +141,8 @@ func process_busy(delta):
 	return
 	
 func process_hit(delta):
-
+	if $AnimatedSprite.frame == 5:
+		state = NORMAL
 	return
 	
 func process_dead(delta):
@@ -230,3 +236,15 @@ func perform_shoot():
 	projectile.rotation = direction.angle()
 	
 	get_tree().get_root().get_node("EscenaMain/Viewport").add_child(projectile)
+
+	
+func _takeHit(delta, damage):
+	if currentHealth > 0:
+		currentHealth -= damage	
+		state = HIT
+		$AnimatedSprite.animation = "Hit"
+		print("Hola, entro aqui")
+	else: if currentHealth == 0:
+		currentHealth = -1
+		state = DEAD
+		$AnimatedSprite.animation = "Die"
