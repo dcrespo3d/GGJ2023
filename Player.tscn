@@ -16,7 +16,6 @@ Projectile = ExtResource( 2 )
 walkspeed = 500
 jumpspeed = -900
 fallacc = 3000
-dashduration = 45
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
