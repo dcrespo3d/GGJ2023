@@ -291,7 +291,7 @@ animations = [ {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 62 )
-animation = "Run1"
-frame = 4
+animation = "Run3"
+frame = 1
 speed_scale = 3.0
 playing = true

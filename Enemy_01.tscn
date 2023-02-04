@@ -153,6 +153,7 @@ script = ExtResource( 2 )
 speed = 300
 
 [node name="EnemyAnimations" type="AnimatedSprite" parent="."]
+rotation = 1.5708
 frames = SubResource( 25 )
 animation = "Idle"
 frame = 2
