@@ -167,7 +167,7 @@ func process_shoot(delta):
 		state = NORMAL
 #	print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
 #	print("$AnimatedSprite.frame:", $AnimatedSprite.frame)
-	if fallWhileAttacking:
+	if fallWhileAttacking and prevState == JUMP:
 		var oldyvelocity = velocity.y
 		velocity = move_and_slide(velocity, Vector2.UP)
 		isonfloor = oldyvelocity != velocity.y
