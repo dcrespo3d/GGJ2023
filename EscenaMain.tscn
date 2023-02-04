@@ -68,7 +68,7 @@ dashspeed = 800
 mindashduration = 20
 
 [node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
-position = Vector2( -227.333, 342.667 )
+position = Vector2( -229, 340 )
 maxHealth = 500
 currentHealth = 500
 
