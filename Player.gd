@@ -67,9 +67,9 @@ func _process(delta):
 		state = BUSY
 		print("busy")
 	if Input.is_action_just_pressed("debug4"):
-		currentHealth -= 10
-		state = HIT
-		print("hit")
+		_takeHit(delta,50)
+		print(currentHealth)
+
 	if Input.is_action_pressed("debug5"):
 		state = DEAD
 		print("dead")
@@ -133,6 +133,7 @@ func process_normal(delta):
 	return
 	
 func process_suck(delta):
+	
 	return
 
 func process_busy(delta):
@@ -227,7 +228,7 @@ func _takeHit(delta, damage):
 		state = HIT
 		$AnimatedSprite.animation = "Hit"
 		print("Hola, entro aqui")
-	else: if currentHealth == 0:
+	if currentHealth == 0:
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
