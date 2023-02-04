@@ -112,6 +112,7 @@ curve = SubResource( 2 )
 [node name="enemySpawn" type="PathFollow2D" parent="Viewport/enemyPath"]
 position = Vector2( 3.66667, -24.3333 )
 rotation = -0.00156094
+[node name="EscenaPause" parent="Viewport" instance=ExtResource( 11 )]
 
 [node name="enemyPath2" type="Path2D" parent="Viewport"]
 position = Vector2( -16.7453, 0 )
