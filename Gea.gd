@@ -16,8 +16,11 @@ func getType():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
-
+func _process(delta):
+	if currentHealth <= 0:
+		pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
