@@ -15,7 +15,6 @@ Projectile = ExtResource( 2 )
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
-frame = 2
 speed_scale = 3.0
 playing = true
 
