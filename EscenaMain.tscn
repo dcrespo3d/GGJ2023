@@ -34,6 +34,7 @@ script = ExtResource( 2 )
 Enemy1 = ExtResource( 14 )
 Enemy2 = ExtResource( 15 )
 spawntimer = 3.0
+speedincrease = 0.1
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -80,8 +81,8 @@ margin_bottom = 474.667
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
+reloadspeed = 2.0
 jumpspeed = -1000
-dash_Duration = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5
@@ -125,6 +126,8 @@ rotation = -3.01594
 
 [node name="EscenaPause" parent="Viewport" instance=ExtResource( 11 )]
 
+[node name="Timer" type="Timer" parent="Viewport"]
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -139,3 +142,6 @@ position = Vector2( 2193, 524 )
 shape = SubResource( 1 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
+
+[connection signal="timeout" from="Viewport/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Viewport/Timer" to="Viewport/Player" method="_on_Timer_timeout"]
