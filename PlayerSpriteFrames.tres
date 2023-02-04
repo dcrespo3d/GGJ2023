@@ -180,12 +180,12 @@ animations = [ {
 "frames": [ ExtResource( 99 ), ExtResource( 100 ) ],
 "loop": true,
 "name": "Jump_Enter",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 107 ), ExtResource( 108 ), ExtResource( 106 ) ],
-"loop": true,
+"loop": false,
 "name": "Jump_Out",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [ ExtResource( 103 ), ExtResource( 104 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 90 ) ],
 "loop": true,

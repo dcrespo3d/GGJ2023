@@ -12,6 +12,8 @@ script = ExtResource( 88 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
+animation = "Jump_Up"
+frame = 1
 animation = "Dash"
 frame = 3
 speed_scale = 3.0
@@ -20,3 +22,6 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6 )
 shape = SubResource( 2 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]

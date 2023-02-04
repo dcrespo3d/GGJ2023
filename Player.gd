@@ -26,11 +26,13 @@ export var dashduration = 70
 export var dashcooldown = 50
 export var mindashduration = 10
 var dashcool = 0
+var landing = false
 var dashlength = 20
 var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, BUSY, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
+var squatting = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -75,6 +77,12 @@ func _process(delta):
 		
 	velocity.y += fallacc * delta
 	
+	print(landing)
+	
+	
+	#print(isonfloor)
+	
+	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -88,19 +96,24 @@ func process_normal(delta):
 		lookleft = false
 		$AnimatedSprite.animation = "Run"
 	if Input.is_action_just_pressed("ui_up") && isonfloor:
-		velocity.y = jumpspeed
-	
-	if velocity.x == 0:
+		jump(delta)
+		
+		
+	if velocity.x == 0 && !landing && isonfloor:
 		$AnimatedSprite.animation = "Idle"
 	
+	
 		
-	var oldvelocity = velocity
+	var oldyvelocity = velocity.y
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
-	isonfloor = oldvelocity!=velocity
+	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
 		dash(delta, dashduration)
+	
+	if velocity.y != 0:
+		state = JUMP
 	
 	return
 	
@@ -118,6 +131,34 @@ func process_dead(delta):
 	return
 
 func process_jump(delta):
+	var oldyvelocity = velocity.y
+	
+	
+	velocity.x = 0
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = -walkspeed
+		lookleft = true
+	if Input.is_action_pressed("ui_right"):
+		velocity.x = walkspeed
+		lookleft = false
+	if Input.is_action_just_pressed("dash_key"):
+		dash(delta, dashduration)
+	
+	if velocity.y > 0:
+		$AnimatedSprite.animation = "Jump_Down"
+	if velocity.y < 0:
+		$AnimatedSprite.animation = "Jump_Up"
+	
+	velocity = move_and_slide(velocity, Vector2.UP)
+	isonfloor = oldyvelocity!=velocity.y
+	
+	if isonfloor:
+		$AnimatedSprite.animation = "Jump_Out"
+		state = NORMAL
+		landing = true
+		
+	
+
 	return
 
 func process_dash(delta, dashduration):
@@ -146,3 +187,18 @@ func dash(delta, dashduration):
 		dashstale = dashstale * 0.8
 		state = DASH
 	return
+
+func jump(delta):
+	velocity.y = jumpspeed
+	velocity = move_and_slide(velocity, Vector2.UP)
+	state = JUMP
+	$AnimatedSprite.animation = "Jump_Enter"
+	return
+	
+func _on_AnimatedSprite_animation_finished():
+	landing = false
+
+func _on_AnimatedSprite_frame_changed():
+	if $AnimatedSprite.animation != "Jump_Out":
+		landing = false
+	
