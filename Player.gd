@@ -13,24 +13,26 @@ export (PackedScene) var SFXDeath
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	ammo_current = ammo_max # Replace with function body.
 
 export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
-
+export var ammo_max = 8
+export (float) var reloadspeed = 1
+var ammo_current = 8
 
 export var jumpspeed = -500
 export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export (int) var dash_Speed = 1000
-export var minDash_Speed = 250
-export var dash_Duration = 70
-export var mindash_Duration = 10
+export (int) var Dash_Speed1 = 1000
+export var minDash_Speed1 = 250
+export var dash_Duration1 = 70
+export var mindash_Duration1 = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
@@ -40,15 +42,17 @@ export var attackDownThreshold = 15
 export var fallWhileAttacking = false
 export var attackCooldown = 0.5
 
-
+var tiempo = 0
+var tiempo2 = 0
+export var MAXtiempo = 3
 var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
-var dash_Speedtemp = 1000
+var Dash_Speed1temp = 1000
 var dashstale = 1
 var lookleft = false
-enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
+enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH, BUSY}
 var state = NORMAL
 var squatting = false
 
@@ -87,7 +91,8 @@ func _process(delta):
 		_takeHit(10)
 		
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
-		_takeHeal(delta, heal)
+		_takeHeal(delta, heal, reloadspeed)
+
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -96,7 +101,8 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
-		DASH: process_dash(delta, dash_Duration)
+		DASH: process_dash(delta, dash_Duration1)
+		BUSY: process_busy(delta)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -106,12 +112,13 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
+	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").text = str(ammo_current) + "/" + str(ammo_max)
+	
 #	print("STATE: ", state)
 	
-	#print(isonfloor)
 	
 
-	
+	print(tiempo)
 	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
@@ -135,7 +142,10 @@ func process_normal(delta):
 		$AnimatedSprite.animation = "Idle"
 	
 	if Input.is_action_just_pressed("shoot"):
-		begin_shoot()
+		if ammo_current > 0:
+			begin_shoot()
+		else:
+			shoot_fail()
 	
 		
 	var oldyvelocity = velocity.y
@@ -144,7 +154,7 @@ func process_normal(delta):
 	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration)
+		dash(delta, dash_Duration1)
 	
 	if velocity.y != 0:
 		state = JUMP
@@ -163,7 +173,7 @@ func process_suck(delta):
 	
 	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
-		_takeHeal(delta, heal)
+		_takeHeal(delta, heal, reloadspeed)
 
 	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
@@ -172,13 +182,15 @@ func process_suck(delta):
 			if sfx_heal != null:
 				sfx_heal.queue_free()
 				sfx_heal = null
-			
+		tiempo = 0
+		tiempo2 = 0
 	
 	return
 
 func process_shoot(delta):
 	if $AnimatedSprite.frame == 3:
 		if projectile == null:
+			ammo_current = ammo_current - 1
 			instance_projectile()
 	elif $AnimatedSprite.frame == 7:
 		state = NORMAL
@@ -212,7 +224,7 @@ func process_jump(delta):
 		velocity.x = walkspeed
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration)
+		dash(delta, dash_Duration1)
 		
 	
 	if velocity.y > 0:
@@ -229,42 +241,49 @@ func process_jump(delta):
 		landing = true
 		
 	if Input.is_action_just_pressed("shoot"):
-		begin_shoot()
-
+		if ammo_current > 0:
+			begin_shoot()
+		else:
+			shoot_fail()
 
 	return
 
-func process_dash(delta, dash_Duration):
+func process_dash(delta, dash_Duration1):
 	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
-			velocity.x = -dash_Speedtemp
+			velocity.x = -Dash_Speed1temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 		else:
-			velocity.x = dash_Speedtemp
+			velocity.x = Dash_Speed1temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		dashlength = dash_Duration
+		dashlength = dash_Duration1
 		state = NORMAL
 		dashcool = dashcooldown
 		
 	return
+	
+func process_busy(delta):
+	var length = $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation)
+	if $AnimatedSprite.frame == length-1:
+		state = NORMAL
 
-func dash(delta, dash_Duration):
+func dash(delta, dash_Duration1):
 	if dashcool <= 0:
-		dashlength = dash_Duration # * dashstale
-		dash_Speedtemp = dash_Speed * dashstale
-		if dashlength < mindash_Duration:
-			dashlength = mindash_Duration
+		dashlength = dash_Duration1 # * dashstale
+		Dash_Speed1temp = Dash_Speed1 * dashstale
+		if dashlength < mindash_Duration1:
+			dashlength = mindash_Duration1
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
 		if SFXDash != null:
 			add_child(SFXDash.instance())
-		print(dashlength)
+		#print(dashlength)
 	return
 
 func jump(delta):
@@ -275,6 +294,7 @@ func jump(delta):
 	if SFXJump != null:
 		add_child(SFXJump.instance())
 	return
+	
 	
 func _on_AnimatedSprite_animation_finished():
 	landing = false
@@ -307,18 +327,23 @@ func begin_shoot():
 #	print("projectile.rotation:", proj_tilt_angle)
 	if proj_tilt_angle < attackUpThreshold:
 		$AnimatedSprite.animation = "Attack_Up"
-		print("attack_up")
+		#print("attack_up")
 	elif proj_tilt_angle < attackDownThreshold:
 		$AnimatedSprite.animation = "Attack_Horizontal"
-		print("attack_horiz")
+		#print("attack_horiz")
 	else:
 		$AnimatedSprite.animation = "Attack_Down"
-		print("attack_down")
+		#print("attack_down")
 		
 	$AnimatedSprite.flip_h = lookleft
 
 	projectile = null
 	
+func shoot_fail():
+	$AnimatedSprite.animation= "No Ammo"
+	state = BUSY
+	
+
 func instance_projectile():
 	projectile = Projectile.instance()
 	projectile.position = position
@@ -345,11 +370,21 @@ func _takeHit(damage):
 
 		
 		
-func _takeHeal(delta, heal):
+func _takeHeal(delta, heal, reloadspeed):
 	if currentHealth < maxHealth && isonfloor:
-		currentHealth += heal
+		_on_Timer_timeout(delta)
+		currentHealth += heal * tiempo
+		if tiempo == MAXtiempo: 
+			currentHealth += heal * MAXtiempo
 		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
+	if ammo_current < ammo_max && isonfloor:
+		tiempo2func(delta)
+		if tiempo2 > 1/reloadspeed:
+			ammo_current += 1
+			tiempo2 = 0
+	
+	
 	if state != SUCK && isonfloor:
 		$AnimatedSprite.animation = "Charge_Enter"
 		isbegginingsuck = true
@@ -357,3 +392,9 @@ func _takeHeal(delta, heal):
 
 func getType():
 	return  "Player"
+
+
+func _on_Timer_timeout(delta):
+	tiempo += 1 * delta 
+func tiempo2func(delta):
+	tiempo2 += 1 * delta 
