@@ -12,10 +12,8 @@ script = ExtResource( 88 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
-animation = "Jump_Up"
-frame = 1
 animation = "Dash"
-frame = 3
+frame = 6
 speed_scale = 3.0
 playing = true
 
