@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="GameOver" type="Node2D"]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 76.0
+margin_top = 36.0
+margin_right = 116.0
+margin_bottom = 76.0
