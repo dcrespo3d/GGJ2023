@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=110 format=2]
+[gd_resource type="SpriteFrames" load_steps=135 format=2]
 
 [ext_resource path="res://Art/Player/Anims/Idle/idle_7.png" type="Texture" id=1]
 [ext_resource path="res://Art/Player/Anims/Hit/take_hit_5.png" type="Texture" id=2]
@@ -37,18 +37,18 @@
 [ext_resource path="res://Art/Player/Anims/Attack_Up/3_atk_7.png" type="Texture" id=35]
 [ext_resource path="res://Art/Player/Anims/Attack_Up/3_atk_11.png" type="Texture" id=36]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_6.png" type="Texture" id=37]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_10.png" type="Texture" id=38]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_10_FX.png" type="Texture" id=38]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_1.png" type="Texture" id=39]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_13.png" type="Texture" id=40]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_8_FX.png" type="Texture" id=40]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_18.png" type="Texture" id=41]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_8.png" type="Texture" id=42]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_11_FX.png" type="Texture" id=42]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_19.png" type="Texture" id=43]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_2.png" type="Texture" id=44]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_7.png" type="Texture" id=45]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_15.png" type="Texture" id=46]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_3.png" type="Texture" id=47]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_12.png" type="Texture" id=48]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_9.png" type="Texture" id=49]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_12_FX.png" type="Texture" id=48]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_9_FX.png" type="Texture" id=49]
 [ext_resource path="res://Art/Player/Anims/Dash/slide_4_transp.png" type="Texture" id=50]
 [ext_resource path="res://Art/Player/Anims/Dash/slide_8_transp.png" type="Texture" id=51]
 [ext_resource path="res://Art/Player/Anims/Dash/slide_13.png" type="Texture" id=52]
@@ -75,7 +75,7 @@
 [ext_resource path="res://Art/Player/Anims/Die/death_15.png" type="Texture" id=73]
 [ext_resource path="res://Art/Player/Anims/Die/death_5.png" type="Texture" id=74]
 [ext_resource path="res://Art/Player/Anims/Die/death_11.png" type="Texture" id=75]
-[ext_resource path="res://Art/Player/Anims/Charge/defend_11.png" type="Texture" id=76]
+[ext_resource path="res://Art/Player/Anims/Charge/defend_13_FX.png" type="Texture" id=76]
 [ext_resource path="res://Art/Player/Anims/Die/death_6.png" type="Texture" id=77]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_16.png" type="Texture" id=78]
 [ext_resource path="res://Art/Player/Anims/Charge/defend_17.png" type="Texture" id=79]
@@ -109,6 +109,31 @@
 [ext_resource path="res://Art/Player/Anims/Jump/jump_20.png" type="Texture" id=107]
 [ext_resource path="res://Art/Player/Anims/Jump/jump_21.png" type="Texture" id=108]
 [ext_resource path="res://Art/Player/Anims/Jump/jump_18.png" type="Texture" id=109]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_10.png" type="Texture" id=110]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_9.png" type="Texture" id=111]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_7.png" type="Texture" id=112]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_8.png" type="Texture" id=113]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_7.png" type="Texture" id=114]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_8.png" type="Texture" id=115]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_11.png" type="Texture" id=116]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_1.png" type="Texture" id=117]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_5.png" type="Texture" id=118]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_9.png" type="Texture" id=119]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_1.png" type="Texture" id=120]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_2.png" type="Texture" id=121]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_3.png" type="Texture" id=122]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_12.png" type="Texture" id=123]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_14.png" type="Texture" id=124]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_2.png" type="Texture" id=125]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_5.png" type="Texture" id=126]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_13.png" type="Texture" id=127]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_6.png" type="Texture" id=128]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_6.png" type="Texture" id=129]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_10.png" type="Texture" id=130]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_15.png" type="Texture" id=131]
+[ext_resource path="res://Art/Player/Anims/Attack_Down/air_atk_4.png" type="Texture" id=132]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_4.png" type="Texture" id=133]
+[ext_resource path="res://Art/Player/Anims/Attack_Horizontal/2_atk_3.png" type="Texture" id=134]
 
 [resource]
 animations = [ {
@@ -117,12 +142,12 @@ animations = [ {
 "name": "Attack",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 120 ), ExtResource( 125 ), ExtResource( 122 ), ExtResource( 132 ), ExtResource( 126 ), ExtResource( 128 ), ExtResource( 112 ), ExtResource( 113 ), ExtResource( 111 ), ExtResource( 110 ) ],
 "loop": true,
 "name": "Attack_Down",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 117 ), ExtResource( 121 ), ExtResource( 134 ), ExtResource( 133 ), ExtResource( 118 ), ExtResource( 129 ), ExtResource( 114 ), ExtResource( 115 ), ExtResource( 119 ), ExtResource( 130 ), ExtResource( 116 ), ExtResource( 123 ), ExtResource( 127 ), ExtResource( 124 ), ExtResource( 131 ) ],
 "loop": true,
 "name": "Attack_Horizontal",
 "speed": 5.0
@@ -132,7 +157,7 @@ animations = [ {
 "name": "Attack_Up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 42 ), ExtResource( 49 ), ExtResource( 38 ), ExtResource( 76 ), ExtResource( 48 ), ExtResource( 40 ) ],
+"frames": [ ExtResource( 40 ), ExtResource( 49 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 48 ), ExtResource( 76 ) ],
 "loop": true,
 "name": "Charge",
 "speed": 5.0
@@ -165,11 +190,6 @@ animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 24 ), ExtResource( 1 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 26 ), ExtResource( 8 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "Jump_Attack",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 91 ), ExtResource( 89 ), ExtResource( 95 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 92 ), ExtResource( 98 ), ExtResource( 88 ), ExtResource( 109 ), ExtResource( 105 ) ],
