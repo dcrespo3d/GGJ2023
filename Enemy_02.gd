@@ -1,3 +1,4 @@
+extends KinematicBody2D
 
 export (PackedScene) var SFXEnemyDeath
 
@@ -48,9 +49,11 @@ func process_attack(delta):
 	return
 	
 func process_hit(delta):
+	print("tuputamadre")
 	$EnemyAnimations.animation = "Hit"
-	if $EnemyAnimations.frame == 3:
+	if $EnemyAnimations.frame == 4:
 		state = IDLE
+
 	return
 	
 func process_die(delta):
