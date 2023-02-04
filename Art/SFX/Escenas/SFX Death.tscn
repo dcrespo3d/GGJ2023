@@ -4,3 +4,5 @@
 
 [node name="SFX Death" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
+volume_db = 9.516
+autoplay = true

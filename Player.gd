@@ -4,6 +4,7 @@ export (PackedScene) var Projectile
 export (PackedScene) var SFXDash
 export (PackedScene) var SFXJump
 export (PackedScene) var SFXHeal
+export (PackedScene) var SFXDeath
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -168,7 +169,6 @@ func process_suck(delta):
 	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
 		_takeHeal(delta, heal)
-		print("heal 1")
 
 	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
@@ -354,6 +354,9 @@ func _takeHit(damage):
 	if currentHealth <= 0:
 		currentHealth = -1
 		state = DEAD
+		if SFXDeath != null:
+			add_child(SFXDeath.instance())
+
 		
 		
 func _takeHeal(delta, heal):
