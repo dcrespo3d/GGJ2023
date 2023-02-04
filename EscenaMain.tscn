@@ -23,7 +23,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 3, 325.333, 0, 0, 0, 0, 622.759, 325.667 )
+"points": PoolVector2Array( 0, 0, 0, 0, 3, 325.333, 0, 0, 0, 0, 685.771, 324.667 )
 }
 
 [sub_resource type="RectangleShape2D" id=1]
