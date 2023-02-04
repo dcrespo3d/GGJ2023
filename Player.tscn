@@ -13,14 +13,13 @@ Projectile = ExtResource( 2 )
 walkspeed = 500
 jumpspeed = -900
 fallacc = 3000
-dashspeed = 10500
 dashduration = 45
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
-frame = 1
+frame = 2
 speed_scale = 3.0
 playing = true
 
