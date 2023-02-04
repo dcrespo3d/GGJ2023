@@ -178,6 +178,7 @@ func process_hit(delta):
 	return
 	
 func process_dead(delta):
+	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
 func process_jump(delta):
