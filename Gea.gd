@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+export (PackedScene) var nivelGameOver
 
 # Declare member variables here. Examples:
 # var a = 2
