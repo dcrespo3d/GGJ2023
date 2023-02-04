@@ -55,7 +55,7 @@ var prevState = NORMAL
 
 func _process(delta):
 	
-
+	print(dash_speed)
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
 	if dashstale > 1:
@@ -66,7 +66,6 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
-		
 		print("normal")
 	if Input.is_action_just_pressed("debug2"):
 		_takeHeal(delta, heal)
