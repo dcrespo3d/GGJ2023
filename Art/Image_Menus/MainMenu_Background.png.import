@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slime3.png-3b31a7a9720c78133afa2247e455f442.stex"
+path="res://.import/MainMenu_Background.png-dc6dc9ffa9882893b7e46de2682cd72b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemies/Enemigos/Slime/slime3.png"
-dest_files=[ "res://.import/slime3.png-3b31a7a9720c78133afa2247e455f442.stex" ]
+source_file="res://Art/Image_Menus/MainMenu_Background.png"
+dest_files=[ "res://.import/MainMenu_Background.png-dc6dc9ffa9882893b7e46de2682cd72b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

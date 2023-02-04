@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Ggj 2023"
-run/main_scene="res://EscenaMainMenu.tscn"
+run/main_scene="res://InitialScene.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -93,6 +93,11 @@ debug5={
 debug6={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":54,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+heal_key={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -70,8 +70,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
 		print("normal")
-	if Input.is_action_just_pressed("debug2"):
-		_takeHeal(delta, heal)
+	
 	if Input.is_action_pressed("debug3"):
 		state = SHOOT
 		print("shoot")
@@ -86,6 +85,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug6"):
 		
 		_takeHit(10)
+		
+	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
+		_takeHeal(delta, heal)
 
 	print(ammo_current)
 
@@ -129,6 +131,8 @@ func process_normal(delta):
 		jump(delta)
 		
 		
+
+	
 	if velocity.x == 0 && !landing && isonfloor:
 		$AnimatedSprite.animation = "Idle"
 	
@@ -159,12 +163,12 @@ func process_suck(delta):
 	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
 		isbegginingsuck = false
 	
-	if Input.is_action_pressed("debug2") && !isbegginingsuck:
+	if Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge"
 		_takeHeal(delta, heal)
 		print("heal 1")
 
-	if !Input.is_action_pressed("debug2") && !isbegginingsuck:
+	if !Input.is_action_pressed("heal_key") && !isbegginingsuck:
 		$AnimatedSprite.animation = "Charge_Out"
 		if $AnimatedSprite.frame == 5:
 			state = NORMAL

@@ -14,14 +14,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			get_tree().change_scene("res://EscenaMainMenu.tscn")
 
 
-func _on_Start_pressed():
-	get_tree().change_scene("res://EscenaMain.tscn")
 
-func _on_HowToPlay_pressed():
-	var err = get_tree().change_scene("res://HowToPlay_Scene.tscn")
-	print("_on_HowToPlay_pressed: ", err)
-
-func _on_Quit_pressed():
-	get_tree().quit()
+func _on_ClickButton_pressed():
+	get_tree().change_scene("res://EscenaMainMenu.tscn")
