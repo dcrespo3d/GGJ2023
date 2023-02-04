@@ -178,7 +178,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 71 ), ExtResource( 61 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 74 ), ExtResource( 77 ), ExtResource( 82 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 69 ), ExtResource( 75 ), ExtResource( 68 ), ExtResource( 57 ), ExtResource( 55 ), ExtResource( 73 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 12 ) ],
-"loop": true,
+"loop": false,
 "name": "Die",
 "speed": 5.0
 }, {
