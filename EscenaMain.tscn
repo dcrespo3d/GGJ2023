@@ -9,7 +9,7 @@
 extents = Vector2( 280.5, 583.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 962, 106 )
+extents = Vector2( 962, 108 )
 
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
@@ -17,36 +17,35 @@ script = ExtResource( 2 )
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
 
-[node name="ColorRect" type="ColorRect" parent="Viewport"]
-margin_right = 640.0
-margin_bottom = 360.0
-color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
-
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
-[node name="Player" parent="Viewport" instance=ExtResource( 1 )]
-position = Vector2( 313.333, 74.3333 )
-maxHealth = 184
-currentHealth = 50
-
 [node name="Target" parent="Viewport" instance=ExtResource( 3 )]
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
+margin_left = -5.0
+margin_top = -30.0
+margin_right = 648.0
+margin_bottom = 370.0
+color = Color( 0.0666667, 0.0156863, 0.286275, 1 )
+
+[node name="Player" parent="Viewport" instance=ExtResource( 1 )]
+position = Vector2( 313.333, 228 )
+maxHealth = 20
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -243, 538 )
+position = Vector2( -245, 540 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 2157, 520 )
+position = Vector2( 2166, 484 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 959, 1046 )
+position = Vector2( 995, 1116 )
 shape = SubResource( 2 )
-
-[node name="dummy" type="Sprite" parent="."]
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]

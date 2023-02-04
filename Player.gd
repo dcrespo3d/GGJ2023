@@ -12,8 +12,8 @@ func _ready():
 	pass # Replace with function body.
 
 export var walkspeed = 300
-export var maxHealth = 10
-export var currentHealth = 10
+export var maxHealth = 500
+var currentHealth = maxHealth
 export var inmunity = false
 export var dashspeed = 1000
 export var jumpspeed = -500
@@ -34,6 +34,8 @@ var state = NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed
 		
@@ -50,7 +52,7 @@ func _process(delta):
 		state = BUSY
 		print("busy")
 	if Input.is_action_just_pressed("debug4"):
-		currentHealth -= 1
+		currentHealth -= 10
 		state = HIT
 		print("hit")
 	if Input.is_action_pressed("debug5"):
