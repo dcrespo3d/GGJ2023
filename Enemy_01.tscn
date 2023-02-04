@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Art/Enemies/Enemy_01/Cacodaemon Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy_01.gd" type="Script" id=2]
 [ext_resource path="res://Art/SFX/Escenas/SFX Enemy Death.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/SFX/Escenas/SFX Hit Enemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -56,6 +57,10 @@ region = Rect2( 320, 192, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 384, 192, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 448, 192, 64, 64 )
+
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 128, 64, 64 )
@@ -103,7 +108,7 @@ animations = [ {
 "name": "Attack",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
 "name": "Die",
 "speed": 5.0
@@ -124,6 +129,7 @@ animations = [ {
 [node name="Enemy_01" type="KinematicBody2D"]
 script = ExtResource( 2 )
 SFXEnemyDeath = ExtResource( 3 )
+SFXEnemyHit = ExtResource( 4 )
 speed = 300
 damage = 50
 hits = 2
@@ -132,7 +138,7 @@ hits = 2
 rotation = 1.5708
 frames = SubResource( 25 )
 animation = "Idle"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 
