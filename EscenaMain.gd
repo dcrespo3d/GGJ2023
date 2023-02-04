@@ -36,4 +36,5 @@ func _process(delta):
 	
 	# sistema de disparo
 	$Viewport/Player.mousePos = $Viewport/Target.mousePos
+	
 
