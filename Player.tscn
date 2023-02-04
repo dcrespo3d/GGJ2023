@@ -21,6 +21,7 @@ fallacc = 3000
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
+frame = 1
 speed_scale = 3.0
 playing = true
 
