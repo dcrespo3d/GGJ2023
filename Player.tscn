@@ -5,7 +5,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=88]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 14.49
+radius = 11.0
+height = 18.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29, 30.5 )
@@ -20,8 +21,8 @@ fallacc = 3000
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
-animation = "Charge"
-frame = 5
+animation = "Attack_Down"
+frame = 4
 speed_scale = 3.0
 playing = true
 
