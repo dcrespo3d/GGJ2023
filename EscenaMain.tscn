@@ -34,6 +34,7 @@ script = ExtResource( 2 )
 Enemy1 = ExtResource( 14 )
 Enemy2 = ExtResource( 15 )
 spawntimer = 3.0
+speedincrease = 0.1
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -81,7 +82,6 @@ position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
 jumpspeed = -1000
-dash_Duration = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5

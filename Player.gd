@@ -108,6 +108,8 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
+	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").text = str(ammo_current) + "/" + str(ammo_max)
+	
 #	print("STATE: ", state)
 	
 	#print(isonfloor)
@@ -235,8 +237,10 @@ func process_jump(delta):
 		landing = true
 		
 	if Input.is_action_just_pressed("shoot"):
-		begin_shoot()
-
+		if ammo_current > 0:
+			begin_shoot()
+		else:
+			shoot_fail()
 
 	return
 
@@ -325,6 +329,10 @@ func begin_shoot():
 
 	projectile = null
 	
+func shoot_fail():
+	pass
+	
+
 func instance_projectile():
 	projectile = Projectile.instance()
 	projectile.position = position
