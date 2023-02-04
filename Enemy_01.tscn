@@ -123,7 +123,6 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=26]
-radius = 9.33333
 
 [node name="Enemy_01" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -133,7 +132,7 @@ speed = 300
 rotation = 1.5708
 frames = SubResource( 25 )
 animation = "Idle"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 
