@@ -38,7 +38,7 @@ func _process(delta):
 	return
 
 func process_idle(delta):
-	$EnemyAnimations.animation = "Idle"
+	$EnemyAnimations.animation = "Walk"
 	velocity.y = speed
 	velocity = move_and_slide(velocity, Vector2.UP)
 
