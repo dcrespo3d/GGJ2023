@@ -125,6 +125,8 @@ rotation = -3.01594
 
 [node name="EscenaPause" parent="Viewport" instance=ExtResource( 11 )]
 
+[node name="Timer" type="Timer" parent="Viewport"]
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -139,3 +141,6 @@ position = Vector2( 2193, 524 )
 shape = SubResource( 1 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
+
+[connection signal="timeout" from="Viewport/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Viewport/Timer" to="Viewport/Player" method="_on_Timer_timeout"]

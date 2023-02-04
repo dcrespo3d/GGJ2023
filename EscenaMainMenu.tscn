@@ -1,13 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://EscenaMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Art/Font/The Ancient Gods.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Art/Font/IrishPenny.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Art/Image_Menus/MainMenu_Background.png" type="Texture" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-size = 180
-font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
@@ -20,6 +15,10 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=4]
 size = 24
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 180
+font_data = ExtResource( 2 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -36,12 +35,49 @@ anchor_bottom = 0.546
 margin_left = -397.84
 margin_top = -122.68
 margin_right = -93.84
-margin_bottom = 10.32
+margin_bottom = -22.68
 rect_scale = Vector2( 2, 2 )
 custom_constants/separation = 20
 
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_right = 304.0
+margin_bottom = 31.0
+focus_neighbour_left = NodePath("../Quit")
+focus_neighbour_top = NodePath("../Quit")
+focus_neighbour_right = NodePath("../How to Play")
+focus_neighbour_bottom = NodePath("../How to Play")
+focus_next = NodePath("../How to Play")
+focus_previous = NodePath("../Quit")
+custom_fonts/font = SubResource( 2 )
+text = "Start"
+
+[node name="How to Play" type="Button" parent="VBoxContainer"]
+margin_top = 51.0
+margin_right = 304.0
+margin_bottom = 82.0
+focus_neighbour_left = NodePath("../Start")
+focus_neighbour_top = NodePath("../Start")
+focus_neighbour_right = NodePath("../Quit")
+focus_neighbour_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Start")
+custom_fonts/font = SubResource( 3 )
+text = "How To Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 102.0
+margin_right = 304.0
+margin_bottom = 133.0
+focus_neighbour_left = NodePath("../How to Play")
+focus_neighbour_top = NodePath("../How to Play")
+focus_neighbour_right = NodePath("../Start")
+focus_neighbour_bottom = NodePath("../Start")
+focus_next = NodePath("../Start")
+focus_previous = NodePath("../How to Play")
+custom_fonts/font = SubResource( 4 )
+text = "Quit"
+
 [node name="Label" type="Label" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -54,69 +90,6 @@ custom_fonts/font = SubResource( 1 )
 text = "GEA OF WAR"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="MainMenuBackground" type="Sprite" parent="TextureRect"]
-position = Vector2( 954, 537.5 )
-scale = Vector2( 1.00625, 1.00463 )
-texture = ExtResource( 4 )
-
-[node name="Start" type="Button" parent="TextureRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -37.5
-margin_right = 200.0
-margin_bottom = 37.5
-focus_neighbour_left = NodePath("../Quit")
-focus_neighbour_top = NodePath("../Quit")
-focus_neighbour_right = NodePath("../HowToPlay")
-focus_neighbour_bottom = NodePath("../HowToPlay")
-focus_next = NodePath("../HowToPlay")
-focus_previous = NodePath("../Quit")
-custom_fonts/font = SubResource( 2 )
-text = "Start"
-
-[node name="HowToPlay" type="Button" parent="TextureRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -750.0
-margin_top = -37.5
-margin_right = -350.0
-margin_bottom = 37.5
-focus_neighbour_left = NodePath("../Start")
-focus_neighbour_top = NodePath("../Start")
-focus_neighbour_right = NodePath("../Quit")
-focus_neighbour_bottom = NodePath("../Quit")
-focus_next = NodePath("../Quit")
-focus_previous = NodePath("../Start")
-custom_fonts/font = SubResource( 3 )
-text = "How To Play"
-
-[node name="Quit" type="Button" parent="TextureRect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 350.0
-margin_top = -37.5
-margin_right = 750.0
-margin_bottom = 37.5
-focus_neighbour_left = NodePath("../HowToPlay")
-focus_neighbour_top = NodePath("../HowToPlay")
-focus_neighbour_right = NodePath("../Start")
-focus_neighbour_bottom = NodePath("../Start")
-focus_next = NodePath("../Start")
-focus_previous = NodePath("../HowToPlay")
-custom_fonts/font = SubResource( 4 )
-text = "Quit"
-
-[connection signal="pressed" from="TextureRect/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="TextureRect/HowToPlay" to="." method="_on_HowToPlay_pressed"]
-[connection signal="pressed" from="TextureRect/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/How to Play" to="." method="_on_How_to_Play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

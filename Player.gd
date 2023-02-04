@@ -42,7 +42,8 @@ export var attackDownThreshold = 15
 export var fallWhileAttacking = false
 export var attackCooldown = 0.5
 
-
+export var tiempo = 0
+export var MAXtiempo = 3
 var isbegginingsuck = false
 var dashcool = 0
 var landing = false
@@ -118,7 +119,7 @@ func _process(delta):
 	#print(isonfloor)
 	
 
-	
+	print(tiempo)
 	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
@@ -182,7 +183,7 @@ func process_suck(delta):
 			if sfx_heal != null:
 				sfx_heal.queue_free()
 				sfx_heal = null
-			
+		tiempo = 0
 	
 	return
 
@@ -373,8 +374,10 @@ func _takeHit(damage):
 		
 func _takeHeal(delta, heal, reloadspeed):
 	if currentHealth < maxHealth && isonfloor:
-		currentHealth += heal
-		
+		_on_Timer_timeout(delta)
+		currentHealth += heal * tiempo
+		if tiempo == MAXtiempo: 
+			currentHealth += heal * MAXtiempo
 		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
 	if state != SUCK && isonfloor:
@@ -384,3 +387,7 @@ func _takeHeal(delta, heal, reloadspeed):
 
 func getType():
 	return  "Player"
+
+
+func _on_Timer_timeout(delta):
+	tiempo += 1 * delta 
