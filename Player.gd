@@ -304,11 +304,11 @@ func add_projectile_to_scene():
 	
 func _takeHit(damage):
 	if currentHealth > 0:
-		currentHealth -= damage	
-		state = HIT
-		$AnimatedSprite.animation = "Hit"
-		print("Hola, entro aqui")
-	if currentHealth == 0:
+		currentHealth -= damage
+		if !$AnimatedSprite.animation == "Charge":
+			state = HIT
+			$AnimatedSprite.animation = "Hit"
+	if currentHealth <= 0:
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
