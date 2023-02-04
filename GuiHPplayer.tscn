@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Art/UI/Button_Flesh.png" type="Texture" id=1]
 [ext_resource path="res://Art/UI/Button_Backbone.png" type="Texture" id=2]
+[ext_resource path="res://Art/UI/PlayerLife_Small.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 1 )
@@ -27,7 +28,7 @@ value = 100.0
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 996.0
-margin_bottom = 70.0
-texture = ExtResource( 1 )
+margin_bottom = 48.0
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
