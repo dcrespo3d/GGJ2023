@@ -4,7 +4,7 @@
 [ext_resource path="res://Projectile.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 9.99994
+radius = 12.9999
 height = 26.0
 
 [node name="Projectile" type="KinematicBody2D"]
@@ -14,7 +14,6 @@ scalarSpeed = 500
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "Projectile"
-frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -23,7 +22,7 @@ position = Vector2( 6, 0 )
 scale = Vector2( 4.1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 22, 0 )
+position = Vector2( 26, -1 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
