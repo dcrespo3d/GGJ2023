@@ -8,7 +8,7 @@
 [ext_resource path="res://Art/Enviroment/Background.png" type="Texture" id=6]
 [ext_resource path="res://Art/Enviroment/Tree_03.png" type="Texture" id=7]
 [ext_resource path="res://Art/Enviroment/Tree_01.png" type="Texture" id=8]
-[ext_resource path="res://Art/UI/Button_Flesh.png" type="Texture" id=9]
+[ext_resource path="res://Gea.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 280.5, 583.5 )
@@ -50,20 +50,19 @@ margin_right = 647.0
 margin_bottom = 370.0
 texture = ExtResource( 7 )
 
-[node name="TextureRect5" type="TextureRect" parent="Viewport"]
-margin_left = 1.33333
-margin_top = 314.0
-margin_right = 648.333
-margin_bottom = 474.0
-texture = ExtResource( 9 )
-
 [node name="Fondo" type="Node2D" parent="Viewport"]
 
 [node name="Target" parent="Viewport" instance=ExtResource( 3 )]
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
-position = Vector2( 254.667, 234.333 )
-maxHealth = 20
+position = Vector2( 315, 271 )
+maxHealth = 500
+currentHealth = 500
+
+[node name="Gea" parent="Viewport" instance=ExtResource( 9 )]
+position = Vector2( -228.333, 315 )
+maxHealth = 500
+currentHealth = 500
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -78,7 +77,7 @@ position = Vector2( 2166, 484 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 995, 1054 )
+position = Vector2( 157, 2095 )
 shape = SubResource( 2 )
 
 [node name="Gui" parent="." instance=ExtResource( 4 )]
