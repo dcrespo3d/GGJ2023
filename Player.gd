@@ -12,8 +12,8 @@ func _ready():
 	pass # Replace with function body.
 
 export var walkspeed = 300
-export var maxHealth = 500
-var currentHealth = maxHealth
+export var maxHealth = 10
+export var currentHealth = 10
 export var inmunity = false
 export var dashspeed = 1000
 export var jumpspeed = -500

@@ -19,4 +19,5 @@ func _process(delta):
 	$Gui/hpplayer.value = $Viewport/Player.currentHealth
 	$Gui/hpplayer.max_value = $Viewport/Player.maxHealth
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
+	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth
 
