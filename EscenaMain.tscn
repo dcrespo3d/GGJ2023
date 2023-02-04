@@ -34,8 +34,8 @@ extents = Vector2( 280.5, 583.5 )
 script = ExtResource( 2 )
 Enemy1 = ExtResource( 14 )
 Enemy2 = ExtResource( 15 )
-spawntimer = 3.0
-speedincrease = 0.1
+spawntimer = 0.8
+speedincrease = 0.0
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -149,5 +149,6 @@ pause_mode = 2
 process_priority = 1
 stream = ExtResource( 16 )
 autoplay = true
+
 [connection signal="timeout" from="Viewport/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Viewport/Timer" to="Viewport/Player" method="_on_Timer_timeout"]
