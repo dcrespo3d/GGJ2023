@@ -23,10 +23,10 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export (int) var dash_speed = 1000
-export var mindashspeed = 250
-export var dashduration = 70
-export var mindashduration = 10
+export (int) var dashSpeed = 1000
+export var minDashSpeed = 250
+export var dashDuration = 70
+export var mindashDuration = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
@@ -91,7 +91,7 @@ func _process(delta):
 		HIT: process_hit(delta)
 		DEAD: process_dead(delta)
 		JUMP: process_jump(delta)
-		DASH: process_dash(delta, dashduration)
+		DASH: process_dash(delta, dashDuration)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -104,6 +104,8 @@ func _process(delta):
 #	print("STATE: ", state)
 	
 	#print(isonfloor)
+	
+
 	
 	#print(get_viewport().get_mouse_position())
 		
@@ -135,7 +137,7 @@ func process_normal(delta):
 	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dashduration)
+		dash(delta, dashDuration)
 	
 	if velocity.y != 0:
 		state = JUMP
@@ -190,7 +192,7 @@ func process_jump(delta):
 		velocity.x = walkspeed
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dashduration)
+		dash(delta, dashDuration)
 		
 	
 	if velocity.y > 0:
@@ -212,7 +214,7 @@ func process_jump(delta):
 
 	return
 
-func process_dash(delta, dashduration):
+func process_dash(delta, dashDuration):
 	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
@@ -225,21 +227,22 @@ func process_dash(delta, dashduration):
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		dashlength = dashduration
+		dashlength = dashDuration
 		state = NORMAL
 		dashcool = dashcooldown
 		
 	return
 
-func dash(delta, dashduration):
+func dash(delta, dashDuration):
 	if dashcool <= 0:
-		dashlength = dashduration # * dashstale
-		dashspeedtemp = dash_speed * dashstale
-		if dashlength < mindashduration:
-			dashlength = mindashduration
+		dashlength = dashDuration # * dashstale
+		dashspeedtemp = dashSpeed * dashstale
+		if dashlength < mindashDuration:
+			dashlength = mindashDuration
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
+		print(dashlength)
 	return
 
 func jump(delta):
