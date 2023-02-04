@@ -244,7 +244,7 @@ func dash(delta, dash_Duration):
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
-		print(dashlength)
+		#print(dashlength)
 	return
 
 func jump(delta):
@@ -285,13 +285,13 @@ func begin_shoot():
 #	print("projectile.rotation:", proj_tilt_angle)
 	if proj_tilt_angle < attackUpThreshold:
 		$AnimatedSprite.animation = "Attack_Up"
-		print("attack_up")
+		#print("attack_up")
 	elif proj_tilt_angle < attackDownThreshold:
 		$AnimatedSprite.animation = "Attack_Horizontal"
-		print("attack_horiz")
+		#print("attack_horiz")
 	else:
 		$AnimatedSprite.animation = "Attack_Down"
-		print("attack_down")
+		#print("attack_down")
 		
 	$AnimatedSprite.flip_h = lookleft
 
