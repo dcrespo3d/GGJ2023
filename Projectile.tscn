@@ -16,7 +16,6 @@ scalarSpeed = 1100
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "Projectile"
-frame = 2
 speed_scale = 2.0
 playing = true
 
