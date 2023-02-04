@@ -30,8 +30,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("debug1"):
 		_spawnEnemy()
 
-	$Gui/hpplayer.value = $Viewport/Player.currentHealth
-	$Gui/hpplayer.max_value = $Viewport/Player.maxHealth
+
 	$Gui/TextureRect.rect_size.x = $Viewport/Player.currentHealth
 	$Gui/TextureRect2.rect_size.x = $Viewport/Gea.currentHealth
 
