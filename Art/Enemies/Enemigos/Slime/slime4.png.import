@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tree_02.png-226426cc97bda49f0094465d67e90121.stex"
+path="res://.import/slime4.png-238f832902d3f95e40afc34e0356c621.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enviroment/Tree_02.png"
-dest_files=[ "res://.import/Tree_02.png-226426cc97bda49f0094465d67e90121.stex" ]
+source_file="res://Art/Enemies/Enemigos/Slime/slime4.png"
+dest_files=[ "res://.import/slime4.png-238f832902d3f95e40afc34e0356c621.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tree_02.png-226426cc97bda49f0094465d67e90121.stex"
+path="res://.import/Bat_Full.png-507c1f5646228474ed62e56e86b6991f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enviroment/Tree_02.png"
-dest_files=[ "res://.import/Tree_02.png-226426cc97bda49f0094465d67e90121.stex" ]
+source_file="res://Art/Enemies/Enemigos/Bat/Bat_Full.png"
+dest_files=[ "res://.import/Bat_Full.png-507c1f5646228474ed62e56e86b6991f.stex" ]
 
 [params]
 

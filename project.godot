@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Ggj 2023"
-run/main_scene="res://EscenaMain.tscn"
+run/main_scene="res://EscenaMainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

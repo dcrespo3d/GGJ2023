@@ -178,6 +178,8 @@ func process_hit(delta):
 	return
 	
 func process_dead(delta):
+	$AnimatedSprite.animation = "Die"
+	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
 func process_jump(delta):
@@ -310,13 +312,13 @@ func instance_projectile():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage
-		if !$AnimatedSprite.animation == "Charge":
+		if !$AnimatedSprite.animation == "Charge" && !$AnimatedSprite.animation == "Charge_Enter" :
 			state = HIT
 			$AnimatedSprite.animation = "Hit"
 	if currentHealth <= 0:
 		currentHealth = -1
 		state = DEAD
-		$AnimatedSprite.animation = "Die"
+		
 		
 func _takeHeal(delta, heal):
 	if currentHealth < maxHealth && isonfloor:
