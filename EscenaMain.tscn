@@ -25,7 +25,6 @@ extents = Vector2( 280.5, 583.5 )
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
 Enemy = ExtResource( 11 )
-speedincrease = 0.02
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -72,6 +71,7 @@ margin_bottom = 474.667
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
+dash_Duration = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5
