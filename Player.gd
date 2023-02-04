@@ -21,7 +21,7 @@ export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
 export var ammo_max = 8
-export var reloadspeed = 1
+export (float) var reloadspeed = 1
 var ammo_current = 8
 
 export var jumpspeed = -500
@@ -42,7 +42,8 @@ export var attackDownThreshold = 15
 export var fallWhileAttacking = false
 export var attackCooldown = 0.5
 
-export var tiempo = 0
+var tiempo = 0
+var tiempo2 = 0
 export var MAXtiempo = 3
 var isbegginingsuck = false
 var dashcool = 0
@@ -92,7 +93,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
 		_takeHeal(delta, heal, reloadspeed)
 
-	print(ammo_current)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -116,7 +116,6 @@ func _process(delta):
 	
 #	print("STATE: ", state)
 	
-	#print(isonfloor)
 	
 
 	print(tiempo)
@@ -184,6 +183,7 @@ func process_suck(delta):
 				sfx_heal.queue_free()
 				sfx_heal = null
 		tiempo = 0
+		tiempo2 = 0
 	
 	return
 
@@ -192,8 +192,6 @@ func process_shoot(delta):
 		if projectile == null:
 			ammo_current = ammo_current - 1
 			instance_projectile()
-			
-			print("hola")
 	elif $AnimatedSprite.frame == 7:
 		state = NORMAL
 #	print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
@@ -380,6 +378,13 @@ func _takeHeal(delta, heal, reloadspeed):
 			currentHealth += heal * MAXtiempo
 		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
+	if ammo_current < ammo_max && isonfloor:
+		tiempo2func(delta)
+		if tiempo2 > 1/reloadspeed:
+			ammo_current += 1
+			tiempo2 = 0
+	
+	
 	if state != SUCK && isonfloor:
 		$AnimatedSprite.animation = "Charge_Enter"
 		isbegginingsuck = true
@@ -391,3 +396,5 @@ func getType():
 
 func _on_Timer_timeout(delta):
 	tiempo += 1 * delta 
+func tiempo2func(delta):
+	tiempo2 += 1 * delta 
