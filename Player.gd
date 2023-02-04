@@ -14,6 +14,7 @@ func _ready():
 export var walkspeed = 300
 export var maxHealth = 10
 export var currentHealth = 10
+export var heal = 1
 export var inmunity = false
 
 
@@ -30,7 +31,7 @@ export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
 
-
+var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
@@ -71,7 +72,7 @@ func _process(delta):
 		state = DEAD
 		print("dead")
 	if Input.is_action_just_pressed("debug6"):
-		_takeHit(delta, 10)
+		_takeHeal(delta, heal)
 
 	match (state):
 		NORMAL: process_normal(delta)
@@ -130,6 +131,18 @@ func process_normal(delta):
 	return
 	
 func process_suck(delta):
+	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
+		isbegginingsuck = false
+	
+	if Input.is_action_pressed("debug6") && !isbegginingsuck:
+		$AnimatedSprite.animation = "Charge"
+		_takeHeal(delta, heal)
+
+	if !Input.is_action_pressed("debug6") && !isbegginingsuck:
+		$AnimatedSprite.animation = "Charge_Out"
+		if $AnimatedSprite.frame == 5:
+			state = NORMAL
+			
 	return
 
 func process_busy(delta):
@@ -228,3 +241,16 @@ func _takeHit(delta, damage):
 		currentHealth = -1
 		state = DEAD
 		$AnimatedSprite.animation = "Die"
+		
+func _takeHeal(delta, heal):
+	
+	if currentHealth < maxHealth && isonfloor:
+		currentHealth += heal
+
+		
+	
+	if state != SUCK && isonfloor:
+		$AnimatedSprite.animation = "Charge_Enter"
+		isbegginingsuck = true
+		state = SUCK
+
