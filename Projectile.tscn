@@ -8,6 +8,8 @@ radius = 12.9999
 height = 26.0
 
 [node name="Projectile" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource( 2 )
 scalarSpeed = 500
 

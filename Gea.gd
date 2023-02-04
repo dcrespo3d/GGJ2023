@@ -1,5 +1,4 @@
 extends KinematicBody2D
-export (PackedScene) var nivelGameOver
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -16,9 +15,9 @@ func getType():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage	
-func _process(delta):
-	if currentHealth <= 0:
-		get_tree().change_scene_to(nivelGameOver)
+#func _process(delta):
+	##if currentHealth <= 0:
+		#get_tree().change_scene_to(nivelGameOver)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
