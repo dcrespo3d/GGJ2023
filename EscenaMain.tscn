@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EscenaMain.gd" type="Script" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Gea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/Enviroment/Floor.png" type="Texture" id=10]
 [ext_resource path="res://Enemy02.tscn" type="PackedScene" id=11]
+[ext_resource path="res://EscenaPause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Pared.gd" type="Script" id=12]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Enemy_01.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemy_02.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Curve2D" id=3]
 _data = {
@@ -30,9 +32,9 @@ extents = Vector2( 280.5, 583.5 )
 
 [node name="EscenaMain" type="Node2D"]
 script = ExtResource( 2 )
-Enemy1 = ExtResource( 11 )
-Enemy2 = ExtResource( 14 )
-spawntimer = 1.5
+Enemy1 = ExtResource( 14 )
+Enemy2 = ExtResource( 15 )
+spawntimer = 3.0
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -79,6 +81,7 @@ margin_bottom = 474.667
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
+jumpspeed = -1000
 dash_Duration = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
@@ -112,8 +115,6 @@ rotation = 0.000524068
 [node name="GameOver" parent="Viewport" instance=ExtResource( 13 )]
 visible = false
 
-[node name="EscenaPause" parent="Viewport" instance=ExtResource( 14 )]
-
 [node name="enemyPath02" type="Path2D" parent="Viewport"]
 position = Vector2( 344.212, 159.094 )
 scale = Vector2( 0.213966, 0.272444 )
@@ -122,6 +123,8 @@ curve = SubResource( 4 )
 [node name="enemySpawn02" type="PathFollow2D" parent="Viewport/enemyPath02"]
 position = Vector2( -1156.94, -147.164 )
 rotation = 0.00330693
+
+[node name="EscenaPause" parent="Viewport" instance=ExtResource( 11 )]
 
 [node name="Area2D" type="Area2D" parent="."]
 
