@@ -16,12 +16,12 @@ export var playerDamage = 20
 export var geaDamage = 20
 export var heal = 10
 export var hits = 3
-var mehemuerto = false
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_tree().get_root().get_node("EscenaMain").bichosmuertos += 1
 	
 
 
@@ -30,10 +30,7 @@ func _process(delta):
 	
 	if hits <= 0:
 		state = DIE
-		if !mehemuerto: 
-			get_tree().get_root().get_node("EscenaMain").bichosmuertos += 1
-			print("uuuuuuuh")
-			mehemuerto = true
+		
 	
 	
 	
@@ -84,7 +81,6 @@ func _on_Area2D_body_entered(body):
 
 	if body.getType() == "Gea" && state == IDLE:
 		attackGea(body)
-		get_tree().get_root().get_node("EscenaMain").bichosmuertos += 1
 		queue_free()
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
