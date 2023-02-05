@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Death 4.wav-3f8a54e7efcd87c8686fac9d9fb90eef.sample"
+path="res://.import/Disparo.wav-b502f321b268bb0b1a67f1ba6acffdde.sample"
 
 [deps]
 
-source_file="res://Art/SFX/Efectos de Sonido/Death 4.wav"
-dest_files=[ "res://.import/Death 4.wav-3f8a54e7efcd87c8686fac9d9fb90eef.sample" ]
+source_file="res://Art/SFX/Efectos de Sonido/Disparo.wav"
+dest_files=[ "res://.import/Disparo.wav-b502f321b268bb0b1a67f1ba6acffdde.sample" ]
 
 [params]
 
