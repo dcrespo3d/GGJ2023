@@ -138,11 +138,8 @@ func _process(delta):
 	
 
 func _inicioRonda():
-	if primeraRonda == true:
-		primeraRonda = false
-	else:
-		rondas += 1
-		rondasPuntos += 0.25
+	rondas += 1
+	rondasPuntos += 0.25
 	
 	
 	bichosronda = bichosIniciales + incrementoBichosPorRonda * (rondas-1)
