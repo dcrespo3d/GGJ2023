@@ -17,10 +17,12 @@ var actualtimer = 2
 #Oleadas_variables
 var bichosmuertos = 0
 var rondas = 0
-var bichosPorRonda = 10
-var tiempoPorRonda = 6.67
-var bichosIniciales = 15
-var tiempoInicial = 12
+export var bichosIniciales = 15
+export var tiempoInicial = 12
+export var incrementoBichosPorRonda = 10
+export var incrementoTiempoPorRonda = 6.67
+export var rondasParaIncrementoCaracol = 1
+var contadorInternoRondasCaracol = 0
 var actualEnemy2InRound = 0
 var maxEnemy2InRound = 0
 var enemyKindSpawnDecider = 0
@@ -122,12 +124,17 @@ func _inicioRonda():
 		rondas += 1
 	
 	
-	bichosronda = bichosIniciales + bichosPorRonda * rondas
-	tiemporonda = tiempoInicial + tiempoPorRonda * rondas
+	bichosronda = bichosIniciales + incrementoBichosPorRonda * rondas
+	tiemporonda = tiempoInicial + incrementoTiempoPorRonda * rondas
 	spawntimer = tiemporonda/bichosronda
 	
 	actualEnemy2InRound = 0
-	maxEnemy2InRound = rondas
+	
+	if rondasParaIncrementoCaracol == contadorInternoRondasCaracol:
+		maxEnemy2InRound += 1
+		contadorInternoRondasCaracol = 0
+	else:
+		contadorInternoRondasCaracol += 1
 	
 	print("bichos: ", bichosronda)
 	print("tiempo nueva ronda gente :D : ", tiemporonda)

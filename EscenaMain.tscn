@@ -36,6 +36,7 @@ Enemy1 = ExtResource( 14 )
 Enemy2 = ExtResource( 11 )
 spawntimer = 0.8
 speedincrease = 0.0
+rondasParaIncrementoCaracol = 2
 
 [node name="Viewport" type="Node2D" parent="."]
 scale = Vector2( 3, 3 )
@@ -82,10 +83,9 @@ margin_bottom = 474.667
 position = Vector2( 315, 271 )
 maxHealth = 250
 currentHealth = 250
-dash_Duration1 = 35
-ammo_max = 15
 reloadspeed = 7.0
 jumpspeed = -1000
+dash_Duration1 = 35
 dashcooldown = 0.1
 dashrecoveryspeed = 0.57
 dashstalerate = 0.5
@@ -125,6 +125,7 @@ rotation = -0.000979396
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Viewport"]
 stream = ExtResource( 16 )
 autoplay = true
+
 [node name="EscenaPause" parent="Viewport" instance=ExtResource( 15 )]
 
 [node name="Area2D" type="Area2D" parent="."]
