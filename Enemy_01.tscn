@@ -126,6 +126,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=26]
 
 [node name="Enemy_01" type="KinematicBody2D"]
+position = Vector2( 1, 1 )
 script = ExtResource( 2 )
 SFXEnemyDeath = ExtResource( 3 )
 speed = 300
@@ -144,6 +145,7 @@ speed_scale = 2.0
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 2, 1 )
 collision_layer = 4
 collision_mask = 3
 
