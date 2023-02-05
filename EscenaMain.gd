@@ -11,7 +11,7 @@ export var tiempo3 = 0
 var tiempo4 = 0
 
 #Para cambiar el tiempo de descanso entre oleadas
-export var cooldownOleadas = 5
+export var cooldownOleadas = 4
 
 var pasarRonda = true
 export (float) var spawntimer = 2

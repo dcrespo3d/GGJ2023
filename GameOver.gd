@@ -21,6 +21,7 @@ func _ready():
 func _score():
 	score += ((cacademons * 10) + (slimes * 75)) * (rondasPuntos)
 
+
 func _on_PlayAgainButton_pressed():
 	get_tree().change_scene("res://EscenaMain.tscn")
 
