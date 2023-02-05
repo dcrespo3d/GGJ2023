@@ -68,7 +68,7 @@ var inDemo = true
 var begDemo = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
+var sfxAlerta = null
 
 func _process(delta):
 	
@@ -112,7 +112,11 @@ func _process(delta):
 		get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 	if ammo_current < ammo_max/4:
 		if SFXAlerta != null:
-			add_child(SFXAlerta.instance())
+			if sfxAlerta == null:
+				sfxAlerta = SFXAlerta.instance()
+				add_child(sfxAlerta)
+			
+			
 		if blinkingtimer <= 0:
 			blinking = !blinking
 			blinkingtimer = blinkingtimermax
@@ -121,6 +125,10 @@ func _process(delta):
 		else:
 			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 		blinkingtimer = blinkingtimer-1
+	else:
+		if sfxAlerta != null:
+			sfxAlerta.queue_free()
+			sfxAlerta = null
 		
 func process_normal(delta):
 	
