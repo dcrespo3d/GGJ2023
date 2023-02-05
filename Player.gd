@@ -29,10 +29,10 @@ export var fallacc = 1000
 var velocity = Vector2.ZERO
 var isonfloor = false
 		
-export (int) var Dash_Speed1 = 1000
-export var minDash_Speed1 = 250
-export var dash_Duration1 = 70
-export var mindash_Duration1 = 10
+export (int) var Dash_Speed2 = 1000
+export var minDash_Speed2 = 250
+export var dash_Duration2 = 70
+export var mindash_Duration2 = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
 export var dashstalerate = 0.8
@@ -49,7 +49,7 @@ var isbegginingsuck = false
 var dashcool = 0
 var landing = false
 var dashlength = 20
-var Dash_Speed1temp = 1000
+var Dash_Speed2temp = 1000
 var dashstale = 1
 var lookleft = false
 enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH, BUSY}
@@ -69,31 +69,31 @@ var begDemo = true
 
 func _process(delta):
 	
-	print(isonfloor)
+	#print(isonfloor)
 	
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
 	if dashstale > 1:
 		dashstale = 1
 		
-	print(reloadspeed)
+	#print(reloadspeed)
 	if dashcool > 0:
 		dashcool = dashcool - 1 * delta
 
 	if Input.is_action_just_pressed("debug1"):
 		state = NORMAL
-		print("normal")
+		#print("normal")
 	
 	if Input.is_action_pressed("debug3"):
 		state = SHOOT
-		print("shoot")
+		#print("shoot")
 	if Input.is_action_just_pressed("debug4"):
 		_takeHit(50)
-		print(currentHealth)
+		#print(currentHealth)
 
 	if Input.is_action_pressed("debug5"):
 		state = DEAD
-		print("dead")
+		#print("dead")
 		
 	if Input.is_action_just_pressed("debug6"):
 		
@@ -112,7 +112,7 @@ func _process(delta):
 			HIT: process_hit(delta)
 			DEAD: process_dead(delta)
 			JUMP: process_jump(delta)
-			DASH: process_dash(delta, dash_Duration1)
+			DASH: process_dash(delta, dash_Duration2)
 			BUSY: process_busy(delta)
 		
 	if lookleft:
@@ -135,14 +135,14 @@ func _process(delta):
 		else:
 			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 		blinkingtimer = blinkingtimer-1
-#	print("STATE: ", state)
+#	#print("STATE: ", state)
 	
 	
 #
-#	print(tiempo)
+#	#print(tiempo)
 
 
-	#print(get_viewport().get_mouse_position())
+	##print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -177,7 +177,7 @@ func process_normal(delta):
 	isonfloor = oldyvelocity!=velocity.y
 	
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration1)
+		dash(delta, dash_Duration2)
 	
 	if velocity.y != 0:
 		state = JUMP
@@ -217,8 +217,8 @@ func process_shoot(delta):
 			instance_projectile()
 	elif $AnimatedSprite.frame == 7:
 		state = NORMAL
-#	print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
-#	print("$AnimatedSprite.frame:", $AnimatedSprite.frame)
+#	#print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
+#	#print("$AnimatedSprite.frame:", $AnimatedSprite.frame)
 	if fallWhileAttacking and prevState == JUMP:
 		var oldyvelocity = velocity.y
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -231,7 +231,8 @@ func process_hit(delta):
 	
 func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
-	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible=true
+	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible = true
+	get_tree().get_root().get_node("EscenaMain/Gui").visible = false
 	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
@@ -247,7 +248,7 @@ func process_jump(delta):
 		velocity.x = walkspeed
 		lookleft = false
 	if Input.is_action_just_pressed("dash_key"):
-		dash(delta, dash_Duration1)
+		dash(delta, dash_Duration2)
 		
 	
 	if velocity.y > 0:
@@ -271,20 +272,20 @@ func process_jump(delta):
 
 	return
 
-func process_dash(delta, dash_Duration1):
+func process_dash(delta, dash_Duration2):
 	$AnimatedSprite.animation = "Dash"
 	dashlength = dashlength-1
 	if dashlength > 0:
 		if lookleft:
-			velocity.x = -Dash_Speed1temp
+			velocity.x = -Dash_Speed2temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 		else:
-			velocity.x = Dash_Speed1temp
+			velocity.x = Dash_Speed2temp
 			velocity = move_and_slide(velocity, Vector2.UP)
 			dashlength = dashlength - 1
 	else:
-		dashlength = dash_Duration1
+		dashlength = dash_Duration2
 		state = NORMAL
 		dashcool = dashcooldown
 		
@@ -328,18 +329,18 @@ func process_demo(delta):
 	
 	return
 
-func dash(delta, dash_Duration1):
+func dash(delta, dash_Duration2):
 	if dashcool <= 0:
-		dashlength = dash_Duration1 # * dashstale
-		Dash_Speed1temp = Dash_Speed1 * dashstale
-		if dashlength < mindash_Duration1:
-			dashlength = mindash_Duration1
+		dashlength = dash_Duration2 # * dashstale
+		Dash_Speed2temp = Dash_Speed2 * dashstale
+		if dashlength < mindash_Duration2:
+			dashlength = mindash_Duration2
 		
 		dashstale = dashstale * dashstalerate
 		state = DASH
 		if SFXDash != null:
 			add_child(SFXDash.instance())
-		#print(dashlength)
+		##print(dashlength)
 	return
 
 func jump(delta):
@@ -380,16 +381,16 @@ func begin_shoot():
 		proj_tilt_angle =  90 - (proj_tilt_angle - 90)
 	else:
 		lookleft = false
-#	print("projectile.rotation:", proj_tilt_angle)
+#	#print("projectile.rotation:", proj_tilt_angle)
 	if proj_tilt_angle < attackUpThreshold:
 		$AnimatedSprite.animation = "Attack_Up"
-		#print("attack_up")
+		##print("attack_up")
 	elif proj_tilt_angle < attackDownThreshold:
 		$AnimatedSprite.animation = "Attack_Horizontal"
-		#print("attack_horiz")
+		##print("attack_horiz")
 	else:
 		$AnimatedSprite.animation = "Attack_Down"
-		#print("attack_down")
+		##print("attack_down")
 		
 	$AnimatedSprite.flip_h = lookleft
 

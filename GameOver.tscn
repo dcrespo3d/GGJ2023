@@ -8,11 +8,11 @@
 [ext_resource path="res://Art/UI/GO_backMenuHover.png" type="Texture" id=6]
 [ext_resource path="res://Art/UI/GO_playAgainHover.png" type="Texture" id=7]
 [ext_resource path="res://Art/UI/GO_plainAgainButton.png" type="Texture" id=8]
-[ext_resource path="res://Art/Font/The Ancient Gods.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://Art/UI/thumbnail_SCORE.png" type="Texture" id=10]
+[ext_resource path="res://Art/Font/IrishPenny.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Art/UI/score/SCORE (1).png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
-size = 48
+size = 39
 outline_color = Color( 0.0313726, 0.764706, 0.545098, 1 )
 font_data = ExtResource( 9 )
 
@@ -43,10 +43,10 @@ margin_bottom = 360.0
 texture = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 346.0
-margin_top = 17.0
-margin_right = 416.0
-margin_bottom = 68.0
+margin_left = 326.0
+margin_top = 23.0
+margin_right = 428.0
+margin_bottom = 111.0
 custom_colors/font_color = Color( 0.0313726, 0.764706, 0.545098, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "2054"
