@@ -397,11 +397,12 @@ func _takeHit(damage):
 func _takeHeal(delta, heal, reloadspeed):
 	var hit = false
 	if currentHealth < maxHealth && isonfloor:
+		hit = true
 		_on_Timer_timeout(delta)
 		currentHealth += heal * tiempo
 		if tiempo == MAXtiempo: 
 			currentHealth += heal * MAXtiempo
-			hit = true
+			
 
 	if ammo_current < ammo_max && isonfloor:
 		tiempo2func(delta)

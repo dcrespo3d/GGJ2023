@@ -23,7 +23,6 @@ walkspeed = 500
 ammo_max = 15
 jumpspeed = -1050
 fallacc = 3000
-dash_Duration2 = 35
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
