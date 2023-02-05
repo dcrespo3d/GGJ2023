@@ -99,3 +99,6 @@ func heal(body):
 	body._takeHeal(heal)
 func getType():
 	return  "Enemy02"
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	print("enemy2 removed")

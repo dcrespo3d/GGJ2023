@@ -20,8 +20,8 @@ func _spawnEnemy1():
 	enemy_spawn_location.unit_offset = randf()
 	var direction = enemy_spawn_location.rotation + PI / 2
 	enemy.position = enemy_spawn_location.position
-	print(enemy_spawn_location.unit_offset)
-	print(enemy_spawn_location.position)
+	#print(enemy_spawn_location.unit_offset)
+	#print(enemy_spawn_location.position)
 	
 	
 	
@@ -34,8 +34,8 @@ func _spawnEnemy2():
 	enemy2_spawn_location.unit_offset = randi()%2
 	var direction2 = enemy2_spawn_location.rotation + PI / 2
 	enemy2.position = enemy2_spawn_location.position
-	print(enemy2_spawn_location.unit_offset)
-	print(enemy2_spawn_location.position)
+	#print(enemy2_spawn_location.unit_offset)
+	#print(enemy2_spawn_location.position)
 	
 	
 	
