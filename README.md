@@ -1,6 +1,8 @@
 # GGJ2023
 Our 2023 Global Game Jam game.
 
+Developed using Godot Game Engine.
+
 You can play it online here:
 [https://dcrespo3d.github.io/GGJ2023/build_web/gea_of_war.html](https://dcrespo3d.github.io/GGJ2023/build_web/gea_of_war.html)
 
