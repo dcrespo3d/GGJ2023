@@ -104,6 +104,7 @@ func _process(delta):
 	velocity.y += fallacc * delta
 	
 	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").text = str(ammo_current) + "/" + str(ammo_max)
+	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(0,1,0))
 	if ammo_current < ammo_max/2:
 		get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 	if ammo_current < ammo_max/4:
