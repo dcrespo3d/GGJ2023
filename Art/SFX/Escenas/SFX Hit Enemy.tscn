@@ -3,6 +3,7 @@
 [ext_resource path="res://Art/SFX/Efectos de Sonido/Hit Enemy 2.wav" type="AudioStream" id=1]
 
 [node name="SFX Hit Enemy" type="AudioStreamPlayer2D"]
+position = Vector2( 320, 180 )
 stream = ExtResource( 1 )
 volume_db = 6.118
 autoplay = true

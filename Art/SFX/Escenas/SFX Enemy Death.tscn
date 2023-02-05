@@ -4,6 +4,7 @@
 [ext_resource path="res://Art/SFX/Escenas/sfx_free_on_finish.gd" type="Script" id=2]
 
 [node name="SFX Enemy Death" type="AudioStreamPlayer2D"]
+position = Vector2( 320, 180 )
 stream = ExtResource( 1 )
 volume_db = 7.477
 autoplay = true

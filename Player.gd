@@ -31,7 +31,7 @@ var isonfloor = false
 		
 export (int) var Dash_Speed2 = 1000
 export var minDash_Speed2 = 250
-export var dash_Duration2 = 70
+var dash_Duration2 = 35
 export var mindash_Duration2 = 10
 export var dashcooldown = 0.2
 export var dashrecoveryspeed = 0.2
