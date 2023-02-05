@@ -139,7 +139,7 @@ speed = 300
 deadSpeed = 500
 playerDamage = 30
 geaDamage = 60
-heal = 25
+heal = 27
 hits = 1
 
 [node name="EnemyAnimations" type="AnimatedSprite" parent="."]
