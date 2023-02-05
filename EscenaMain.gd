@@ -21,6 +21,9 @@ var bichosPorRonda = 10
 var tiempoPorRonda = 6.67
 var bichosIniciales = 15
 var tiempoInicial = 12
+var actualEnemy2InRound = 0
+var maxEnemy2InRound = 0
+var enemyKindSpawnDecider = 0
 
 var primeraRonda = true
 var bichosronda = 0
@@ -87,7 +90,17 @@ func _process(delta):
 			
 			# Se llega al spawn de un nuevo enemigo
 		if tiempo2 >= spawntimer && bichosronda != 0:
-			_spawnEnemy1()
+			
+			if actualEnemy2InRound < maxEnemy2InRound:
+				print(actualEnemy2InRound, "<", maxEnemy2InRound)
+				enemyKindSpawnDecider = randi()%2
+				if enemyKindSpawnDecider == 1:
+					_spawnEnemy1()
+				else:
+					_spawnEnemy2()
+					actualEnemy2InRound += 1
+			else:
+				_spawnEnemy1()
 			bichosronda -= 1
 			print("Bichos ronda restantes: ", bichosronda)
 			tiempo2 = 0
@@ -112,6 +125,9 @@ func _inicioRonda():
 	bichosronda = bichosIniciales + bichosPorRonda * rondas
 	tiemporonda = tiempoInicial + tiempoPorRonda * rondas
 	spawntimer = tiemporonda/bichosronda
+	
+	actualEnemy2InRound = 0
+	maxEnemy2InRound = rondas
 	
 	print("bichos: ", bichosronda)
 	print("tiempo nueva ronda gente :D : ", tiemporonda)
