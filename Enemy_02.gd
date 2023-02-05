@@ -63,11 +63,13 @@ func process_hit(delta):
 	return
 	
 func process_die(delta):
+	if dead == false:
+		$EnemyAnimations.animation = "Die"
+		dead = true
+		if $EnemyAnimations.frame == 5:
+			queue_free()
+		heal(get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
 	
-	$EnemyAnimations.animation = "Die"
-	if $EnemyAnimations.frame == 5:
-		queue_free()
-	heal(get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
 	
 
 	return

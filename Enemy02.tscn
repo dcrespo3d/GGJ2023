@@ -17,7 +17,6 @@ hits = 1
 position = Vector2( 1, -3 )
 frames = ExtResource( 1 )
 animation = "Walk"
-frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
