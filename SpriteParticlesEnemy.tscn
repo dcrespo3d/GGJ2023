@@ -2,11 +2,10 @@
 
 [ext_resource path="res://FloorVFX.tres" type="SpriteFrames" id=1]
 
-[node name="FloorVFX" type="RigidBody2D"]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="SpriteParticlesEnemy" type="AnimatedSprite"]
+position = Vector2( 0, -38 )
 frames = ExtResource( 1 )
 animation = "FloorLooseLife"
-frame = 5
-speed_scale = 3.0
+frame = 3
+speed_scale = 1.7
 playing = true
