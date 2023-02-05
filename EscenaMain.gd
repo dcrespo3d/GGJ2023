@@ -13,7 +13,6 @@ export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
 
-
 #Oleadas_variables
 var bichosmuertos = 0
 var rondas = 0
@@ -122,6 +121,7 @@ func _inicioRonda():
 		primeraRonda = false
 	else:
 		rondas += 1
+		rondasPuntos += 0.25
 	
 	
 	bichosronda = bichosIniciales + incrementoBichosPorRonda * rondas

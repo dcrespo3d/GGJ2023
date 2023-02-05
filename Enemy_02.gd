@@ -66,6 +66,7 @@ func process_die(delta):
 	if dead == false:
 		$EnemyAnimations.animation = "Die"
 		dead = true
+		get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").slime += 1
 		if $EnemyAnimations.frame == 6:
 			queue_free()
 		heal(get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
