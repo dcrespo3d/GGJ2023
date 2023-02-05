@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Art/SFX/Efectos de Sonido/Heal.wav" type="AudioStream" id=1]
+[ext_resource path="res://Art/SFX/Efectos de Sonido/heal_loop.wav" type="AudioStream" id=1]
 
-[node name="SFX Heal" type="AudioStreamPlayer2D"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
 autoplay = true

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export(PackedScene) var Particle
+
 export (PackedScene) var SFXEnemyDeath
 export (PackedScene) var SFXEnemyHit
 
@@ -16,20 +18,27 @@ export var playerDamage = 20
 export var geaDamage = 20
 export var heal = 10
 export var hits = 3
+var hemuerto = false
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_tree().get_root().get_node("EscenaMain").bichosmuertos += 1
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+
 	if hits <= 0:
 		state = DIE
+		if state == DIE && !hemuerto:
+			get_tree().get_root().get_node("EscenaMain").cacademons += 1
+			hemuerto = true
 	
+	if $SpriteParticlesEnemy.frame == 15 && $SpriteParticlesEnemy.visible==true:
+		_destroy()
 	
 	
 	match (state):
@@ -79,10 +88,16 @@ func _on_Area2D_body_entered(body):
 
 	if body.getType() == "Gea" && state == IDLE:
 		attackGea(body)
-		queue_free()
+		_spawnParticle(false)
+		
+
+
 	if body.getType() == "Gea" && state == DIE:
+		deadSpeed = 0
+		position.y = position.y -10
 		heal(body)
-		queue_free()
+		_spawnParticle(true)
+		
 	if body.getType() == "Projectile"&& state != DIE:
 		if SFXEnemyHit != null:
 			var sfx_enemy_hit = SFXEnemyHit.instance()
@@ -91,8 +106,8 @@ func _on_Area2D_body_entered(body):
 		hits -=1
 		body.queue_free()
 		state = HIT
-		print(hits)
-	print(body.getType())
+		#print(hits)
+	#print(body.getType())
 	pass # Replace with function body.
 func attackPlayer(body):
 	body._takeHit(playerDamage)
@@ -104,3 +119,14 @@ func heal(body):
 	body._takeHeal(heal)
 func getType():
 	return  "Enemy01"
+	
+func _spawnParticle(ParticleGood):
+	if ParticleGood:
+		$SpriteParticlesEnemy.animation = "FloorGainLife"
+	if !ParticleGood:
+		$SpriteParticlesEnemy.animation = "FloorLooseLife"
+	$SpriteParticlesEnemy.visible=true
+	$EnemyAnimations.visible=false
+	
+func _destroy():
+	queue_free()

@@ -124,9 +124,12 @@ animations = [ {
 [node name="Enemy_02" type="KinematicBody2D"]
 script = ExtResource( 2 )
 SFXEnemyDeath = ExtResource( 3 )
-speed = 300
+speed = 200
 deadSpeed = 500
-hits = 1
+playerDamage = 195
+geaDamage = 25
+heal = 60
+hits = 4
 
 [node name="EnemyAnimations" type="AnimatedSprite" parent="."]
 rotation = 1.5708

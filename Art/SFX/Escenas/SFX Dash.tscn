@@ -5,7 +5,7 @@
 
 [node name="SFX Dash" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
-volume_db = 10.876
+volume_db = 2.421
 autoplay = true
 script = ExtResource( 2 )
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://FloorVFX.tres" type="SpriteFrames" id=1]
+
+[node name="SpriteParticlesEnemy" type="AnimatedSprite"]
+position = Vector2( 0, -38 )
+frames = ExtResource( 1 )
+animation = "FloorLooseLife"
+frame = 4
+speed_scale = 1.7
+playing = true

@@ -12,7 +12,7 @@ enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
 var dead = false
 export var playerDamage = 20
-export var geaDamage = 20
+export (float) var geaDamage = 1
 export var heal = 10
 export var hits = 3
 
@@ -45,7 +45,7 @@ func _process(delta):
 
 func process_idle(delta):
 	$EnemyAnimations.animation = "Walk"
-
+	attackGea(delta, get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
 	velocity.x = speed
 	velocity = move_and_slide(velocity, Vector2.RIGHT)
 
@@ -63,13 +63,15 @@ func process_hit(delta):
 	return
 	
 func process_die(delta):
-	if SFXEnemyDeath:
-		get_tree().get_root().get_node("EscenaMain/Viewport").add_child(SFXEnemyDeath.instance())
+	if dead == false:
+		$EnemyAnimations.animation = "Die"
+		dead = true
 
-	$EnemyAnimations.animation = "Die"
+		if $EnemyAnimations.frame == 6:
+			queue_free()
+		heal(get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
 	
-	velocity.y = deadSpeed
-	velocity = move_and_slide(velocity, Vector2.UP)
+	
 
 	return
 
@@ -80,9 +82,6 @@ func _on_Area2D_body_entered(body):
 		attackPlayer(body)
 		queue_free()
 
-	if body.getType() == "Gea" && state == IDLE:
-		attackGea(body)
-
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
 		queue_free()
@@ -90,16 +89,19 @@ func _on_Area2D_body_entered(body):
 		hits -=1
 		body.queue_free()
 		state = HIT
-		print(hits)
-	print(body.getType())
+		#print(hits)
+	#print(body.getType())
 	pass # Replace with function body.
 func attackPlayer(body):
 	body._takeHit(playerDamage)
 	state = ATTACK
-func attackGea(body):
-	body._takeHit(geaDamage)
-	state = ATTACK
+func attackGea(delta, body):
+	body._takeHit(geaDamage *delta)
+
 func heal(body):
 	body._takeHeal(heal)
 func getType():
 	return  "Enemy02"
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	#print("enemy2 removed")
