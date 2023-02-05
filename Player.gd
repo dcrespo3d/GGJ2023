@@ -51,6 +51,9 @@ var lookleft = false
 enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
 var state = NORMAL
 var squatting = false
+var blinking = true
+var blinkingtimermax = 40
+var blinkingtimer = 40
 
 var prevState = NORMAL
 
@@ -106,6 +109,18 @@ func _process(delta):
 
 	velocity.y += fallacc * delta
 	
+	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").text = str(ammo_current) + "/" + str(ammo_max)
+	if ammo_current < ammo_max/2:
+		get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
+	if ammo_current < ammo_max/4:
+		if blinkingtimer <= 0:
+			blinking = !blinking
+			blinkingtimer = blinkingtimermax
+		if blinking:
+			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,0,0))
+		else:
+			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
+		blinkingtimer = blinkingtimer-1
 #	print("STATE: ", state)
 	
 	#print(isonfloor)
