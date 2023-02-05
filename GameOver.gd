@@ -13,7 +13,6 @@ var rondasPuntos = 1
 # Called when the node enters the scene tree for the first time.
 func _process(delta):
 	score = get_tree().get_root().get_node("EscenaMain").score
-	print(score)
 	$Label.text = str(score)
 
 

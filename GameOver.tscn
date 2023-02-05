@@ -25,6 +25,7 @@ script = ExtResource( 3 )
 pause_mode = 2
 physics_interpolation_mode = 2
 process_priority = 1
+position = Vector2( 320, 180 )
 stream = ExtResource( 4 )
 autoplay = true
 area_mask = 2

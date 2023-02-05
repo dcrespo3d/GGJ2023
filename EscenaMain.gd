@@ -53,8 +53,6 @@ func _spawnEnemy1():
 	enemy_spawn_location.unit_offset = randf()
 	var direction = enemy_spawn_location.rotation + PI / 2
 	enemy.position = enemy_spawn_location.position
-	###print(enemy_spawn_location.unit_offset)
-	###print(enemy_spawn_location.position)
 	
 	
 	
@@ -67,9 +65,6 @@ func _spawnEnemy2():
 	enemy2_spawn_location.unit_offset = randi()%2
 	var direction2 = enemy2_spawn_location.rotation + PI / 2
 	enemy2.position = enemy2_spawn_location.position
-	###print(enemy2_spawn_location.unit_offset)
-	###print(enemy2_spawn_location.position)
-	
 	
 	
 	
@@ -79,26 +74,16 @@ func _process(delta):
 	_on_Timer_timeout(delta)
 	_score()
 	actualtimer = actualtimer - 1*delta
-#	##print(spawntimer)
-	if Input.is_action_just_pressed("debug1"):
-		_spawnEnemy2()
-		_spawnEnemy1()
-	###print (actualtimer)
 	
 	if tiempo3 >= 2:
 		if get_tree().get_root().get_node("EscenaMain/Viewport/Player").state == DEAD:
 			playerAlive = false
 	
-	##print(tiempo4, ">=???", cooldownOleadas, " + Pasar Ronda: ", pasarRonda)
-	##print("Ronda: ", rondas)
 	#Tiempo entre Oleadas		
 	if tiempo4 >= cooldownOleadas && pasarRonda == true:
-		##print("hola2")
 		_inicioRonda()
 		tiempo4 = 0
 		pasarRonda = false
-		
-	#print(score)
 	
 	
 	if playerAlive :
@@ -115,7 +100,6 @@ func _process(delta):
 		if tiempo2 >= spawntimer && bichosronda != 0:
 			
 			if actualEnemy2InRound < maxEnemy2InRound:
-				##print(actualEnemy2InRound, "<", maxEnemy2InRound)
 				enemyKindSpawnDecider = randi()%2
 				if enemyKindSpawnDecider == 1:
 					_spawnEnemy1()
@@ -125,7 +109,6 @@ func _process(delta):
 			else:
 				_spawnEnemy1()
 			bichosronda -= 1
-			##print("Bichos ronda restantes: ", bichosronda)
 			tiempo2 = 0
 		
 	
@@ -154,11 +137,6 @@ func _inicioRonda():
 		contadorInternoRondasCaracol = 0
 	else:
 		contadorInternoRondasCaracol += 1
-	
-	##print("bichos: ", bichosronda)
-	##print("tiempo nueva ronda gente :D : ", tiemporonda)
-	##print("spawntimer: ", spawntimer)
-
 
 func _on_Timer_timeout(delta):
 	tiempo += 1 * delta

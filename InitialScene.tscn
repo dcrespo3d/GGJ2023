@@ -44,6 +44,7 @@ margin_right = 1972.0
 margin_bottom = 1076.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 1000, 500 )
 stream = ExtResource( 4 )
 autoplay = true
 
