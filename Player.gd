@@ -413,15 +413,18 @@ func _takeHit(damage):
 		
 		
 func _takeHeal(delta, heal, reloadspeed):
+	var hit = false
 	if currentHealth < maxHealth && isonfloor:
+		hit = true
 		_on_Timer_timeout(delta)
 		currentHealth += heal * tiempo
 		if tiempo == MAXtiempo: 
 			currentHealth += heal * MAXtiempo
-		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
+			
 
 	if ammo_current < ammo_max && isonfloor:
 		tiempo2func(delta)
+		hit = true
 		if tiempo2 > 1/reloadspeed:
 			ammo_current += 1
 			tiempo2 = 0
@@ -431,6 +434,9 @@ func _takeHeal(delta, heal, reloadspeed):
 		$AnimatedSprite.animation = "Charge_Enter"
 		isbegginingsuck = true
 		state = SUCK
+	
+	if hit:
+		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
 
 func getType():
 	return  "Player"
