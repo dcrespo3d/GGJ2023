@@ -7,6 +7,8 @@ extents = Vector2( 674.5, 30.5 )
 
 [node name="Gea" type="KinematicBody2D"]
 script = ExtResource( 2 )
+maxHealth = 500
+currentHealth = 500.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -3.0
