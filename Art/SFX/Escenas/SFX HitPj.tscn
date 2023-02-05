@@ -4,3 +4,5 @@
 
 [node name="SFX HitPj" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
+volume_db = 7.866
+autoplay = true
