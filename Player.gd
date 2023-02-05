@@ -102,18 +102,16 @@ func _process(delta):
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
 		_takeHeal(delta, heal, reloadspeed)
 
-	if inDemo && isonfloor:
-		process_demo(delta)
-	else:
-		match (state):
-			NORMAL: process_normal(delta)
-			SUCK: process_suck(delta)
-			SHOOT: process_shoot(delta)
-			HIT: process_hit(delta)
-			DEAD: process_dead(delta)
-			JUMP: process_jump(delta)
-			DASH: process_dash(delta, dash_Duration1)
-			BUSY: process_busy(delta)
+
+	match (state):
+		NORMAL: process_normal(delta)
+		SUCK: process_suck(delta)
+		SHOOT: process_shoot(delta)
+		HIT: process_hit(delta)
+		DEAD: process_dead(delta)
+		JUMP: process_jump(delta)
+		DASH: process_dash(delta, dash_Duration1)
+		BUSY: process_busy(delta)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
