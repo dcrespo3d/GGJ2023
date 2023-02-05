@@ -5,7 +5,7 @@
 
 [node name="SFX Jump" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
-volume_db = 6.797
+volume_db = -7.815
 autoplay = true
 script = ExtResource( 2 )
 

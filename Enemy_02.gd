@@ -6,20 +6,26 @@ export (PackedScene) var SFXEnemyDeath
 # var a = 2
 # var b = "text"
 export var speed = 100
-export var deadSpeed = 100
+export var deadSpeed = 300
 var velocity = Vector2.ZERO
 enum {IDLE, ATTACK, HIT, DIE}
 var state = IDLE
 var dead = false
-export var damage = 20
+export var playerDamage = 20
+export (float) var geaDamage = 1
 export var heal = 10
 export var hits = 3
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 	
+	if get_tree().get_root().get_node("EscenaMain/Viewport/enemyPath2/enemySpawn2").unit_offset == 1:
+		$EnemyAnimations.flip_h = false
+		speed = speed*-1
+	if get_tree().get_root().get_node("EscenaMain/Viewport/enemyPath2/enemySpawn2").unit_offset != 1:
+		$EnemyAnimations.flip_h = true
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,9 +44,10 @@ func _process(delta):
 	return
 
 func process_idle(delta):
-	$EnemyAnimations.animation = "Idle"
-	velocity.y = speed
-	velocity = move_and_slide(velocity, Vector2.UP)
+	$EnemyAnimations.animation = "Walk"
+	attackGea(delta, get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
+	velocity.x = speed
+	velocity = move_and_slide(velocity, Vector2.RIGHT)
 
 func process_attack(delta):
 	#if $AnimatedSprite.frame == 5:
@@ -48,19 +55,23 @@ func process_attack(delta):
 	return
 	
 func process_hit(delta):
+	
 	$EnemyAnimations.animation = "Hit"
-	if $EnemyAnimations.frame == 3:
+	if $EnemyAnimations.frame == 4:
 		state = IDLE
+
 	return
 	
 func process_die(delta):
-	if SFXEnemyDeath:
-		get_tree().get_root().get_node("EscenaMain/Viewport").add_child(SFXEnemyDeath.instance())
+	if dead == false:
+		$EnemyAnimations.animation = "Die"
+		dead = true
 
-	$EnemyAnimations.animation = "Die"
+		if $EnemyAnimations.frame == 6:
+			queue_free()
+		heal(get_tree().get_root().get_node("EscenaMain/Viewport/Gea"))
 	
-	velocity.y = deadSpeed
-	velocity = move_and_slide(velocity, Vector2.UP)
+	
 
 	return
 
@@ -68,12 +79,9 @@ func process_die(delta):
 
 func _on_Area2D_body_entered(body):
 	if body.getType() == "Player" && state == IDLE:
-		attack(body)
+		attackPlayer(body)
 		queue_free()
 
-	if body.getType() == "Gea" && state == IDLE:
-		attack(body)
-		queue_free()
 	if body.getType() == "Gea" && state == DIE:
 		heal(body)
 		queue_free()
@@ -81,13 +89,19 @@ func _on_Area2D_body_entered(body):
 		hits -=1
 		body.queue_free()
 		state = HIT
-		print(hits)
-	print(body.getType())
+		#print(hits)
+	#print(body.getType())
 	pass # Replace with function body.
-func attack(body):
-	body._takeHit(damage)
+func attackPlayer(body):
+	body._takeHit(playerDamage)
 	state = ATTACK
+func attackGea(delta, body):
+	body._takeHit(geaDamage *delta)
+
 func heal(body):
 	body._takeHeal(heal)
 func getType():
 	return  "Enemy02"
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+	#print("enemy2 removed")
