@@ -10,6 +10,7 @@ export (PackedScene) var SFXDeath
 # var a = 2
 # var b = "text"
 
+export (PackedScene) var DustVFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,6 +61,7 @@ var blinkingtimermax = 40
 var blinkingtimer = 40
 
 var prevState = NORMAL
+var prevFrame = 0
 
 var inDemo = true
 var begDemo = true
@@ -154,6 +156,31 @@ func process_normal(delta):
 	
 	if velocity.y != 0:
 		state = JUMP
+		
+	if DustVFX != null and $AnimatedSprite.animation == "Run":
+		var currFrame = $AnimatedSprite.frame
+		if currFrame == 1 and currFrame != prevFrame:
+			var dustvfx = DustVFX.instance()
+			var offset = Vector2(0, 20)
+			dustvfx.position = position + offset
+			dustvfx.get_node("AnimatedSprite").flip_h = lookleft
+			dustvfx.get_node("AnimatedSprite").animation = "Run1"
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
+		if currFrame == 4 and currFrame != prevFrame:
+			var dustvfx = DustVFX.instance()
+			var offset = Vector2(0, 20)
+			dustvfx.position = position + offset
+			dustvfx.get_node("AnimatedSprite").flip_h = lookleft
+			dustvfx.get_node("AnimatedSprite").animation = "Run2"
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
+		if currFrame == 7 and currFrame != prevFrame:
+			var dustvfx = DustVFX.instance()
+			var offset = Vector2(0, 20)
+			dustvfx.position = position + offset
+			dustvfx.get_node("AnimatedSprite").flip_h = lookleft
+			dustvfx.get_node("AnimatedSprite").animation = "Run3"
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
+		prevFrame = currFrame
 	
 	return
 
@@ -312,6 +339,18 @@ func dash(delta, dash_Duration2):
 		state = DASH
 		if SFXDash != null:
 			add_child(SFXDash.instance())
+			
+		if DustVFX!= null:
+			var dustvfx = DustVFX.instance()
+			var offset = Vector2(0, 20)
+			dustvfx.position = position + offset
+			dustvfx.get_node("AnimatedSprite").flip_h = lookleft
+			if dashstale == 1:
+				dustvfx.get_node("AnimatedSprite").animation = "Dash1"
+			else:
+				dustvfx.get_node("AnimatedSprite").animation = "Dash2"
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
+
 	return
 
 func jump(delta):
@@ -321,6 +360,16 @@ func jump(delta):
 	$AnimatedSprite.animation = "Jump_Enter"
 	if SFXJump != null:
 		add_child(SFXJump.instance())
+	if DustVFX != null:
+			var dustvfx = DustVFX.instance()
+			var offset = Vector2(0, 20)
+			offset.x = 20 if lookleft else -20
+			if velocity.x == 0: offset.x = 0
+			dustvfx.position = position + offset
+			dustvfx.get_node("AnimatedSprite").flip_h = lookleft
+			dustvfx.get_node("AnimatedSprite").animation = "Jump"
+			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
+		
 	return
 	
 	
