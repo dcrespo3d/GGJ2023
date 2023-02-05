@@ -8,7 +8,12 @@ export(PackedScene) var Enemy2
 export var tiempo = 0
 export var tiempo2 = 0
 export var tiempo3 = 0
-export var rounds = 1
+var tiempo4 = 0
+
+#Para cambiar el tiempo de descanso entre oleadas
+export var cooldownOleadas = 2
+
+var pasarRonda = true
 export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
@@ -80,11 +85,22 @@ func _process(delta):
 		if get_tree().get_root().get_node("EscenaMain/Viewport/Player").state == DEAD:
 			playerAlive = false
 	
+	print(tiempo4, ">=???", cooldownOleadas, " + Pasar Ronda: ", pasarRonda)
+	print("Ronda: ", rondas)
+	#Tiempo entre Oleadas		
+	if tiempo4 >= cooldownOleadas && pasarRonda == true:
+		print("hola2")
+		_inicioRonda()
+		tiempo4 = 0
+		pasarRonda = false
+		
+	
 	
 	if playerAlive :
 		
-		if tiemporonda == 0 || bichosronda == 0:
-			_inicioRonda()
+		if rondas>0 && (tiemporonda == 0 || bichosronda == 0) && pasarRonda==false:
+			tiempo4 = 0
+			pasarRonda = true
 		
 		if tiempo >= 1:
 			tiemporonda -= 1
@@ -118,14 +134,11 @@ func _process(delta):
 	
 
 func _inicioRonda():
-	if primeraRonda == true:
-		primeraRonda = false
-	else:
-		rondas += 1
+	rondas += 1
 	
 	
-	bichosronda = bichosIniciales + incrementoBichosPorRonda * rondas
-	tiemporonda = tiempoInicial + incrementoTiempoPorRonda * rondas
+	bichosronda = bichosIniciales + incrementoBichosPorRonda * (rondas-1)
+	tiemporonda = tiempoInicial + incrementoTiempoPorRonda * (rondas-1)
 	spawntimer = tiemporonda/bichosronda
 	
 	actualEnemy2InRound = 0
@@ -145,3 +158,4 @@ func _on_Timer_timeout(delta):
 	tiempo += 1 * delta
 	tiempo2 += 1 * delta	
 	tiempo3 += 1 * delta
+	tiempo4 += 1 * delta
