@@ -6,6 +6,6 @@
 position = Vector2( 0, -38 )
 frames = ExtResource( 1 )
 animation = "FloorLooseLife"
-frame = 3
+frame = 4
 speed_scale = 1.7
 playing = true

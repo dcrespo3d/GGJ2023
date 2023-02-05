@@ -133,7 +133,7 @@ position = Vector2( 1, 1 )
 script = ExtResource( 2 )
 Particle = ExtResource( 4 )
 SFXEnemyDeath = ExtResource( 3 )
-speed = 500
+speed = 300
 deadSpeed = 500
 playerDamage = 30
 geaDamage = 60
@@ -167,6 +167,6 @@ position = Vector2( -9, 4 )
 
 [node name="SpriteParticlesEnemy" parent="." instance=ExtResource( 5 )]
 visible = false
-frame = 6
+frame = 9
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
