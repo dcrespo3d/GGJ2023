@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-export(PackedScene) var Particle
 
 export (PackedScene) var SFXEnemyDeath
 export (PackedScene) var SFXEnemyHit
