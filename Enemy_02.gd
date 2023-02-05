@@ -89,8 +89,6 @@ func _on_Area2D_body_entered(body):
 		hits -=1
 		body.queue_free()
 		state = HIT
-		#print(hits)
-	#print(body.getType())
 	pass # Replace with function body.
 func attackPlayer(body):
 	body._takeHit(playerDamage)
@@ -104,4 +102,3 @@ func getType():
 	return  "Enemy02"
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-	#print("enemy2 removed")

@@ -69,36 +69,16 @@ var begDemo = true
 
 func _process(delta):
 	
-	#print(isonfloor)
 	
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
 	if dashstale > 1:
 		dashstale = 1
 		
-	#print(reloadspeed)
 	if dashcool > 0:
 		dashcool = dashcool - 1 * delta
 
-	if Input.is_action_just_pressed("debug1"):
-		state = NORMAL
-		#print("normal")
 	
-	if Input.is_action_pressed("debug3"):
-		state = SHOOT
-		#print("shoot")
-	if Input.is_action_just_pressed("debug4"):
-		_takeHit(50)
-		#print(currentHealth)
-
-	if Input.is_action_pressed("debug5"):
-		state = DEAD
-		#print("dead")
-		
-	if Input.is_action_just_pressed("debug6"):
-		
-		_takeHit(10)
-		
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
 		_takeHeal(delta, heal, reloadspeed)
 
@@ -124,6 +104,7 @@ func _process(delta):
 	velocity.y += fallacc * delta
 	
 	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").text = str(ammo_current) + "/" + str(ammo_max)
+	get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(0,1,0))
 	if ammo_current < ammo_max/2:
 		get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 	if ammo_current < ammo_max/4:
@@ -135,14 +116,6 @@ func _process(delta):
 		else:
 			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 		blinkingtimer = blinkingtimer-1
-#	#print("STATE: ", state)
-	
-	
-#
-#	#print(tiempo)
-
-
-	##print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
 	
@@ -217,8 +190,6 @@ func process_shoot(delta):
 			instance_projectile()
 	elif $AnimatedSprite.frame == 7:
 		state = NORMAL
-#	#print("$AnimatedSprite.animation:", $AnimatedSprite.animation)
-#	#print("$AnimatedSprite.frame:", $AnimatedSprite.frame)
 	if fallWhileAttacking and prevState == JUMP:
 		var oldyvelocity = velocity.y
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -233,6 +204,7 @@ func process_dead(delta):
 	$AnimatedSprite.animation = "Die"
 	get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").visible = true
 	get_tree().get_root().get_node("EscenaMain/Gui").visible = false
+	velocity.x = 0
 	velocity = move_and_slide(velocity, Vector2.UP)
 	return
 
@@ -340,7 +312,6 @@ func dash(delta, dash_Duration2):
 		state = DASH
 		if SFXDash != null:
 			add_child(SFXDash.instance())
-		##print(dashlength)
 	return
 
 func jump(delta):
@@ -381,16 +352,12 @@ func begin_shoot():
 		proj_tilt_angle =  90 - (proj_tilt_angle - 90)
 	else:
 		lookleft = false
-#	#print("projectile.rotation:", proj_tilt_angle)
 	if proj_tilt_angle < attackUpThreshold:
 		$AnimatedSprite.animation = "Attack_Up"
-		##print("attack_up")
 	elif proj_tilt_angle < attackDownThreshold:
 		$AnimatedSprite.animation = "Attack_Horizontal"
-		##print("attack_horiz")
 	else:
 		$AnimatedSprite.animation = "Attack_Down"
-		##print("attack_down")
 		
 	$AnimatedSprite.flip_h = lookleft
 

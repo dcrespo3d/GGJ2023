@@ -127,6 +127,7 @@ icon_align = 1
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
 process_priority = 1
+position = Vector2( 320, 180 )
 stream = ExtResource( 5 )
 autoplay = true
 
