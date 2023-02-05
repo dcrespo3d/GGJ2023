@@ -1,10 +1,9 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://Art/VFX/Charge.png" type="Texture" id=1]
 [ext_resource path="res://Art/VFX/Jump.png" type="Texture" id=2]
 [ext_resource path="res://Art/VFX/Dash.png" type="Texture" id=3]
 [ext_resource path="res://Art/VFX/Run.png" type="Texture" id=4]
-[ext_resource path="res://DustVFX.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -362,13 +361,12 @@ animations = [ {
 } ]
 
 [node name="ChargeVFX" type="KinematicBody2D"]
-script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -128, -32 )
 frames = SubResource( 62 )
-animation = "Charge2"
-frame = 16
+animation = "Charge"
+frame = 8
 speed_scale = 3.0
 playing = true
 centered = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Projectile.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Art/SFX/Escenas/SFX Alerta.tscn" type="PackedScene" id=8]
 [ext_resource path="res://DustVFX.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Art/SFX/Escenas/SFX Death.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ChargeVFX.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Player.gd" type="Script" id=88]
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -29,6 +30,7 @@ SFXDisparo = ExtResource( 6 )
 SFXAlerta = ExtResource( 8 )
 SFXHitPj = ExtResource( 7 )
 DustVFX = ExtResource( 9 )
+ChargeVFX = ExtResource( 11 )
 walkspeed = 500
 ammo_max = 15
 jumpspeed = -1050
@@ -38,7 +40,7 @@ fallacc = 3000
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "No Ammo"
-frame = 4
+frame = 2
 speed_scale = 3.0
 playing = true
 

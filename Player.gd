@@ -14,6 +14,7 @@ export (PackedScene) var SFXHitPj
 # var b = "text"
 
 export (PackedScene) var DustVFX
+export (PackedScene) var ChargeVFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -198,14 +199,32 @@ func process_normal(delta):
 			get_tree().get_root().get_node("EscenaMain/Viewport").add_child(dustvfx)
 		prevFrame = currFrame
 	
+	if sfx_heal != null:
+		sfx_heal.queue_free()
+		sfx_heal = null
+	
 	return
 
+var charge_vfx = null
 var sfx_heal = null;
 	
 func process_suck(delta):
 	if isbegginingsuck and sfx_heal == null and SFXHeal != null:
 		sfx_heal = SFXHeal.instance()
 		add_child(sfx_heal)
+		
+	if isbegginingsuck and charge_vfx == null and ChargeVFX != null:
+		print("CHARGE VFX")
+		charge_vfx = ChargeVFX.instance()
+		var offset = Vector2(0, 20)
+		offset.x = -20 if lookleft else 20
+#		if velocity.x == 0: offset.x = 0
+		charge_vfx.position = position + offset
+#		charge_vfx.position = Vector2(320, 180)
+#		charge_vfx.get_node("AnimatedSprite").flip_h = lookleft
+		charge_vfx.get_node("AnimatedSprite").animation = "Charge2"
+		get_tree().get_root().get_node("EscenaMain/Viewport").add_child(charge_vfx)
+
 
 	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6:
 		isbegginingsuck = false
@@ -221,6 +240,9 @@ func process_suck(delta):
 			if sfx_heal != null:
 				sfx_heal.queue_free()
 				sfx_heal = null
+			if charge_vfx != null:
+				charge_vfx.queue_free()
+				charge_vfx = null
 		tiempo = 0
 		tiempo2 = 0
 	
