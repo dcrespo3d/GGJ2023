@@ -21,7 +21,7 @@ position = Vector2( 2, -10 )
 scale = Vector2( 1.71875, 1.3125 )
 frames = ExtResource( 1 )
 animation = "Walk"
-frame = 4
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
