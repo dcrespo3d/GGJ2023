@@ -9,6 +9,7 @@ export var tiempo = 0
 export var tiempo2 = 0
 export var tiempo3 = 0
 var tiempo4 = 0
+var tiempo5 = 0
 
 #Para cambiar el tiempo de descanso entre oleadas
 export var cooldownOleadas = 4
@@ -101,9 +102,10 @@ func _process(delta):
 			
 			if actualEnemy2InRound < maxEnemy2InRound:
 				enemyKindSpawnDecider = randi()%2
-				if enemyKindSpawnDecider == 1:
+				if enemyKindSpawnDecider == 1 || tiempo5 < 2:
 					_spawnEnemy1()
 				else:
+					tiempo5 = 0
 					_spawnEnemy2()
 					actualEnemy2InRound += 1
 			else:
@@ -140,10 +142,10 @@ func _inicioRonda():
 
 func _on_Timer_timeout(delta):
 	tiempo += 1 * delta
-	tiempo2 += 1 * delta	
+	tiempo2 += 1 * delta
 	tiempo3 += 1 * delta
 	tiempo4 += 1 * delta
-
+	tiempo5 += 1 * delta
 func _score():
 	score = ((cacademons * 10) + (slimes * 75)) * (rondasPuntos)
 
