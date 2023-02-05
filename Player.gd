@@ -131,7 +131,7 @@ func _process(delta):
 	
 	
 
-	print(tiempo)
+	#print(tiempo)
 	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
