@@ -16,6 +16,7 @@ export var playerDamage = 20
 export var geaDamage = 20
 export var heal = 10
 export var hits = 3
+var hemuerto = false
 
 
 
@@ -30,7 +31,9 @@ func _process(delta):
 	
 	if hits <= 0:
 		state = DIE
-		
+		if state == DIE && !hemuerto:
+			get_tree().get_root().get_node("EscenaMain").cacademons += 1
+			hemuerto = true
 	
 	
 	

@@ -21,8 +21,8 @@ export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
 export var ammo_max = 8
+export var ammo_current = 8
 export (float) var reloadspeed = 1
-var ammo_current = 8
 
 export var jumpspeed = -500
 export var fallacc = 1000
@@ -61,10 +61,15 @@ var blinkingtimer = 40
 
 var prevState = NORMAL
 
+var inDemo = true
+var begDemo = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
 func _process(delta):
+	
+	print(isonfloor)
 	
 	if dashstale < 1:
 		dashstale = dashstale + dashrecoveryspeed * delta
@@ -97,16 +102,18 @@ func _process(delta):
 	if Input.is_action_just_pressed("heal_key") && state == NORMAL:
 		_takeHeal(delta, heal, reloadspeed)
 
-
-	match (state):
-		NORMAL: process_normal(delta)
-		SUCK: process_suck(delta)
-		SHOOT: process_shoot(delta)
-		HIT: process_hit(delta)
-		DEAD: process_dead(delta)
-		JUMP: process_jump(delta)
-		DASH: process_dash(delta, dash_Duration1)
-		BUSY: process_busy(delta)
+	if inDemo && isonfloor:
+		process_demo(delta)
+	else:
+		match (state):
+			NORMAL: process_normal(delta)
+			SUCK: process_suck(delta)
+			SHOOT: process_shoot(delta)
+			HIT: process_hit(delta)
+			DEAD: process_dead(delta)
+			JUMP: process_jump(delta)
+			DASH: process_dash(delta, dash_Duration1)
+			BUSY: process_busy(delta)
 		
 	if lookleft:
 		$AnimatedSprite.flip_h = true
@@ -287,6 +294,39 @@ func process_busy(delta):
 	var length = $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation)
 	if $AnimatedSprite.frame == length-1:
 		state = NORMAL
+		
+		
+func process_demo(delta):
+	if currentHealth < maxHealth or ammo_current < ammo_max and inDemo:
+		_takeHeal(delta, heal, reloadspeed)
+	else:
+		if !isbegginingsuck:
+			begDemo = false
+			$AnimatedSprite.animation = "Charge_Out"
+			if $AnimatedSprite.frame == 5:
+				state = NORMAL
+				inDemo = false
+				if sfx_heal != null:
+					sfx_heal.queue_free()
+					sfx_heal = null
+				tiempo = 0
+				tiempo2 = 0
+		
+		state = NORMAL
+		
+	if isbegginingsuck and sfx_heal == null and SFXHeal != null and begDemo:
+		sfx_heal = SFXHeal.instance()
+		add_child(sfx_heal)
+
+	if $AnimatedSprite.animation == "Charge_Enter" && $AnimatedSprite.frame == 6 and begDemo:
+		isbegginingsuck = false
+	
+	if !isbegginingsuck and begDemo:
+		$AnimatedSprite.animation = "Charge"
+		_takeHeal(delta, heal, reloadspeed)
+
+	
+	return
 
 func dash(delta, dash_Duration1):
 	if dashcool <= 0:

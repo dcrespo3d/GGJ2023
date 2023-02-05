@@ -82,10 +82,11 @@ margin_bottom = 474.667
 [node name="Target" parent="Viewport" instance=ExtResource( 3 )]
 
 [node name="Player" parent="Viewport" instance=ExtResource( 1 )]
-position = Vector2( 315, 271 )
+position = Vector2( 315, 290 )
 maxHealth = 250
-currentHealth = 250
-reloadspeed = 7.0
+currentHealth = 100
+ammo_current = 4
+reloadspeed = 10.0
 jumpspeed = -1000
 dash_Duration1 = 35
 dashcooldown = 0.1
@@ -98,10 +99,8 @@ fallWhileAttacking = true
 position = Vector2( -229, 340 )
 
 [node name="Floor" type="TextureRect" parent="Viewport"]
-margin_left = 8.33333
-margin_top = 2.33333
-margin_right = 648.333
-margin_bottom = 354.333
+margin_right = 640.0
+margin_bottom = 352.0
 texture = ExtResource( 10 )
 expand = true
 
