@@ -32,6 +32,7 @@ func _ready():
 	pass
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _spawnEnemy1():
 	var enemy = Enemy1.instance()
@@ -39,30 +40,34 @@ func _spawnEnemy1():
 	enemy_spawn_location.unit_offset = randf()
 	var direction = enemy_spawn_location.rotation + PI / 2
 	enemy.position = enemy_spawn_location.position
-	print(enemy_spawn_location.unit_offset)
-	print(enemy_spawn_location.position)
+	#print(enemy_spawn_location.unit_offset)
+	#print(enemy_spawn_location.position)
+	
+	
 	
 	
 	$Viewport.add_child(enemy)
 	
 func _spawnEnemy2():
-	var enemy = Enemy2.instance()
-	var enemy_spawn_location = get_node("Viewport/enemyPath02/enemySpawn02")
-	enemy_spawn_location.unit_offset = randf()
-	var direction = enemy_spawn_location.rotation + PI / 2
-	enemy.position = enemy_spawn_location.position
-	print(enemy_spawn_location.unit_offset)
-	print(enemy_spawn_location.position)
+	var enemy2 = Enemy2.instance()
+	var enemy2_spawn_location = get_node("Viewport/enemyPath2/enemySpawn2")
+	enemy2_spawn_location.unit_offset = randi()%2
+	var direction2 = enemy2_spawn_location.rotation + PI / 2
+	enemy2.position = enemy2_spawn_location.position
+	#print(enemy2_spawn_location.unit_offset)
+	#print(enemy2_spawn_location.position)
 	
-	$Viewport.add_child(enemy)
 	
-
+	
+	
+	$Viewport.add_child(enemy2)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_on_Timer_timeout(delta)
 	actualtimer = actualtimer - 1*delta
 #	print(spawntimer)
 	if Input.is_action_just_pressed("debug1"):
+		_spawnEnemy2()
 		_spawnEnemy1()
 	#print (actualtimer)
 	
