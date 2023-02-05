@@ -18,9 +18,10 @@ export var heal = 10
 export var hits = 3
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_tree().get_root().get_node("EscenaMain").bichosmuertos += 1
 	
 
 
@@ -29,6 +30,7 @@ func _process(delta):
 	
 	if hits <= 0:
 		state = DIE
+		
 	
 	
 	

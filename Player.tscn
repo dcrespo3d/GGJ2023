@@ -20,14 +20,14 @@ SFXDash = ExtResource( 3 )
 SFXJump = ExtResource( 4 )
 SFXHeal = ExtResource( 5 )
 walkspeed = 500
-jumpspeed = -900
+ammo_max = 15
+jumpspeed = -1050
 fallacc = 3000
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -30 )
 frames = ExtResource( 1 )
 animation = "Charge"
-frame = 4
 speed_scale = 3.0
 playing = true
 

@@ -9,7 +9,7 @@ enum {NORMAL, SUCK, SHOOT, HIT, DEAD, JUMP, DASH}
 func _ready():
 	pass # Replace with function body.
 export var maxHealth = 10
-export var currentHealth = 10
+export (float) var currentHealth = 10
 func getType():
 	return  "Gea"
 func _takeHit(damage):

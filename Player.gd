@@ -76,6 +76,7 @@ func _process(delta):
 	if dashstale > 1:
 		dashstale = 1
 		
+	print(reloadspeed)
 	if dashcool > 0:
 		dashcool = dashcool - 1 * delta
 
@@ -137,8 +138,10 @@ func _process(delta):
 #	print("STATE: ", state)
 	
 	
+#
+#	print(tiempo)
 
-	print(tiempo)
+
 	#print(get_viewport().get_mouse_position())
 		
 func process_normal(delta):
