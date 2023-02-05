@@ -23,6 +23,8 @@ export var maxHealth = 10
 export var currentHealth = 10
 export var heal = 1
 export var inmunity = false
+export (float) var vidaMenosHeal = 1
+export (float) var vidaMenosAmmo = 1
 export var ammo_max = 8
 export var ammo_current = 8
 export (float) var reloadspeed = 1
@@ -413,9 +415,9 @@ func _takeHit(damage):
 		
 		
 func _takeHeal(delta, heal, reloadspeed):
-	var hit = false
+	var hit = 0
 	if currentHealth < maxHealth && isonfloor:
-		hit = true
+		hit += vidaMenosHeal
 		_on_Timer_timeout(delta)
 		currentHealth += heal * tiempo
 		if tiempo == MAXtiempo: 
@@ -424,9 +426,10 @@ func _takeHeal(delta, heal, reloadspeed):
 
 	if ammo_current < ammo_max && isonfloor:
 		tiempo2func(delta)
-		hit = true
+		hit += vidaMenosAmmo
 		if tiempo2 > 1/reloadspeed:
 			ammo_current += 1
+		
 			tiempo2 = 0
 	
 	
@@ -436,7 +439,7 @@ func _takeHeal(delta, heal, reloadspeed):
 		state = SUCK
 	
 	if hit:
-		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(heal)
+		get_tree().get_root().get_node("EscenaMain/Viewport/Gea")._takeHit(hit)
 
 func getType():
 	return  "Player"
