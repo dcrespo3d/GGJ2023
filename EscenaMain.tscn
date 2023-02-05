@@ -115,7 +115,7 @@ position = Vector2( 3.66667, -24.3333 )
 rotation = -0.00156094
 
 [node name="enemyPath2" type="Path2D" parent="Viewport"]
-position = Vector2( -16.7453, 0 )
+position = Vector2( -24, 20 )
 scale = Vector2( 1.02621, 1 )
 curve = SubResource( 3 )
 
@@ -128,6 +128,15 @@ stream = ExtResource( 16 )
 autoplay = true
 
 [node name="EscenaPause" parent="Viewport" instance=ExtResource( 15 )]
+
+[node name="Floor" type="TextureRect" parent="Viewport"]
+margin_left = -2.33333
+margin_top = -108.667
+margin_right = 642.667
+margin_bottom = 251.333
+rect_scale = Vector2( 1, 1.3 )
+texture = ExtResource( 10 )
+expand = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
