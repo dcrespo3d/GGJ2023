@@ -1,18 +1,34 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Art/VFX/Game_Over_Background.png" type="Texture" id=1]
 [ext_resource path="res://Art/VFX/Game_Over_Text.png" type="Texture" id=2]
 [ext_resource path="res://GameOver.gd" type="Script" id=3]
 [ext_resource path="res://Art/SFX/FondoSound.wav" type="AudioStream" id=4]
 [ext_resource path="res://Art/UI/GO_backMenuButton.png" type="Texture" id=5]
-[ext_resource path="res://Art/UI/GO_playAgainHover.png" type="Texture" id=6]
-[ext_resource path="res://Art/UI/GO_backMenuHover.png" type="Texture" id=7]
+[ext_resource path="res://Art/UI/GO_backMenuHover.png" type="Texture" id=6]
+[ext_resource path="res://Art/UI/GO_playAgainHover.png" type="Texture" id=7]
 [ext_resource path="res://Art/UI/GO_plainAgainButton.png" type="Texture" id=8]
+[ext_resource path="res://Art/Font/IrishPenny.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Art/UI/score/SCORE (1).png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 39
+outline_color = Color( 0.0313726, 0.764706, 0.545098, 1 )
+font_data = ExtResource( 9 )
 
 [node name="gameover" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+physics_interpolation_mode = 2
+process_priority = 1
+position = Vector2( 320, 180 )
+stream = ExtResource( 4 )
+autoplay = true
+area_mask = 2
 
 [node name="GameOverBackground" type="Sprite" parent="."]
 position = Vector2( 321, 180 )
@@ -22,11 +38,26 @@ texture = ExtResource( 1 )
 position = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 326.0
+margin_top = 23.0
+margin_right = 428.0
+margin_bottom = 111.0
+custom_colors/font_color = Color( 0.0313726, 0.764706, 0.545098, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "2054"
+align = 1
+
 [node name="PlayAgainButton" type="Button" parent="."]
 margin_left = 250.0
 margin_top = 260.0
-margin_right = 400.0
-margin_bottom = 290.0
+margin_right = 412.0
+margin_bottom = 296.0
 rect_pivot_offset = Vector2( -382, -202 )
 icon = ExtResource( 8 )
 flat = true
@@ -35,36 +66,28 @@ icon_align = 1
 [node name="BACK TO MENU" type="Button" parent="."]
 margin_left = 250.0
 margin_top = 300.0
-margin_right = 400.0
-margin_bottom = 330.0
+margin_right = 412.0
+margin_bottom = 336.0
 rect_pivot_offset = Vector2( -382, -202 )
 icon = ExtResource( 5 )
 flat = true
 icon_align = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-pause_mode = 2
-physics_interpolation_mode = 2
-process_priority = 1
-stream = ExtResource( 4 )
-autoplay = true
-area_mask = 2
-
 [node name="PlayAgainButton2" type="TextureButton" parent="."]
 margin_left = 256.0
 margin_top = 263.0
-margin_right = 406.0
-margin_bottom = 293.0
+margin_right = 418.0
+margin_bottom = 299.0
 rect_pivot_offset = Vector2( -382, -202 )
-texture_hover = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
 
 [node name="BACK TO MENU2" type="TextureButton" parent="."]
 margin_left = 256.0
 margin_top = 303.0
-margin_right = 406.0
-margin_bottom = 333.0
+margin_right = 418.0
+margin_bottom = 339.0
 rect_pivot_offset = Vector2( -382, -202 )
-texture_hover = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
 
 [connection signal="pressed" from="PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
 [connection signal="pressed" from="BACK TO MENU" to="." method="_on_BACK_TO_MENU_pressed"]

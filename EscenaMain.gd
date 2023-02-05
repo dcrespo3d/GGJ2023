@@ -8,11 +8,19 @@ export(PackedScene) var Enemy2
 export var tiempo = 0
 export var tiempo2 = 0
 export var tiempo3 = 0
-export var rounds = 1
+var tiempo4 = 0
+
+#Para cambiar el tiempo de descanso entre oleadas
+export var cooldownOleadas = 4
+
+var pasarRonda = true
 export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
-
+var score = 0
+var cacademons = 0
+var slimes = 0
+var rondasPuntos = 1
 
 #Oleadas_variables
 var bichosmuertos = 0
@@ -45,8 +53,6 @@ func _spawnEnemy1():
 	enemy_spawn_location.unit_offset = randf()
 	var direction = enemy_spawn_location.rotation + PI / 2
 	enemy.position = enemy_spawn_location.position
-	#print(enemy_spawn_location.unit_offset)
-	#print(enemy_spawn_location.position)
 	
 	
 	
@@ -59,9 +65,6 @@ func _spawnEnemy2():
 	enemy2_spawn_location.unit_offset = randi()%2
 	var direction2 = enemy2_spawn_location.rotation + PI / 2
 	enemy2.position = enemy2_spawn_location.position
-	#print(enemy2_spawn_location.unit_offset)
-	#print(enemy2_spawn_location.position)
-	
 	
 	
 	
@@ -69,22 +72,25 @@ func _spawnEnemy2():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_on_Timer_timeout(delta)
+	_score()
 	actualtimer = actualtimer - 1*delta
-#	print(spawntimer)
-	if Input.is_action_just_pressed("debug1"):
-		_spawnEnemy2()
-		_spawnEnemy1()
-	#print (actualtimer)
 	
 	if tiempo3 >= 2:
 		if get_tree().get_root().get_node("EscenaMain/Viewport/Player").state == DEAD:
 			playerAlive = false
 	
+	#Tiempo entre Oleadas		
+	if tiempo4 >= cooldownOleadas && pasarRonda == true:
+		_inicioRonda()
+		tiempo4 = 0
+		pasarRonda = false
+	
 	
 	if playerAlive :
 		
-		if tiemporonda == 0 || bichosronda == 0:
-			_inicioRonda()
+		if rondas>0 && (tiemporonda == 0 || bichosronda == 0) && pasarRonda==false:
+			tiempo4 = 0
+			pasarRonda = true
 		
 		if tiempo >= 1:
 			tiemporonda -= 1
@@ -94,7 +100,6 @@ func _process(delta):
 		if tiempo2 >= spawntimer && bichosronda != 0:
 			
 			if actualEnemy2InRound < maxEnemy2InRound:
-				print(actualEnemy2InRound, "<", maxEnemy2InRound)
 				enemyKindSpawnDecider = randi()%2
 				if enemyKindSpawnDecider == 1:
 					_spawnEnemy1()
@@ -104,7 +109,6 @@ func _process(delta):
 			else:
 				_spawnEnemy1()
 			bichosronda -= 1
-			print("Bichos ronda restantes: ", bichosronda)
 			tiempo2 = 0
 		
 	
@@ -118,14 +122,12 @@ func _process(delta):
 	
 
 func _inicioRonda():
-	if primeraRonda == true:
-		primeraRonda = false
-	else:
-		rondas += 1
+	rondas += 1
+	rondasPuntos += 0.25
 	
 	
-	bichosronda = bichosIniciales + incrementoBichosPorRonda * rondas
-	tiemporonda = tiempoInicial + incrementoTiempoPorRonda * rondas
+	bichosronda = bichosIniciales + incrementoBichosPorRonda * (rondas-1)
+	tiemporonda = tiempoInicial + incrementoTiempoPorRonda * (rondas-1)
 	spawntimer = tiemporonda/bichosronda
 	
 	actualEnemy2InRound = 0
@@ -135,13 +137,13 @@ func _inicioRonda():
 		contadorInternoRondasCaracol = 0
 	else:
 		contadorInternoRondasCaracol += 1
-	
-	print("bichos: ", bichosronda)
-	print("tiempo nueva ronda gente :D : ", tiemporonda)
-	print("spawntimer: ", spawntimer)
-
 
 func _on_Timer_timeout(delta):
 	tiempo += 1 * delta
 	tiempo2 += 1 * delta	
 	tiempo3 += 1 * delta
+	tiempo4 += 1 * delta
+
+func _score():
+	score = ((cacademons * 10) + (slimes * 75)) * (rondasPuntos)
+
