@@ -32,7 +32,7 @@ func _process(delta):
 	if hits <= 0:
 		state = DIE
 		if state == DIE && !hemuerto:
-			get_tree().get_root().get_node("EscenaMain/Viewport/GameOver").cacademons += 1
+			get_tree().get_root().get_node("EscenaMain").cacademons += 1
 			hemuerto = true
 	
 	

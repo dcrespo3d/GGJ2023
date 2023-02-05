@@ -12,6 +12,10 @@ export var rounds = 1
 export (float) var spawntimer = 2
 export var speedincrease = 0.01
 var actualtimer = 2
+var score = 0
+var cacademons = 0
+var slimes = 0
+var rondasPuntos = 1
 
 #Oleadas_variables
 var bichosmuertos = 0
@@ -68,6 +72,7 @@ func _spawnEnemy2():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_on_Timer_timeout(delta)
+	_score()
 	actualtimer = actualtimer - 1*delta
 #	print(spawntimer)
 	if Input.is_action_just_pressed("debug1"):
@@ -145,3 +150,6 @@ func _on_Timer_timeout(delta):
 	tiempo += 1 * delta
 	tiempo2 += 1 * delta	
 	tiempo3 += 1 * delta
+
+func _score():
+	score += ((cacademons * 10) + (slimes * 75)) * (rondasPuntos)
