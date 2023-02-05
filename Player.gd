@@ -68,6 +68,7 @@ func _process(delta):
 	if dashstale > 1:
 		dashstale = 1
 		
+	print(reloadspeed)
 	if dashcool > 0:
 		dashcool = dashcool - 1 * delta
 
