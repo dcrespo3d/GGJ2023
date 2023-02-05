@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Dash.wav-cd9f947059022a1344035ce136d57db8.sample"
+path="res://.import/Disparo.wav-b502f321b268bb0b1a67f1ba6acffdde.sample"
 
 [deps]
 
-source_file="res://Art/SFX/Efectos de Sonido/Dash.wav"
-dest_files=[ "res://.import/Dash.wav-cd9f947059022a1344035ce136d57db8.sample" ]
+source_file="res://Art/SFX/Efectos de Sonido/Disparo.wav"
+dest_files=[ "res://.import/Disparo.wav-b502f321b268bb0b1a67f1ba6acffdde.sample" ]
 
 [params]
 

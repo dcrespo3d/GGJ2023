@@ -5,6 +5,9 @@ export (PackedScene) var SFXDash
 export (PackedScene) var SFXJump
 export (PackedScene) var SFXHeal
 export (PackedScene) var SFXDeath
+export (PackedScene) var SFXDisparo
+export (PackedScene) var SFXAlerta
+export (PackedScene) var SFXHitPj
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -65,7 +68,7 @@ var inDemo = true
 var begDemo = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
+var sfxAlerta = null
 
 func _process(delta):
 	
@@ -108,6 +111,12 @@ func _process(delta):
 	if ammo_current < ammo_max/2:
 		get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 	if ammo_current < ammo_max/4:
+		if SFXAlerta != null:
+			if sfxAlerta == null:
+				sfxAlerta = SFXAlerta.instance()
+				add_child(sfxAlerta)
+			
+			
 		if blinkingtimer <= 0:
 			blinking = !blinking
 			blinkingtimer = blinkingtimermax
@@ -116,6 +125,10 @@ func _process(delta):
 		else:
 			get_tree().get_root().get_node("EscenaMain/Gui/TextureRect5/Label").add_color_override("font_color", Color(1,1,0))
 		blinkingtimer = blinkingtimer-1
+	else:
+		if sfxAlerta != null:
+			sfxAlerta.queue_free()
+			sfxAlerta = null
 		
 func process_normal(delta):
 	
@@ -139,7 +152,10 @@ func process_normal(delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 		if ammo_current > 0:
+		
 			begin_shoot()
+			if SFXDisparo != null:
+				add_child(SFXDisparo.instance())
 		else:
 			shoot_fail()
 	
@@ -383,6 +399,8 @@ func instance_projectile():
 func _takeHit(damage):
 	if currentHealth > 0:
 		currentHealth -= damage
+		if SFXHitPj != null:
+			add_child(SFXHitPj.instance())
 		if !$AnimatedSprite.animation == "Charge" && !$AnimatedSprite.animation == "Charge_Enter" :
 			state = HIT
 			$AnimatedSprite.animation = "Hit"
